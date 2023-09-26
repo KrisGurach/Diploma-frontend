@@ -1,0 +1,46 @@
+.header {
+  margin: 0 auto;
+  padding: 0 70px;
+  min-height: 74px;
+  background-color: var(--purple-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+.header__container-films {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__films {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+}
+
+.header__container-account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 13px;
+}
+
+.header__account {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+}
+
+.header__logo-account {
+
+}
