@@ -12,7 +12,7 @@ export default function Header({}) {
         </div>
         <div className="header__container-account">
           <p className="header__account">Аккаунт</p>
-          <img  className="header__logo-account" src={account} alt="логотип аккаунта" />
+          <img className="header__logo-account" src={account} alt="логотип аккаунта" />
         </div>
       </div>
     </header>

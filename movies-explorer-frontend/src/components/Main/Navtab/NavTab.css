@@ -1,0 +1,19 @@
+.navbar {
+  min-height: 66px;
+  background-color: var(--black-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.navbar__link {
+  margin: 0;
+  padding: 0;
+  color: var(--white-color);
+  font-family: "Inter";
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  text-decoration: underline;
+}
