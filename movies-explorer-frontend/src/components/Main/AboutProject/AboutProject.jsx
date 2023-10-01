@@ -17,12 +17,12 @@ export default function AboutProject({}) {
         </div>
       </div>
       <div className="project__time">
-        <p className="project__box project__box_small project__box_black">1 неделя</p>
-        <p className="project__box project__box_big project__box_grey">4 недели</p>
+        <p className="project__box project__box_high project__box_small project__box_black">1 неделя</p>
+        <p className="project__box project__box_high project__box_big project__box_grey">4 недели</p>
       </div>
       <div className="project__time">
-        <p className="project__box project__box_small project__box_white">Back-end</p>
-        <p className="project__box project__box_big project__box_white">Front-end</p>
+        <p className="project__box project__box_short project__box_small project__box_white">Back-end</p>
+        <p className="project__box project__box_short project__box_big project__box_white">Front-end</p>
       </div>
     </div>
   );

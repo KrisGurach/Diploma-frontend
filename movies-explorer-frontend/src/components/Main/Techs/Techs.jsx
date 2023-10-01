@@ -3,7 +3,7 @@ export default function Techs({}) {
     <div className="techs">
       <h2 className="title techs__title">Технологии</h2>
       <div className="techs__flex-container">
-        <p className="techs__subtitle">7 технологий</p>
+        <p className="subtitle techs__subtitle">7 технологий</p>
         <p className="techs__text">
           На курсе веб-разработки мы освоили технологии, которые применили в
           дипломном проекте.

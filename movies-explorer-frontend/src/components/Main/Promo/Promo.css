@@ -4,27 +4,25 @@
   min-height: 524px;
   background-color: var(--purple-color);
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
   background-image: url(../../../images/logo-promo.svg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center 82px;
 }
 
-.promo__title {
-  margin: 0;
-  padding: 0;  
-  max-width: 730px;
-  min-height: 116px;
+.subtitle {
   font-family: "Inter";
   font-size: 50px;
   font-weight: 400;
   line-height: 1.16;
-  text-align: center;
-  letter-spacing: -4%;
+  letter-spacing: -2px;
 }
 
-.promo__logo {
-
+.promo__subtitle {
+  margin: 0;
+  padding: 0; 
+  padding-top: 184px; 
+  max-width: 730px;
+  min-height: 116px;
+  text-align: center;
 }
