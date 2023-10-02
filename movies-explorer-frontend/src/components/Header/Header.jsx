@@ -3,9 +3,9 @@ import account from "../../images/logo-account.svg";
 
 export default function Header({}) {
   return (
-    <header className="header">
+    <header className="header header_white">
       <img src={logo} className="logo" alt="логотип" />
-      <div className="header__container-films">
+      <div className="header__container">
         <div className="header__container-films">
           <p className="header__films">Фильмы</p>
           <p className="header__films">Сохранённые фильмы</p>

@@ -1,0 +1,28 @@
+.moviesCardList {
+  margin: 70px 70px 28px;  
+  padding: 0;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, 360px);
+  grid-auto-flow: dense;
+  grid-column-gap: 30px;
+  grid-row-gap: 60px;
+}
+
+.moviesCardList__moreFilms {
+  min-height: 166px;
+  display: flex;
+  justify-content: center;
+}
+
+.moviesCardList__moreFilms-button {
+  margin-top: 50px;
+  width: 320px;
+  height: 36px;
+  border: 0;
+  border-radius: 6px;
+  background-color: var(--movie-save-button-color);
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.21;
+}

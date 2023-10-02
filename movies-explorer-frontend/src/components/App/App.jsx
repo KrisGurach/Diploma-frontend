@@ -7,18 +7,45 @@ import Techs from '../Main/Techs/Techs.jsx';
 import AboutMe from '../Main/AboutMe/AboutMe'
 import Portfolio from '../Main/Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
+import SearchForm from '../Movies/SearchForm/SearchForm';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import LoginV2 from '../Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* Лэндинг главный
+       <Header />
       <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe /> 
       <Portfolio /> 
-      <Footer />  
+      <Footer />   */}
+
+      {/* Страница "Все фильмы"
+      <Header />
+      <SearchForm />
+      <MoviesCardList />
+      <Footer />  */}
+
+      {/* Страница "Сохраненные фильмы" */}
+
+      {/* Логин */}
+      <LoginV2 />
+
+      {/* Регистрация */}
+
+
+      {/* Профиль
+      <Header />
+       */}
+
+
+      {/* 404 */}
+
+
     </div>
   );
 }

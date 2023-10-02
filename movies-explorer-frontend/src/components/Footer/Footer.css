@@ -1,6 +1,5 @@
 .footer {
   height: 172px;
-  /* border: solid 2px red */
 }
 
 .footer__text {
@@ -19,11 +18,6 @@
   border-bottom: 1px var(--dark-grey-color) solid;
   color: var(--dark-grey-color);
   text-align: center;
-  /* border: solid 1px green; */
-}
-
-.footer__text_black {
-
 }
 
 .footer__flex-container {

@@ -9,6 +9,15 @@
   gap: 50px;
 }
 
+.header_white {
+  background-color: var(--white-color);
+}
+
+.header__container {
+  display: flex;
+  gap: 50px;
+}
+
 .header__container-films {
   display: flex;
   justify-content: space-between;

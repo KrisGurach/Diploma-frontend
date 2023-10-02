@@ -1,0 +1,111 @@
+.searchForm {  
+  display: flex;
+  justify-content: center;
+  width: 1140px;
+  height: 212px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--accent-grey-color);
+}
+
+.searchForm__icon {
+  width: 34px;
+  height: 34px;
+  margin-left: 19px;
+}
+
+.searchForm__search-field {
+  margin-top: 70px;  
+  width: 1140px;
+  height: 72px;  
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--search-white-color);
+  border-radius: 9px;
+  -webkit-box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+}
+
+.searchForm__container {
+  display: flex;
+  align-items: center;  
+}
+
+.searchForm__text {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  color: var(--dark-grey-color);
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.11;
+}
+
+.seachForm__container-button {
+  margin-right: 29px;  
+  width: 100px;  
+  height: 40px; 
+  display: flex;
+  align-items: center; 
+  border-right: 1px solid var(--search-grey-color);
+}
+
+.searchForm__search-button {
+  width: 58px;  
+  height: 34px;
+  margin-left: 21px;
+  color: var(--white-color);
+  background-color: var(--black-color);
+  border-radius: 18px;
+  border: 0;
+  font-family: "Inter";
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.64;
+}
+
+.searchForm__button {
+  display: inline-block;
+  width: 36px; 
+  height: 20px; 
+  border-radius: 20px; 
+  background: #EBEBEB; 
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; 
+}
+.searchForm__button::after {
+  content: "";
+  height: 16px; 
+  width: 16px; 
+  border-radius: 17px;
+  background: #FFFFFF; 
+  top: 2px; 
+  left: 2px; 
+  transition-duration: 300ms;
+  position: absolute;
+  z-index: 1;
+}
+
+.searchForm__button_active {
+  background: #2BE080;
+}
+
+.searchForm__button_active::after {
+  left: 17px;
+}
+
+.searchForm__checkbox-text {
+  margin-left: 14px;
+  margin-right: 30px;
+  font-family: "Inter";
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.38;
+}
