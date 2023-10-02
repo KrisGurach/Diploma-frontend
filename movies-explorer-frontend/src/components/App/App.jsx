@@ -1,53 +1,50 @@
-import './App.css';
-import Header from '../Header/Header.jsx';
-import Promo from '../Main/Promo/Promo';
-import NavTab from '../Main/Navtab/NavTab';
-import AboutProject from '../Main/AboutProject/AboutProject';
-import Techs from '../Main/Techs/Techs.jsx';
-import AboutMe from '../Main/AboutMe/AboutMe'
-import Portfolio from '../Main/Portfolio/Portfolio';
-import Footer from '../Footer/Footer';
-import SearchForm from '../Movies/SearchForm/SearchForm';
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import LoginV2 from '../Login/Login';
-import Register from '../Register/Register';
+import "./App.css";
+import Header from "../Header/Header.jsx";
+import Promo from "../Main/Promo/Promo";
+import NavTab from "../Main/Navtab/NavTab";
+import AboutProject from "../Main/AboutProject/AboutProject";
+import Techs from "../Main/Techs/Techs.jsx";
+import AboutMe from "../Main/AboutMe/AboutMe";
+import Portfolio from "../Main/Portfolio/Portfolio";
+import Footer from "../Footer/Footer";
+import SearchForm from "../Movies/SearchForm/SearchForm";
+import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
+import LoginV2 from "../Login/Login";
+import Register from "../Register/Register";
+import Movies from "../Movies/Movies";
+import Main from "../Main/Main";
+import { Route, Routes } from "react-router-dom";
+import Login from "../Login/Login";
 
 function App() {
   return (
     <div className="App">
-      {/* Лэндинг главный
-       <Header />
-      <Promo />
-      <NavTab />
-      <AboutProject />
-      <Techs />
-      <AboutMe /> 
-      <Portfolio /> 
-      <Footer />   */}
-
-      {/* Страница "Все фильмы"
       <Header />
-      <SearchForm />
-      <MoviesCardList />
-      <Footer />  */}
+      <Routes>
 
-      {/* Страница "Сохраненные фильмы" */}
+        {/* Лэндинг главный */}
+        <Route path="/" element={<Main />} />
 
-      {/* Логин 
-      <LoginV2 />
-      */}
+        {/* Страница "Все фильмы" */}
+        <Route path="/movies" element={<Movies />} />
 
-      {/* Регистрация */}
-      <Register />
+        {/* Страница "Сохраненные фильмы" */}
+        {/* <Route path="/saved-movies" element={<SavedMovies />} /> */}
 
-      {/* Профиль
-      <Header />
-       */}
+        {/* Вход */}
+        <Route path="/signin" element={<Login />} />
 
+        {/* Регистрация */}
+        <Route path="/signup" element={<Register />} />
 
-      {/* 404 */}
+        {/* Профиль */}
+        {/* <Route path="/profile" element={<Profile />} /> */}
 
+        {/* 404 */}
+        {/* <Route path="*" element={NotFound} /> */}
 
+      </Routes>
+      <Footer />
     </div>
   );
 }
