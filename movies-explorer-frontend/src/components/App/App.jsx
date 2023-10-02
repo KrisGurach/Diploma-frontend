@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import LoginV2 from '../Login/Login';
+import Register from '../Register/Register';
 
 function App() {
   return (
@@ -32,11 +33,12 @@ function App() {
 
       {/* Страница "Сохраненные фильмы" */}
 
-      {/* Логин */}
+      {/* Логин 
       <LoginV2 />
+      */}
 
       {/* Регистрация */}
-
+      <Register />
 
       {/* Профиль
       <Header />
