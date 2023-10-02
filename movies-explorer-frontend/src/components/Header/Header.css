@@ -28,10 +28,12 @@
 .header__films {
   margin: 0;
   padding: 0;
+  color: var(--black-color);
   font-family: "Inter";
   font-size: 14px;
   font-weight: 400;
   line-height: 1.29;
+  text-decoration: none;
 }
 
 .header__container-account {
@@ -44,10 +46,12 @@
 .header__account {
   margin: 0;
   padding: 0;
+  color: var(--black-color);
   font-family: "Inter";
   font-size: 14px;
   font-weight: 500;
   line-height: 1.14;
+  text-decoration: none;
 }
 
 .header__logo-account {

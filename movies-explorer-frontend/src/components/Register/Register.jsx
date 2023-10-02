@@ -49,7 +49,7 @@ export default function Register({}) {
         </form>
         <div className="login__container">
           <p className="login__text">Уже зарегистрированы?</p>
-          <Link to="/signup" className="login__link">
+          <Link to="/signin" className="login__link">
             Войти
           </Link>
         </div>
