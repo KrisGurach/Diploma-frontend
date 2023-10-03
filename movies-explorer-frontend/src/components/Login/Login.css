@@ -1,20 +1,4 @@
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login__flex-container {
-  width: 396px;
-  align-self: flex-start;
-  margin-left: calc((100% - 396px) / 2);
-}
-
-.login__logo {
-  margin: 70px 0 40px;
-}
-
-.login__title {
+.salut-title {
   margin: 0;
   margin-bottom: 40px;
   padding: 0;  
@@ -24,12 +8,28 @@
   line-height: 1.21;
 }
 
-.login__form {
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-container {
+  width: 396px;
+  align-self: flex-start;
+  margin-left: calc((100% - 396px) / 2);
+}
+
+.salut-logo {
+  margin: 70px 0 40px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
 }
 
-.login__input-text {
+.input-text {
   margin: 0;
   margin-bottom: 10px;
   padding: 0;  
@@ -40,7 +40,7 @@
   line-height: 1.21;
 }
 
-.login__input {
+.input {
   width: 396px;
   height: 45px;
   margin: 0;
@@ -56,11 +56,11 @@
   line-height: 1.21;
 }
 
-.login__input:last-of-type {
+.input:last-of-type {
   margin-bottom: 179px;
 }
 
-.login__button {
+.save-button {
   min-width: 396px;
   height: 45px;
   background-color: var(--black-color);
@@ -74,11 +74,11 @@
   line-height: 1.21;
 }
 
-.login__container {
+.container {
   display: flex;
 }
 
-.login__text {
+.text {
   margin: 0;
   padding: 0;
   margin: 16px 6px 70px 0;
@@ -89,7 +89,7 @@
   line-height: 1.21;
 }
 
-.login__link {
+.link {
   margin-top: 16px;
   color: var(--black-color);  
   font-family: "Inter";
@@ -99,6 +99,6 @@
   text-decoration: none;
 }
 
-.login__link:hover {
+.link:hover {
   opacity: 0.7;
 }

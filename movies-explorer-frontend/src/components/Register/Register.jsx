@@ -3,53 +3,53 @@ import logo from "../../images/logo.svg";
 
 export default function Register({}) {
     return (
-        <div className="login">
-        <div className="login__flex-container">
-          <img src={logo} className="login__logo" alt="логотип сайта" />
-          <h1 className="login__title">Добро пожаловать!</h1>
+        <div className="register">
+        <div className="flex-container">
+          <img src={logo} className="salut-logo" alt="логотип сайта" />
+          <p className="salut-title">Добро пожаловать!</p>
         </div>
-        <form className="login__form">
-        <p className="login__input-text">Имя</p>
+        <form className="form">
+        <p className="input-text">Имя</p>
           <input
             type="text"
             name="Имя"
             placeholder="Имя"
-            className="login__input login__input_type_name"
+            className="input register__input_type_name"
             // minLength={2}
             // maxLength={40}
             required=""
             //   value={values.email || ""}
             //   onChange={handleChange}
           />  
-          <p className="login__input-text">E-mail</p>
+          <p className="input-text">E-mail</p>
           <input
             type="text"
             name="email"
             placeholder="email@mail.ru"
-            className="login__input login__input_type_email"
+            className="input register__input_type_email"
             minLength={2}
             maxLength={40}
             required=""
             //   value={values.email || ""}
             //   onChange={handleChange}
           />
-          <p className="login__input-text">Пароль</p>
+          <p className="input-text">Пароль</p>
           <input
             type="password"
             name="password"
             placeholder="Пароль"
-            className="login__input login__input_type_password"
+            className="input register__input_type_password"
             minLength={2}
             maxLength={400}
             required=""
             //   value={values.password || ""}
             //   onChange={handleChange}
           />
-          <button className="login__button">Войти</button>
+          <button className="save-button">Зарегистрироваться</button>
         </form>
-        <div className="login__container">
-          <p className="login__text">Уже зарегистрированы?</p>
-          <Link to="/signin" className="login__link">
+        <div className="container">
+          <p className="text">Уже зарегистрированы?</p>
+          <Link to="/signin" className="link">
             Войти
           </Link>
         </div>
