@@ -1,6 +1,6 @@
 export default function AboutProject({}) {
   return (
-    <div className="project">
+    <div className="project" id="aboutProject">
       <h2 className="title project__title">О проекте</h2>
       <div className="project__flex-container">
         <div className="project__container">

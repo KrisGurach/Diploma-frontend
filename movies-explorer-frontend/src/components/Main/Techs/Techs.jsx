@@ -1,6 +1,6 @@
 export default function Techs({}) {
   return (
-    <div className="techs">
+    <div className="techs" id="techs">
       <h2 className="title techs__title">Технологии</h2>
       <div className="techs__flex-container">
         <p className="subtitle techs__subtitle">7 технологий</p>

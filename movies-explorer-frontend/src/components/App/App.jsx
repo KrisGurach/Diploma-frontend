@@ -8,6 +8,7 @@ import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
 import NotFound from "../NotFound/NotFound";
 import { Route, Routes } from "react-router-dom";
+import SavedMovies from "../SavedMovies/SavedMovies";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path="/movies" element={<Movies />} />
 
         {/* Страница "Сохраненные фильмы" */}
-        {/* <Route path="/saved-movies" element={<SavedMovies />} /> */}
+        <Route path="/saved-movies" element={<SavedMovies />} />
 
         {/* Вход */}
         <Route path="/signin" element={<Login />} />

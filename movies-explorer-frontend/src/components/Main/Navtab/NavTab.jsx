@@ -1,9 +1,9 @@
 export default function NavTab({}) {
   return (
     <nav className="navbar">
-      <p className="navbar__link">О проекте</p>
-      <p className="navbar__link">Технологии</p>  
-      <p className="navbar__link">Студент</p>  
+      <a href="#aboutProject" className="navbar__link">О проекте</a>
+      <a href="#techs" className="navbar__link">Технологии</a>  
+      <a href="#student" className="navbar__link">Студент</a>  
     </nav>
   )
 }    

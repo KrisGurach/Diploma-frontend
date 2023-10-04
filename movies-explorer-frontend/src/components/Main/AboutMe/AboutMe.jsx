@@ -2,7 +2,7 @@ import photo from '../../../images/photo.svg'
 
 export default function AboutMe({}) {
   return (
-    <div className="aboutMe">
+    <div className="aboutMe" id="student">
       <h2 className="title aboutMe__title">Студент</h2>
       <div className="aboutMe__flexcontainer">
         <div className="aboutMe__container">
