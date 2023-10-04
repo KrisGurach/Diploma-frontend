@@ -1,5 +1,6 @@
 import logo from "../../images/logo.svg";
 import account from "../../images/logo-account.svg";
+import whiteAccount from "../../images/logo-account-white.svg";
 import { Link } from "react-router-dom";
 
 export default function Header({}) {
@@ -17,7 +18,7 @@ export default function Header({}) {
           <Link to="/profile" className="header__account">Аккаунт</Link>
           <img
             className="header__logo-account"
-            src={account}
+            src={whiteAccount}
             alt="логотип аккаунта"
           />
         </div>
