@@ -17,3 +17,7 @@
   line-height: 1.23;
   text-decoration: underline;
 }
+
+.navbar__link:hover {
+  opacity: 0.7;
+}

@@ -25,4 +25,9 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1.21;
+  cursor: pointer;
+}
+
+.moviesCardList__moreFilms-button:hover {
+  opacity: 0.8;
 }

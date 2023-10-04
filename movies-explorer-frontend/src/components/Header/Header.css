@@ -9,6 +9,10 @@
   gap: 50px;
 }
 
+.logo:hover {
+  opacity: 0.7;
+}
+
 .header_white {
   background-color: var(--white-color);
 }
@@ -36,6 +40,10 @@
   text-decoration: none;
 }
 
+.header__films:hover {
+  opacity: 0.7;
+}
+
 .header__container-account {
   display: flex;
   justify-content: space-between;
@@ -54,6 +62,6 @@
   text-decoration: none;
 }
 
-.header__logo-account {
-
+.header__account:hover {
+  opacity: 0.7;
 }
