@@ -23,7 +23,7 @@ export default function Profile({}) {
             placeholder="E-mail"
             className="profile__input profile__input_type_email"
             minLength={2}
-            maxLength={400}
+            maxLength={40}
             required=""
           />
         </div>

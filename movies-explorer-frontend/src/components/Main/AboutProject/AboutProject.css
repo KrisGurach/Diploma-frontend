@@ -1,3 +1,7 @@
+.project {
+  margin-bottom: 110px;
+}
+
 .title {
   margin: 110px 70px 70px;
   min-height: 50px;
@@ -37,10 +41,6 @@
 .project__time {
   margin: 0 70px 14px;  
   display: flex;
-}
-
-.project__time:last-child {
-  margin-bottom: 110px;  
 }
 
 .project__box {
@@ -84,4 +84,35 @@
 .project__box_white {
   height: min-content;  
   color: var(--dark-grey-color);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .title {
+    margin: 90px 50px 70px;
+  }
+
+  .project__flex-container {
+    margin: 0 50px 93px;
+  }
+
+  .project__subtitle {
+    margin-bottom: 22px;
+  }  
+
+  .project__time {
+    margin: 0 50px 14px;
+  }
+
+  .project__text {
+    font-size: 12px;
+    line-height: 1.5;
+  }  
+
+  .project__box_small{
+    width: 140px;
+  }
+
+  .project__box_big {
+    width: 528px;
+  }
 }

@@ -3,44 +3,42 @@ import logo from "../../images/logo.svg";
 
 export default function Login({}) {
   return (
-    <div className="login">
-      <div className="flex-container">
+    <section className="login">
+      <div className="form__flex-container">
         <img src={logo} className="salut-logo" alt="логотип сайта" />
         <p className="salut-title">Рады видеть!</p>
       </div>
-      <form className="form">
-        <p className="input-text">E-mail</p>
+      <form className="form__form">
+        <p className="form__input-text">E-mail</p>
         <input
           type="text"
           name="email"
           placeholder="email@mail.ru"
-          className="input login__input_type_email"
+          className="login__input login__input_type_email"
           minLength={2}
           maxLength={40}
           required=""
-          //   value={values.email || ""}
-          //   onChange={handleChange}
         />
-        <p className="input-text">Пароль</p>
+        {/* <span className="input__error /> */}
+        <p className="form__input-text">Пароль</p>
         <input
           type="password"
           name="password"
           placeholder="Пароль"
-          className="input login__input_type_password"
+          className="login__input login__input_type_password"
           minLength={2}
-          maxLength={400}
+          maxLength={40}
           required=""
-          //   value={values.password || ""}
-          //   onChange={handleChange}
         />
-        <button className="save-button">Войти</button>
+        {/* <span className="input__error /> */}
+        <button className="form__save-button">Войти</button>
       </form>
-      <div className="container">
-        <p className="text">Ещё не зарегистрированы?</p>
-        <Link to="/signup" className="link">
+      <div className="form__container">
+        <p className="form__text">Ещё не зарегистрированы?</p>
+        <Link to="/signup" className="form__link">
           Регистрация
         </Link>
       </div>
-    </div>
+    </section>
   );
 }

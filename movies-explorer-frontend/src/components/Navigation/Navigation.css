@@ -34,7 +34,7 @@
   z-index: 2;
 }
 
-.container {
+.navigation__container {
   margin-bottom: 621px;  
   display: flex;
   flex-direction: column;
@@ -52,3 +52,9 @@
   color: var(--black-color);
   text-decoration: none;
 }
+
+
+.navigation__link_active {
+  text-decoration: underline;
+}
+

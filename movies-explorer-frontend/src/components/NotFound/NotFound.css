@@ -37,3 +37,9 @@
   font-weight: 400;
   line-height: 1.21;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .notFound__title {
+    margin-top: 408px;
+  }
+}

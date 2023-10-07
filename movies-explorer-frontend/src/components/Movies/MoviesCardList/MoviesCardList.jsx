@@ -12,10 +12,10 @@ export default function MoviesCardList({}) {
         <MoviesCard />
         <MoviesCard />
         <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
+        {/* <MoviesCard />
+        <MoviesCard /> */}
+        {/* <MoviesCard />
+        <MoviesCard /> */}
       </div>
       <div className="moviesCardList__moreFilms">
         <button className="moviesCardList__moreFilms-button">Ещё</button>

@@ -1,6 +1,23 @@
+import { useLocation } from "react-router-dom";
+
 export default function Footer({}) {
+  const { pathname } = useLocation();
+
+  let isHidden = true;
+
+  switch (pathname) {
+    case "/":
+    case "/movies":
+    case "/saved-movies":
+      isHidden = false;
+      break;
+
+    default:
+      isHidden = true;  
+  };
+
   return (
-    <div className="footer">
+    <div className={`"footer" ${isHidden && "footer_display_none"}`}>
       <p className="footer__text footer__text_grey">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </p>

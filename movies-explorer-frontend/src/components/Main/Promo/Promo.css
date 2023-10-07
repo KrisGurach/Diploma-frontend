@@ -26,3 +26,15 @@
   min-height: 116px;
   text-align: center;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .promo {
+    min-height: 784px;
+    background-position: center 224px;
+  }
+
+  .promo__subtitle {
+    padding-top: 326px;
+  }  
+
+}

@@ -38,3 +38,45 @@
   font-weight: 500;
   line-height: 1.21;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .aboutMe__title {
+    margin-bottom: 66px;
+  }
+  
+  .aboutMe__subtitle {
+    margin-left: 50px;
+    margin-bottom: 16px;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .aboutMe__flexcontainer {
+    gap: 49px;
+  }
+
+  .aboutMe__description {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .aboutMe__text {
+    margin-left: 50px;
+    margin-bottom: 87px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .aboutMe__photo {
+    margin-right: 50px;
+    width: 255px;
+    height: 307px;
+  }
+
+  .aboutMe__link {
+    margin-left: 50px;
+    margin-bottom: 91px
+  }
+}

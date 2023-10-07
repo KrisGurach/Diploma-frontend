@@ -9,11 +9,14 @@ import Profile from "../Profile/Profile";
 import NotFound from "../NotFound/NotFound";
 import { Route, Routes } from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
+import { useState } from "react";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="App">
-      <Header />
+      <Header isLoggedIn={isLoggedIn} />
       <Routes>
 
         {/* Лэндинг главный */}

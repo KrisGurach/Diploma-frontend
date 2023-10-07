@@ -2,6 +2,10 @@
   height: 172px;
 }
 
+.footer_display_none {
+  display: none;
+}
+
 .footer__text {
   font-family: "Inter";
   font-size: 13px;
@@ -30,4 +34,10 @@
 .footer__container {
   display: flex;
   gap: 20px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer__flex-container {
+    margin: 0 30px;
+  }
 }
