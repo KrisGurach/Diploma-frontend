@@ -44,7 +44,7 @@
 
 .techs__lang {
   width: 90px;
-  min-height: 60px;
+  height: 60px;
   border-radius: 10px; 
   background-color: var(--accent-grey-color);
   display: flex;
@@ -80,4 +80,44 @@
     width: 84px;
     min-height: 57px;
   }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .techs {
+    background-color: var(--white-color);  
+  }
+
+  .techs__title {
+    margin: 70px 18px 0;
+    padding-top: 25px;
+  }
+
+  .techs__subtitle {
+    margin: 60px 0 24px;
+    font-size: 30px;
+    line-height: 1.21;
+  } 
+
+  .techs__text {
+    margin-bottom: 50px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  
+  .techs__list {
+    padding-bottom: 70px;  
+    display: grid;
+    grid-template-columns: repeat(2, 84px);
+    grid-auto-flow: dense;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+
+  .techs__lang {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+    line-height: 1.21;
+  }
+
 }

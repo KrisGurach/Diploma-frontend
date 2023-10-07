@@ -36,5 +36,17 @@
   .promo__subtitle {
     padding-top: 326px;
   }  
+}
 
+@media (min-width: 320px) and (max-width: 767px) {
+  .promo {
+    min-height: 570px;
+  }  
+  
+  .promo__subtitle {
+    padding-top: 207px; 
+    font-size: 31px;
+    line-height: 1.26;
+    letter-spacing: -1px;
+  }
 }

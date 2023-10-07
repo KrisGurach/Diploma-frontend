@@ -116,3 +116,51 @@
     width: 528px;
   }
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .title {
+    margin: 70px 18px 60px;
+    font-size: 18px;
+    line-height: 1.54;
+  }
+
+  .project__flex-container {
+    display: block;
+    margin: 0 18px 60px;
+  }   
+
+  .project__container {
+    margin-bottom: 56px;
+  }
+
+  .project__container:last-of-type {
+    margin-bottom: 60px;
+  }
+
+  .project__subtitle {
+    margin-bottom: 16px;
+    font-size: 18px;
+  }  
+
+  .project__text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+
+  .project__time {
+    margin: 0 18px 10px;
+  }
+
+  .project__box_small{
+    width: 100px;
+  }
+
+  .project__box_big {
+    width: 184px;
+  }
+
+  .project__box {
+    font-size: 11px;
+  }
+}

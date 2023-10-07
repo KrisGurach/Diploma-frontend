@@ -21,3 +21,13 @@
 .navbar__link:hover {
   opacity: 0.7;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .navbar {
+    gap: 24px;
+  }
+  .navbar__link {
+    font-size: 11px;
+    line-height: 1.45;   
+  }  
+}

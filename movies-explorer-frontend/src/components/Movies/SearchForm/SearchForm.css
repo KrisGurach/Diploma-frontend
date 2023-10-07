@@ -145,3 +145,18 @@
     margin-right: 20px;
   }
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .searchForm {
+    width: 720px;
+    height: 272px;
+  }  
+
+  .searchForm__form {
+    margin: 80px 10px 45px;
+  }
+
+  .searchForm__input {
+    width: 80px;
+  }
+}
