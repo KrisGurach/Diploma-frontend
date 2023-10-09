@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 import image from "../../../images/moviecard.svg";
+import { savedMoviesPathname } from "../../../utils/constants";
 
 export default function MoviesCard({isSaved = false}) {
   const {pathname} = useLocation();
   const saveButtonClass = `movieCard__save-button 
-  ${pathname === "/saved-movies" 
+  ${pathname === savedMoviesPathname 
       ? "movieCard__remove-button" 
       : isSaved 
           ? "movieCard__save-button_active" 
@@ -17,7 +18,7 @@ export default function MoviesCard({isSaved = false}) {
     return (
       <div className="movieCard">
         <img src={image} className="movieCard__image" alt="постер фильма" />
-        <button className={saveButtonClass}>{isSaved || pathname === "/saved-movies"  ?  "" : "Сохранить" }</button>
+        <button className={saveButtonClass}>{isSaved || pathname === savedMoviesPathname  ?  "" : "Сохранить" }</button>
         <div className="movieCard__description">
           <p className="movieCard__name">Баския: Взрыв реальности</p>
           <div className="movieCard__duration">

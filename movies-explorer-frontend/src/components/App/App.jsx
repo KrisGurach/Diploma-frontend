@@ -10,6 +10,14 @@ import NotFound from "../NotFound/NotFound";
 import { Route, Routes } from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import { useState } from "react";
+import {
+  mainPathname,
+  moviesPathname,
+  profilePathname,
+  savedMoviesPathname,
+  signInPathname,
+  signUpPathname,
+} from "../../utils/constants";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -20,22 +28,22 @@ function App() {
       <Routes>
 
         {/* Лэндинг главный */}
-        <Route path="/" element={<Main />} />
+        <Route path={mainPathname} element={<Main />} />
 
         {/* Страница "Все фильмы" */}
-        <Route path="/movies" element={<Movies />} />
+        <Route path={moviesPathname} element={<Movies />} />
 
         {/* Страница "Сохраненные фильмы" */}
-        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path={savedMoviesPathname} element={<SavedMovies />} />
 
         {/* Вход */}
-        <Route path="/signin" element={<Login />} />
+        <Route path={signInPathname} element={<Login />} />
 
         {/* Регистрация */}
-        <Route path="/signup" element={<Register />} />
+        <Route path={signUpPathname} element={<Register />} />
 
         {/* Профиль */}
-        <Route path="/profile" element={<Profile />} />
+        <Route path={profilePathname} element={<Profile />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} /> 

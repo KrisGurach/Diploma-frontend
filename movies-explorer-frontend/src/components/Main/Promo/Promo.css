@@ -40,6 +40,8 @@
 @media (min-width: 320px) and (max-width: 767px) {
   .promo {
     min-height: 570px;
+    background-size: 248px;
+    background-position: center 142px;
   }  
   
   .promo__subtitle {

@@ -34,7 +34,7 @@
   
 @media (min-width: 768px) and (max-width: 1279px) {
   .moviesCardList {
-    margin: 70px 30px 12px;
+    margin: 80px 30px 12px;
     grid-template-columns: repeat(auto-fit, 339px);
     grid-row-gap: 47px;
   }
@@ -45,5 +45,9 @@
     margin: 50px 10px 13px;
     grid-template-columns: repeat(auto-fit, 300px);
     grid-row-gap: 39px;
+  }
+
+  .moviesCardList__moreFilms-button {
+    width: 240px;
   }
 }

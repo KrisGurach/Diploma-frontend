@@ -68,6 +68,7 @@
 
   .techs__text {
     margin-bottom: 83px;
+    font-size: 12px;
   }
 
   .techs__list {
@@ -80,7 +81,7 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 767px) {
   .techs {
     background-color: var(--white-color);  
   }

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
+import { signUpPathname } from "../../utils/constants";
 
 export default function Login({}) {
   return (
@@ -35,7 +36,7 @@ export default function Login({}) {
       </form>
       <div className="form__container">
         <p className="form__text">Ещё не зарегистрированы?</p>
-        <Link to="/signup" className="form__link">
+        <Link to={signUpPathname} className="form__link">
           Регистрация
         </Link>
       </div>

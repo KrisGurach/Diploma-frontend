@@ -137,7 +137,8 @@
 
   .header__burger-menu {
     padding: 0;
-    display: block;
+    display: flex;
+    justify-content: center;
     position: absolute;
     top: 15px;
     right: 30px;
@@ -183,11 +184,14 @@
     width: 22px;
     transform: rotate(45deg);
     top: 20px;
+    right: -2px;
     transition: 0.4s;
   }
+
   .header__burger-menu.open-menu:after {
     width: 22px;
     transform: rotate(-45deg);
+    right: -2px;
     bottom: 21px;
     transition: 0.4s;
   }
@@ -233,4 +237,14 @@
     height: 2.5px;
     width: 22px; 
   }   
+
+  .header__burger-menu.open-menu:before {
+    top: 15px;
+    right: -2px;
+  }
+
+  .header__burger-menu.open-menu:after {
+    top: 15px;
+    right: -2px;
+  }
 }

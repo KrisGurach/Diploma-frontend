@@ -76,6 +76,11 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
+  .movieCard__save-button {
+    top: 14px;
+    right: 14px;
+  }  
+
   .movieCard__description {
     margin-top: 25px;
   }
