@@ -96,3 +96,9 @@
     margin-bottom: 200px;
   }  
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .profile__container:last-of-type {
+    margin-bottom: 319px;
+  }  
+}

@@ -1,3 +1,13 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.salut-logo {
+  margin: 70px 0 40px;
+}
+
 .salut-title {
   margin: 0;
   margin-bottom: 40px;
@@ -8,20 +18,10 @@
   line-height: 1.21;
 }
 
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .form__flex-container {
   width: 396px;
   align-self: flex-start;
   margin-left: calc((100% - 396px) / 2);
-}
-
-.salut-logo {
-  margin: 70px 0 40px;
 }
 
 .form__form {
@@ -72,7 +72,7 @@
 } */
 
 .form__save-button {
-  min-width: 396px;
+  width: 396px;
   height: 45px;
   background-color: var(--black-color);
   color: var(--white-color);
@@ -121,5 +121,59 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .salut-logo {
     margin-top: 232px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .form__flex-container {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .salut-logo {
+    margin-top: 56px;
+    margin-bottom: 50px;
+    align-self: center;
+  }
+
+  .salut-title {
+    margin-bottom: 80px;
+  }
+
+  .form__form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+  
+  .form__input-text {
+    margin-left: 30px;
+    align-self: flex-start;
+  }
+
+  .login__input {
+    width: calc(100% - 60px);
+  }
+
+  .login__input:last-of-type {
+    margin-bottom: 267px;
+  }
+
+  .form__save-button {
+    width: calc(100% - 60px);
+    font-size: 12px;
+  }
+
+  .form__text {
+    font-size: 12px;
+  }
+
+  .form__link {
+    font-size: 12px;
   }
 }

@@ -58,3 +58,13 @@
   text-decoration: underline;
 }
 
+@media (min-width: 320px) and (max-width: 767px) {
+  .navigation__menu-container {
+    padding-top: 144px;
+    width: 100%;
+  }
+
+  .navigation__container {
+    margin-bottom: 444px; 
+  }  
+}

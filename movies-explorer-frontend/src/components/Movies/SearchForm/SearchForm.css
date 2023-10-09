@@ -115,12 +115,22 @@
 }
 
 .searchForm__checkbox-text {
+  margin: 0;
+  padding: 0;
   margin-left: 14px;
   margin-right: 30px;
   font-family: "Inter";
   font-size: 13px;
   font-weight: 400;
   line-height: 1.38;
+}
+
+.searchForm__button-container1280 {
+  display: flex;
+}
+
+.searchForm__button-container320 {
+  display: none;
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
@@ -144,19 +154,70 @@
   .searchForm__checkbox-text {
     margin-right: 20px;
   }
+
+  .searchForm__button-container320 {
+    display: none;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
   .searchForm {
-    width: 720px;
-    height: 272px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 262px;
   }  
 
   .searchForm__form {
     margin: 80px 10px 45px;
+    width: calc(100% - 20px);
+    min-height: 72px;
+  }
+
+  .searchForm__icon {
+    display: none;
   }
 
   .searchForm__input {
-    width: 80px;
+    margin-left: 19px;
+    width: calc(100vw - 20px - 38px - 80px);
+    font-size: 14px;
   }
+
+  .seachForm__container-button { 
+    margin-right: 19px;
+    width: 80px;
+    border-right: 0;
+  }
+
+  .searchForm__button-container1280 {
+    display: none;
+  }
+
+  .searchForm__button-container320 {
+    margin-bottom: 45px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .searchForm__button {
+    width: 34px; 
+    height: 14px; 
+  }  
+
+  .searchForm__button::after {
+    height: 10px; 
+    width: 10px; 
+  }  
+
+  .searchForm__button_active::after {
+    top: 2px;
+    left: 22px;
+  }  
+
+  .searchForm__checkbox-text {
+    margin: 0;
+    margin-left: 13px;
+    font-size: 11px;
+  }  
 }

@@ -83,3 +83,24 @@
   }
 }
 
+@media (min-width: 320px) and (max-width: 767px) {
+  .movieCard {
+    height: 199px;
+  }
+
+  .movieCard__image {
+    width: 300px;
+    height: 168px;
+  }
+
+  .movieCard__save-button {
+    top: 10px;
+    right: 10px;
+  }  
+
+  .movieCard__name {
+    margin-left: 0;
+  }  
+}
+
+

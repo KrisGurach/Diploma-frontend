@@ -23,3 +23,13 @@
 .register__input:last-of-type {
   margin-bottom: 91px;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .register__input {
+    width: calc(100% - 60px);
+  }
+
+  .register__input:last-of-type {
+    margin-bottom: 179px; 
+  } 
+}

@@ -43,3 +43,21 @@
     margin-top: 408px;
   }
 }
+
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .notFound__title {
+    margin-top: 329px;
+    margin-bottom: 10px;
+    font-size: 80px;
+  }
+
+  .notFound__text {
+    margin-bottom: 284px;
+    font-size: 12px;
+  }
+
+  .notFound__back {
+    font-size: 12px;
+  }
+}
