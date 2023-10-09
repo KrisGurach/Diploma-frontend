@@ -2,7 +2,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 export default function MoviesCardList({}) {
   return (
-    <div className="moviesCardList__container">
+    <section className="moviesCardList__container">
       <div className="moviesCardList">
         <MoviesCard isSaved={true} />
         <MoviesCard />
@@ -11,8 +11,8 @@ export default function MoviesCardList({}) {
         <MoviesCard />
         {/* <MoviesCard />
         <MoviesCard />
-        <MoviesCard /> */}
-        {/* <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
         <MoviesCard />
         <MoviesCard />
         <MoviesCard /> */}
@@ -20,6 +20,6 @@ export default function MoviesCardList({}) {
       <div className="moviesCardList__moreFilms">
         <button className="moviesCardList__moreFilms-button">Ещё</button>
       </div>
-    </div>
+    </section>
   );
 }

@@ -68,6 +68,7 @@
 
   .techs__text {
     margin-bottom: 83px;
+    max-width: 460px;
     font-size: 12px;
   }
 

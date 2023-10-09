@@ -1,6 +1,6 @@
 export default function AboutProject({}) {
   return (
-    <div className="project" id="aboutProject">
+    <section className="project" id="aboutProject">
       <h2 className="title project__title">О проекте</h2>
       <div className="project__flex-container">
         <div className="project__container">
@@ -24,6 +24,6 @@ export default function AboutProject({}) {
         <p className="project__box project__box_short project__box_small project__box_white">Back-end</p>
         <p className="project__box project__box_short project__box_big project__box_white">Front-end</p>
       </div>
-    </div>
+    </section>
   );
 }

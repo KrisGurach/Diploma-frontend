@@ -93,7 +93,28 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+  .profile__container {
+    max-width: 260px;
+  }
+
+  .profile__title {
+    margin-bottom: 80px;
+  }
+
   .profile__container:last-of-type {
-    margin-bottom: 319px;
+    margin-bottom: 359px;
   }  
+
+  .profile__form {
+    max-width: 260px;
+  }
+
+  .profile__change-button {
+    max-width: 260px;
+  }
+
+
+  .profile__go-out-button {
+    max-width: 260px;
+  }
 }

@@ -2,7 +2,7 @@ import icon from "../../../images/search-icon.svg";
 
 export default function SearchForm({}) {
   return (
-    <div className="searchForm">
+    <section className="searchForm">
       <form className="searchForm__form">
         <div className="searchForm__container">
           <img src={icon} className="searchForm__icon" alt="поиск фильма" />
@@ -27,6 +27,6 @@ export default function SearchForm({}) {
         <button className="searchForm__button searchForm__button_active"></button>
         <p className="searchForm__checkbox-text">Короткометражки</p>
       </div>
-    </div>
+    </section>
   );
 }

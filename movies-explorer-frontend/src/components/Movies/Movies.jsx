@@ -4,11 +4,11 @@ import SearchForm from "./SearchForm/SearchForm";
 
 export default function Movies({}) {
   return (
-    <div className="Movies">
+    <section className="Movies">
       <SearchForm />
       <Preloader />
       <MoviesCardList />
       {/* <Preloader /> */}
-    </div>
+    </section>
   );
 }

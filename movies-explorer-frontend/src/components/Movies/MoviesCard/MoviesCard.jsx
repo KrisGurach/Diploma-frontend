@@ -16,7 +16,7 @@ export default function MoviesCard({isSaved = false}) {
   console.log();   
   
     return (
-      <div className="movieCard">
+      <section className="movieCard">
         <img src={image} className="movieCard__image" alt="постер фильма" />
         <button className={saveButtonClass}>{isSaved || pathname === savedMoviesPathname  ?  "" : "Сохранить" }</button>
         <div className="movieCard__description">
@@ -25,6 +25,6 @@ export default function MoviesCard({isSaved = false}) {
             <p className="movieCard__text">1ч 17м</p>
           </div>
         </div>
-      </div>
+      </section>
   );
 }

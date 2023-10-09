@@ -22,7 +22,7 @@ export default function Footer({}) {
   };
 
   return (
-    <div className={`"footer" ${isHidden && "footer_display_none"}`}>
+    <footer className={`"footer" ${isHidden && "footer_display_none"}`}>
       <p className="footer__text footer__text_grey">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </p>
@@ -33,6 +33,6 @@ export default function Footer({}) {
           <p className="footer__text footer__text_black">Github</p>
         </div>  
       </div>
-    </div>
+    </footer>
   );
 }

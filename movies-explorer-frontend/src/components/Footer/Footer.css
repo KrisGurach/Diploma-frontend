@@ -26,7 +26,7 @@
 }
 
 .footer__flex-container {
-  margin: 0 70px;  
+  margin: 20px 70px 0;  
   padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
@@ -45,6 +45,7 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
   .footer__flex-container {
+    margin: 0;
     flex-direction: column-reverse;
     align-items: center;
   }

@@ -1,6 +1,6 @@
 export default function Profile({}) {
   return (
-    <div className="profile">
+    <section className="profile">
       <p className="profile__title">Привет, username!</p>
       <form className="profile__form">
         <div className="profile__container">
@@ -30,6 +30,6 @@ export default function Profile({}) {
         <button className="profile__change-button">Редактировать</button>
       </form>
       <button className="profile__go-out-button">Выйти из аккаунта</button>
-    </div>
+    </section>
   );
 }
