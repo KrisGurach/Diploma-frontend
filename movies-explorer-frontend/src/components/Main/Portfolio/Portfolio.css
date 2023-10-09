@@ -7,7 +7,6 @@
   margin: 0;
   margin-bottom: 50px;
   color: var(--dark-grey-color);
-  font-family: "Inter";
   font-size: 18px;
   font-weight: 400;
   line-height: 1.21;
@@ -40,7 +39,6 @@
   margin: 0;
   padding-bottom: 19px;
   min-height: 50px;  
-  font-family: "Inter";
   font-size: 30px;
   font-weight: 400;
   line-height: 1.67;

@@ -40,7 +40,6 @@
   color: var(--dark-grey-color);
   background-color: var(--search-white-color);
   border: 0;
-  font-family: "Inter";
   font-size: 18px;
   font-weight: 400;
   line-height: 1.11;
@@ -68,7 +67,6 @@
   background-color: var(--black-color);
   border-radius: 18px;
   border: 0;
-  font-family: "Inter";
   font-size: 11px;
   font-weight: 500;
   line-height: 1.64;
@@ -119,7 +117,6 @@
   padding: 0;
   margin-left: 14px;
   margin-right: 30px;
-  font-family: "Inter";
   font-size: 13px;
   font-weight: 400;
   line-height: 1.38;

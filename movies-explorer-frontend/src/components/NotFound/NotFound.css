@@ -8,7 +8,6 @@
 .notFound__title {
   padding: 0;
   margin: 246px 0 5px;  
-  font-family: "Inter";
   font-size: 140px;
   font-weight: 400;
   line-height: 1.21;
@@ -18,7 +17,6 @@
   margin: 0;
   padding: 0;
   margin-bottom: 184px;   
-  font-family: "Inter";
   font-size: 16px;
   font-weight: 400;
   line-height: 1.21;
@@ -32,7 +30,6 @@
   color: var(--black-color);
   background-color: var(--white-color);  
   cursor: pointer; 
-  font-family: "Inter";
   font-size: 16px;
   font-weight: 400;
   line-height: 1.21;

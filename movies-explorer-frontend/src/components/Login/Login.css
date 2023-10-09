@@ -12,7 +12,6 @@
   margin: 0;
   margin-bottom: 40px;
   padding: 0;  
-  font-family: "Inter";
   font-size: 24px;
   font-weight: 500;
   line-height: 1.21;
@@ -34,7 +33,6 @@
   margin-bottom: 10px;
   padding: 0;  
   color: var(--dark-grey-color);
-  font-family: "Inter";
   font-size: 10px;
   font-weight: 400;
   line-height: 1.21;
@@ -46,11 +44,11 @@
   margin: 0;
   margin-bottom: 20px;
   padding: 0;
+  padding-left: 15px;
   border: 0;
   border-radius: 8px;
   color: var(--black-color);
   background-color: var(--movie-save-button-color);
-  font-family: "Inter";
   font-size: 13px;
   font-weight: 400;
   line-height: 1.21;
@@ -79,7 +77,6 @@
   border: 0;
   border-radius: 3px;
   cursor: pointer;
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 500;
   line-height: 1.21;
@@ -98,7 +95,6 @@
   padding: 0;
   margin: 16px 6px 70px 0;
   color: var(--dark-grey-color);
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 400;
   line-height: 1.21;
@@ -107,7 +103,6 @@
 .form__link {
   margin-top: 16px;
   color: var(--black-color);  
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 400;
   line-height: 1.21;
