@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import photo from '../../../images/photo.svg'
 
 export default function AboutMe({}) {
@@ -15,7 +16,7 @@ export default function AboutMe({}) {
             Контур». После того, как прошёл курс по веб-разработке, начал
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
-          <p className="aboutMe__link">GitHub</p>
+          <Link to="https://github.com/KrisGurach" className="aboutMe__link">GitHub</Link>
         </div>
         <img src={photo} className="aboutMe__photo" alt="фото создателя страницы" />
       </div>

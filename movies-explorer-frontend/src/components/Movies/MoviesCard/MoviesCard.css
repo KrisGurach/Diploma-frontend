@@ -1,6 +1,6 @@
 .movieCard {
   position: relative;
-  height: 231px;
+  min-height: 231px;
 }
 
 .movieCard__save-button {
@@ -24,7 +24,7 @@
 
 .movieCard__save-button_active {
   width: 21px;
-  height: 21px;  
+  min-height: 21px;  
   border-radius: 25px;
   background-image: url(../../../images/save-film-button.svg);
   background-repeat: no-repeat;
@@ -32,7 +32,7 @@
 
 .movieCard__remove-button {
   width: 21px;
-  height: 21px;  
+  min-height: 21px;  
   border-radius: 25px;
   background-image: url(../../../images/remove-button.svg);
   background-repeat: no-repeat;
@@ -44,9 +44,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .movieCard__name {
+  max-width: 290px;
   margin: 0;
   margin-left: 14px;
   padding: 0;
@@ -57,7 +59,7 @@
 
 .movieCard__duration {
   width: 52px;
-  height: 18px;
+  min-height: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,7 +99,7 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
   .movieCard {
-    height: 199px;
+    min-height: 199px;
   }
 
   .movieCard__image {

@@ -75,14 +75,14 @@ export default function Header({isLoggedIn}) {
           </Link>
         </div>
         <div className="header__container-account">
-          <Link to={profilePathname} className="header__account">
+          <Link to={profilePathname} className={pathname ===  mainPathname ? "header__account" : " header__account_white"}>
             Аккаунт
           </Link>
-          <img
+          {/* <img
             className="header__logo-account"
             src={pathname ===  mainPathname ? purpleAccount : whiteAccount}
             alt="логотип аккаунта"
-          />
+          /> */}
         </div>
       </nav>
     </header>

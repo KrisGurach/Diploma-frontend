@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   mainPathname,
   moviesPathname,
@@ -29,8 +29,8 @@ export default function Footer({}) {
       <div className="footer__flex-container">
         <p className="footer__text footer__text_black footer__text_grey-year">© 2023</p>
         <div className="footer__container">
-          <p className="footer__text footer__text_black">Яндекс.Практикум</p>
-          <p className="footer__text footer__text_black">Github</p>
+          <Link to="https://practicum.yandex.ru" className="footer__link footer__text_black">Яндекс.Практикум</Link>
+          <Link to="https://github.com"  className="footer__link footer__text_black">Github</Link>
         </div>  
       </div>
     </footer>

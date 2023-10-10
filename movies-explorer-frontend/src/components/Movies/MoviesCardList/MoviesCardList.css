@@ -9,6 +9,10 @@
   justify-content: center;
 }
 
+.movieCardList_type_saved-movies {
+  margin-bottom: 85px;
+}
+
 .moviesCardList__moreFilms {
   min-height: 166px;
   display: flex;
@@ -18,7 +22,7 @@
 .moviesCardList__moreFilms-button {
   margin-top: 50px;
   width: 320px;
-  height: 36px;
+  min-height: 36px;
   border: 0;
   border-radius: 6px;
   background-color: var(--movie-save-button-color);
@@ -30,6 +34,10 @@
 
 .moviesCardList__moreFilms-button:hover {
   opacity: 0.8;
+}
+
+.movieCardList__moreFilms-button_disable {
+  display: none;
 }
   
 @media (min-width: 768px) and (max-width: 1279px) {
@@ -45,6 +53,10 @@
     margin: 50px 10px 13px;
     grid-template-columns: repeat(auto-fit, 300px);
     grid-row-gap: 39px;
+  }
+
+  .moviesCardList__noMoreFilms {
+    min-height: 140px;
   }
 
   .moviesCardList__moreFilms-button {

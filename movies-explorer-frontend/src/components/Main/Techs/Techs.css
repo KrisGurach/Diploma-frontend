@@ -55,6 +55,13 @@
   letter-spacing: -0.56px;  
 }
 
+@media (min-width: 1281px) {
+  .techs {
+    padding-left: calc((100% - 1280px) / 2);
+    padding-right: calc((100% - 1280px) / 2);
+  }  
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .techs__title {
     margin: 100px 50px 0;
@@ -99,6 +106,7 @@
   } 
 
   .techs__text {
+    width: 292px;
     margin-bottom: 50px;
     font-size: 11px;
     line-height: 1.45;
@@ -115,7 +123,7 @@
 
   .techs__lang {
     width: 84px;
-    height: 57px;
+    min-height: 57px;
     font-size: 12px;
     line-height: 1.21;
   }

@@ -82,6 +82,13 @@
   color: var(--dark-grey-color);
 }
 
+@media (min-width: 1281px) {
+  .project {
+    padding-left: calc((100% - 1280px) / 2);
+    padding-right: calc((100% - 1280px) / 2);
+  }  
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .title {
     margin: 90px 50px 70px;

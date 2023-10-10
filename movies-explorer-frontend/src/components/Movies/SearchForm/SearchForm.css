@@ -176,7 +176,7 @@
 
   .searchForm__input {
     margin-left: 19px;
-    width: calc(100vw - 20px - 38px - 80px);
+    width: calc(100% - 20px - 38px - 80px);
     font-size: 14px;
   }
 

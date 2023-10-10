@@ -22,6 +22,10 @@ import {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+  }
+  
   return (
     <div className="App">
       <Header isLoggedIn={isLoggedIn} />
@@ -43,7 +47,7 @@ function App() {
         <Route path={signUpPathname} element={<Register />} />
 
         {/* Профиль */}
-        <Route path={profilePathname} element={<Profile />} />
+        <Route path={profilePathname} element={<Profile handleSignOut={handleSignOut}/>} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} /> 

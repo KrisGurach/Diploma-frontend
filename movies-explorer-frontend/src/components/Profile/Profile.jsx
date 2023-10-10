@@ -1,4 +1,22 @@
-export default function Profile({}) {
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signInPathname } from "../../utils/constants";
+
+export default function Profile({handleSignOut}) {
+  const navigate = useNavigate();
+
+  const [inputDisabled, setInputDisabled] = useState(true);
+  
+  const enableInput = (e) => {
+    e.preventDefault();
+    setInputDisabled(false)
+  };
+
+  const handleSignOutClick =() => {
+    handleSignOut();
+    navigate(signInPathname, { replace: true })
+  }
+
   return (
     <section className="profile">
       <p className="profile__title">Привет, username!</p>
@@ -13,6 +31,7 @@ export default function Profile({}) {
             minLength={2}
             maxLength={40}
             required=""
+            disabled={inputDisabled}
           />
         </div>
         <div className="profile__container">
@@ -25,11 +44,12 @@ export default function Profile({}) {
             minLength={2}
             maxLength={40}
             required=""
+            disabled={inputDisabled}
           />
         </div>
-        <button className="profile__change-button">Редактировать</button>
+        <button className="profile__change-button" onClick={enableInput}>Редактировать</button>
       </form>
-      <button className="profile__go-out-button">Выйти из аккаунта</button>
+      <button className="profile__go-out-button" onClick={handleSignOutClick}>Выйти из аккаунта</button>
     </section>
   );
 }

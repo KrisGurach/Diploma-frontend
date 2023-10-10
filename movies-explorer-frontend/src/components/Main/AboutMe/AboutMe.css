@@ -1,3 +1,7 @@
+.aboutMe {
+  margin-bottom: 101px;
+}
+
 .aboutMe__subtitle {
   margin: 0 0 18px 70px;
 }
@@ -30,13 +34,32 @@
 }
 
 .aboutMe__link {
-  margin: 0 0 101px 70px;  
+  margin: 0;
+  margin-left: 70px; 
+  color: var(--black-color);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.21;
+  text-decoration: none;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+.aboutMe__link {
+  opacity: 0.7;
+}
+
+@media (min-width: 1281px) {
+  .aboutMe {
+    margin-bottom: 101px;
+    padding-left: calc((100% - 1280px) / 2);
+    padding-right: calc((100% - 1280px) / 2);
+  }  
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .aboutMe {
+    margin-bottom: 91px;
+  }  
+
   .aboutMe__title {
     margin-bottom: 66px;
   }
@@ -74,11 +97,14 @@
 
   .aboutMe__link {
     margin-left: 50px;
-    margin-bottom: 91px
   }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+  .aboutMe {
+    margin-bottom: 70px;
+  }  
+
   .aboutMe__title {
     margin: 70px 18px 60px;
   }
@@ -112,7 +138,7 @@
   }
 
   .aboutMe__link {
-    margin: 0 18px 70px;
+    margin: 0 18px;
     font-size: 14px;
     line-height: 1.45;
   }
