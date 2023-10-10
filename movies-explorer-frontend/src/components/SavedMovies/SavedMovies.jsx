@@ -3,9 +3,11 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 
 export default function SavedMovies({}) {
   return (
-    <section className="SavedMovies">
-      <SearchForm />
-      <MoviesCardList />
-    </section>
+    <main>
+      <section className="SavedMovies">
+        <SearchForm />
+        <MoviesCardList />
+      </section>
+    </main>
   );
 }

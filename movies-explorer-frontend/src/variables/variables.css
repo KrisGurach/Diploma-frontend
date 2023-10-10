@@ -2,12 +2,17 @@
   --black-color: #000000;
   --white-color: #FFFFFF;
   --movie-save-button-color: #F9F9F9;
+  --disable-grey-color: #F8F8F8;
+  --disable-text-grey-color: #C2C2C2;
   --search-white-color: #FDFDFD;
   --purple-color: #F3C1F8;
   --grey-color: #F2F2F2;
+  --light-grey-color: #EBEBEB;
   --medium-grey-color: #F5F5F5;
   --search-grey-color: #CBCBCB;
   --accent-grey-color: #E8E8E8;
   --dark-grey-color: #A0A0A0;
   --red-color: #FF4062;
+  --red-error-color: #FF004C;
+  --green-color: #2BE080;
 } 

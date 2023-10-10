@@ -7,7 +7,7 @@ export default function AboutMe({}) {
       <h2 className="title aboutMe__title">Студент</h2>
       <div className="aboutMe__flexcontainer">
         <div className="aboutMe__container">
-          <p className="subtitle aboutMe__subtitle">Виталий</p>
+          <h3 className="subtitle aboutMe__subtitle">Виталий</h3>
           <p className="aboutMe__description">Фронтенд-разработчик, 30 лет</p>
           <p className="aboutMe__text">
             Я родился и живу в Саратове, закончил факультет экономики СГУ. У

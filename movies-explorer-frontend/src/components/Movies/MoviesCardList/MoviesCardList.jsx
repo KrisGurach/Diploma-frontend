@@ -14,13 +14,13 @@ export default function MoviesCardList({}) {
         <MoviesCard />
         <MoviesCard />
         <MoviesCard />
-        { /*<MoviesCard />
-        <MoviesCard />
-        <MoviesCard /> */}
-       {/* <MoviesCard />
         <MoviesCard />
         <MoviesCard />
-        <MoviesCard /> */}
+        <MoviesCard /> 
+       <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
       </div>
       <div className={isSavedMoviesPage ? "moviesCardList__noMoreFilms" : "moviesCardList__moreFilms"}>
         <button className={`moviesCardList__moreFilms-button ${isSavedMoviesPage && "movieCardList__moreFilms-button_disable"}`}>Ещё</button>

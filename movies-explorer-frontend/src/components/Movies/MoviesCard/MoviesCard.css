@@ -5,8 +5,8 @@
 
 .movieCard__save-button {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 14px;
+  right: 14px;
   z-index: 1;
   width: 72px;
   height: 21px;
@@ -40,7 +40,9 @@
 }
 
 .movieCard__description {
-  margin-top: 14px;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,6 +60,7 @@
 }
 
 .movieCard__duration {
+  margin-right: 14px;
   width: 52px;
   min-height: 18px;
   display: flex;
@@ -84,7 +87,11 @@
   }  
 
   .movieCard__description {
-    margin-top: 25px;
+    margin-top: 20px;
+  }
+
+  .movieCard__duration {
+    margin-right: 0;
   }
 
   .movieCard__name {
@@ -107,6 +114,10 @@
     height: 168px;
   }
 
+  .movieCard__duration {
+    margin-right: 0;
+  }
+
   .movieCard__save-button {
     top: 10px;
     right: 10px;
@@ -114,6 +125,9 @@
 
   .movieCard__name {
     margin-left: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.21;
   }  
 }
 

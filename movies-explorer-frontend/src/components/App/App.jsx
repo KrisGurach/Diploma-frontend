@@ -21,16 +21,20 @@ import {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleSignOut = () => {
     setIsLoggedIn(false);
+  }
+
+  const handleUpdateUser = (userData) => {
+    setCurrentUser(userData);
   }
   
   return (
     <div className="App">
       <Header isLoggedIn={isLoggedIn} />
       <Routes>
-
         {/* Лэндинг главный */}
         <Route path={mainPathname} element={<Main />} />
 
@@ -47,11 +51,19 @@ function App() {
         <Route path={signUpPathname} element={<Register />} />
 
         {/* Профиль */}
-        <Route path={profilePathname} element={<Profile handleSignOut={handleSignOut}/>} />
+        <Route
+          path={profilePathname}
+          element={
+            <Profile
+              handleSignOut={handleSignOut}
+              currentUser={currentUser}
+              onUpdateUser={handleUpdateUser}
+            />
+          }
+        />
 
         {/* 404 */}
-        <Route path="*" element={<NotFound />} /> 
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

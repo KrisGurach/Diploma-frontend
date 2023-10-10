@@ -1,5 +1,5 @@
 .moviesCardList {
-  margin: 70px 70px 28px;  
+  margin: 80px 70px 28px;  
   padding: 0;
   display: grid; 
   grid-template-columns: repeat(auto-fit, 360px);
@@ -22,7 +22,7 @@
 .moviesCardList__moreFilms-button {
   margin-top: 50px;
   width: 320px;
-  min-height: 36px;
+  height: 36px;
   border: 0;
   border-radius: 6px;
   background-color: var(--movie-save-button-color);

@@ -7,13 +7,15 @@ import Techs from "./Techs/Techs";
 
 export default function Main({}) {
   return (
-    <section className="main">
-      <Promo />
-      <NavTab />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
-    </section>
+    <main>
+      <section className="main">
+        <Promo />
+        <NavTab />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </section>
+    </main>
   );
 }

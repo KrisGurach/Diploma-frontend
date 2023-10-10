@@ -4,7 +4,7 @@ import cursor from "../../../images/cursor.svg"
 export default function Portfolio({}) {
   return (
     <section className="portfolio">
-      <p className="portfolio__text">Портфолио</p>
+      <h2 className="portfolio__text">Портфолио</h2>
       <div className="portfolio__container">
         <Link to="https://github.com/KrisGurach/how-to-learn" className="portfolio__link">Статичный сайт</Link>
         <img src={cursor} className="portfolio__image" alt="стрелка перехода на другой сайт" />

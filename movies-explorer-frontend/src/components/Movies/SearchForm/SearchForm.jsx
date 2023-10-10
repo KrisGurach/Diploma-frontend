@@ -17,15 +17,21 @@ export default function SearchForm({}) {
           <div className="seachForm__container-button">
             <button className="searchForm__search-button">Найти</button>
           </div>
-          <div className="searchForm__button-container1280">
-            <button className="searchForm__button searchForm__button_active"></button>
-            <p className="searchForm__checkbox-text">Короткометражки</p>
+          <div className="searchForm__container_size_l">
+            <label class="searchForm__toggle-button">
+              <input type="checkbox"></input>
+              <span class="searchForm__toggle-button-switch"></span>
+              Короткометражки
+            </label>
           </div>
         </div>
       </form>
-      <div className="searchForm__button-container320">
-        <button className="searchForm__button searchForm__button_active"></button>
-        <p className="searchForm__checkbox-text">Короткометражки</p>
+      <div className="searchForm__container_size_s">
+        <label class="searchForm__toggle-button">
+          <input type="checkbox"></input>
+          <span class="searchForm__toggle-button-switch"></span>
+          Короткометражки
+        </label>
       </div>
     </section>
   );

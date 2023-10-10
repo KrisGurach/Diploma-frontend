@@ -4,11 +4,13 @@ import SearchForm from "./SearchForm/SearchForm";
 
 export default function Movies({}) {
   return (
-    <section className="Movies">
-      <SearchForm />
-      <Preloader />
-      <MoviesCardList />
-      {/* <Preloader /> */}
-    </section>
+    <main>
+      <section className="Movies">
+        <SearchForm />
+        <Preloader />
+        <MoviesCardList />
+        {/* <Preloader /> */}
+      </section>
+    </main>
   );
 }
