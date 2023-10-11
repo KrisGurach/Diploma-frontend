@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import cursor from "../../../images/cursor.svg"
+import cursor from "../../images/cursor.svg"
 
 export default function Portfolio({}) {
   return (

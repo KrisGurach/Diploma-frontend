@@ -5,7 +5,7 @@
   background-color: var(--purple-color);
   display: flex;
   justify-content: center;
-  background-image: url(../../../images/logo-promo.svg);
+  background-image: url(../../images/logo-promo.svg);
   background-repeat: no-repeat;
   background-position: center 82px;
 }

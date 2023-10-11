@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import image from "../../../images/moviecard.svg";
-import { savedMoviesPathname } from "../../../utils/constants";
+import image from "../../images/moviecard.svg";
+import { savedMoviesPathname } from "../../utils/constants";
 
 export default function MoviesCard({ isSaved = false }) {
   const { pathname } = useLocation();

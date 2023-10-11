@@ -26,7 +26,7 @@
   width: 21px;
   min-height: 21px;  
   border-radius: 25px;
-  background-image: url(../../../images/save-film-button.svg);
+  background-image: url(../../images/save-film-button.svg);
   background-repeat: no-repeat;
 }
 
@@ -34,7 +34,7 @@
   width: 21px;
   min-height: 21px;  
   border-radius: 25px;
-  background-image: url(../../../images/remove-button.svg);
+  background-image: url(../../images/remove-button.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
