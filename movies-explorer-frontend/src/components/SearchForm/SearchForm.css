@@ -77,6 +77,11 @@
   opacity: 0.8;
 }
 
+.search-form__search-button:focus {
+  outline: solid 1px var(--black-color);
+  outline-offset: 3px;
+}
+
 .search-form__button {
   display: inline-block;
   width: 36px; 
@@ -189,6 +194,11 @@
 .search-form__toggle-button input[type=checkbox]:checked + .search-form__toggle-button-switch:before {
 	transform: translateX(19px);
   background-color: var(--white-color);
+}
+
+.search-form__toggle-button input[type=checkbox]:focus + .search-form__toggle-button-switch {
+  outline: solid 1px var(--black-color);
+  outline-offset: 3px;
 }
 /* Конец тумблера */
 

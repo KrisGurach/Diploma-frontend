@@ -35,6 +35,10 @@
   line-height: 1.21;
 }
 
+.not-found__back:hover {
+  opacity: 0.7
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .not-found__title {
     margin-top: 408px;

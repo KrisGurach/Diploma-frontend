@@ -31,6 +31,8 @@
 .about-me__photo {
   margin-right: 70px;
   border-radius: 10px;
+  width: 270px;
+  height: 327px;
 }
 
 .about-me__link {

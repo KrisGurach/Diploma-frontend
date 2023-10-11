@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import photo from '../../images/photo.svg'
+import photo from '../../images/photo.jpg'
 
 export default function AboutMe({}) {
   return (

@@ -48,7 +48,7 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
     <main>
       <section className="profile">
         <h1 className="profile__title">Привет, username!</h1>
-        <form className="profile__form">
+        <form className="profile__form" name="form-of-profile" onSubmit={handleSaveClick} noValidate>
           <div className="profile__container">
             <p className="profile__input-text">Имя</p>
             <input
@@ -84,6 +84,16 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
               Редактировать
             </button>
           )}
+        {hasError && <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>}
+        {!inputDisabled && (
+          <button
+            className="profile__save-button"
+            type="submit"
+            disabled={hasError}
+          >
+            Сохранить
+          </button>
+        )}
         </form>
         {inputDisabled && (
           <button
@@ -91,16 +101,6 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
             onClick={handleSignOutClick}
           >
             Выйти из аккаунта
-          </button>
-        )}
-        {hasError && <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>}
-        {!inputDisabled && (
-          <button
-            className="profile__save-button"
-            disabled={hasError}
-            onClick={handleSaveClick}
-          >
-            Сохранить
           </button>
         )}
       </section>

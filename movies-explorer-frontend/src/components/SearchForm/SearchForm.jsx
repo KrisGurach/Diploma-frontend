@@ -1,9 +1,9 @@
-import icon from "../../../images/search-icon.svg";
+import icon from "../../images/search-icon.svg";
 
 export default function SearchForm({}) {
   return (
     <section className="search-form">
-      <form className="search-form__form">
+      <form className="search-form__form" name="form-of-search">
         <div className="search-form__container">
           <img src={icon} className="search-form__icon" alt="поиск фильма" />
           <input

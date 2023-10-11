@@ -21,8 +21,17 @@
   line-height: 1.21;
 }
 
+.register__input_invalid {
+  border: 1px solid var(--red-color);
+  color: var(--red-color)
+}
+
 .register__input:last-of-type {
-  margin-bottom: 91px;
+  margin-bottom: 0;
+}
+
+.form__save-button_type_register {
+  margin-top: 69px;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -31,6 +40,10 @@
   }
 
   .register__input:last-of-type {
-    margin-bottom: 179px; 
+    margin-bottom: 0; 
   } 
+
+  .form__save-button_type_register {
+    margin-top: 157px;
+  }
 }

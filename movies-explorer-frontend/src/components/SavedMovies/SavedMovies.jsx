@@ -1,5 +1,5 @@
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import SearchForm from "../Movies/SearchForm/SearchForm";
+import SearchForm from "../SearchForm/SearchForm";
 
 export default function SavedMovies({}) {
   return (
