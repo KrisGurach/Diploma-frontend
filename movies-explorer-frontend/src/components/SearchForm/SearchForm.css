@@ -272,9 +272,11 @@
 
   .search-form__toggle-button {
     font-size: 11px;
+    padding-top: 0;
   }
 
-  .search-form__toggle-button {
-    padding-top: 0;
-  }  
+  /* .search-form__toggle-button-switch {
+    width: 34px;
+    height: 14px;
+  } */
 }

@@ -32,6 +32,10 @@
   cursor: pointer;
 }
 
+.movies-list__no-more-films {
+  min-height: 166px;
+}
+
 .movies-list__more-films-button:hover {
   opacity: 0.8;
 }

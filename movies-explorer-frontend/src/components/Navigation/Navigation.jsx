@@ -46,16 +46,11 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
           <div className="header__container-account">
             <Link
               to={profilePathname}
-              className="header__account"
+              className="header__account_white"
               onClick={handleMenuOpened}
             >
               Аккаунт
             </Link>
-            <img
-              className="header__logo-account"
-              src={whiteAccount}
-              alt="логотип аккаунта"
-            />
           </div>
         </div>
         <div className="navigation__overlay"></div>

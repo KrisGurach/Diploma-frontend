@@ -108,7 +108,7 @@
   }  
 
   .about-me__title {
-    margin: 70px 18px 60px;
+    margin: 66px 14px 60px;
   }
 
   .about-me__flexcontainer {
@@ -116,31 +116,31 @@
   }
 
   .about-me__photo {
-    margin: 0 14px 40px;
+    margin: 0 calc((100% - 292px) / 2) 40px;
     width: 292px;
     height: 352px;
   }
 
   .about-me__subtitle {
-    margin: 0 18px 20px;
+    margin: 0 14px 20px;
     font-size: 30px;
     line-height: 1.21;
   }
 
   .about-me__description {
-    margin: 0 18px 20px;
+    margin: 0 14px 20px;
     font-size: 11px;
     line-height: 1.45;
   }
   
   .about-me__text {
-    margin: 0 18px 40px;
+    margin: 0 14px 40px;
     font-size: 11px;
     line-height: 1.45;
   }
 
   .about-me__link {
-    margin: 0 18px;
+    margin: 0 14px;
     font-size: 14px;
     line-height: 1.45;
   }

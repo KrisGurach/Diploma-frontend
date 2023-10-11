@@ -203,6 +203,7 @@
     opacity: 0; 
     transition: 0.5s;  
   }
+
   .header__burger-menu.header__burger-menu_active:before {
     width: 22px;
     transform: rotate(45deg);

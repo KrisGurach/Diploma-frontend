@@ -29,7 +29,7 @@ export default function SearchForm({}) {
       <div className="search-form__container_size_s">
         <label className="search-form__toggle-button">
           <input type="checkbox"></input>
-          <span classname="search-form__toggle-button-switch"></span>
+          <span className="search-form__toggle-button-switch"></span>
           Короткометражки
         </label>
       </div>

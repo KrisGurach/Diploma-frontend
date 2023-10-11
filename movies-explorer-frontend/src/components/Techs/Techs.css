@@ -77,6 +77,7 @@
     margin-bottom: 83px;
     max-width: 460px;
     font-size: 12px;
+    letter-spacing: -0.5px;
   }
 
   .techs__list {
@@ -95,8 +96,8 @@
   }
 
   .techs__title {
-    margin: 70px 18px 0;
-    padding-top: 25px;
+    margin: 70px 14px 0;
+    padding-top: 30px;
   }
 
   .techs__subtitle {
@@ -118,7 +119,7 @@
     grid-template-columns: repeat(2, 84px);
     grid-auto-flow: dense;
     grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-row-gap: 7px;
   }
 
   .techs__lang {

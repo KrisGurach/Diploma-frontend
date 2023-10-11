@@ -103,7 +103,7 @@
   }  
 
   .project__time {
-    margin: 0 50px 14px;
+    margin: 0 calc((100% - 668px) / 2) 14px;
   }
 
   .project__text {
@@ -152,7 +152,7 @@
 
 
   .project__time {
-    margin: 0 18px 10px;
+    margin: 0 calc((100% - 284px) / 2) 10px;
   }
 
   .project__box_size_s{
