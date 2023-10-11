@@ -57,7 +57,7 @@ export default function Header({isLoggedIn}) {
         <img src={logo} className="logo" alt="логотип" />
       </Link>
       <button
-        className={`header__burger-menu ${isOpened && "open-menu"}`}
+        className={`header__burger-menu ${isOpened && "header__burger-menu_active"}`}
         type="button"
         onClick={handleMenuOpened}
       >

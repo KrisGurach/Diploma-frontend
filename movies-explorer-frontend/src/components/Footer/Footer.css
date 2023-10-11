@@ -23,7 +23,7 @@
   opacity: 0.7;
 }
 
-.footer__text_grey {
+.footer__text_color_grey {
   max-width: 1140px;
   min-height: 16px;
   margin: 0 auto;
@@ -74,22 +74,22 @@
     gap: 12px;
   }  
 
-  .footer__text_grey {
+  .footer__text_color_grey {
     margin: 0;
     padding-top: 79px;
     font-size: 12px;
   }
 
-  .footer__text_black {
+  .footer__text_color_black {
     margin: 0;
     font-size: 12px;
   }
 
-  .footer__text_black:last-of-type {
+  .footer__text_color_black:last-of-type {
     margin-bottom: 30px;
   }
 
-  .footer__text_grey-year {
+  .footer__text_color_grey-year {
     color: var(--dark-grey-color);
   }
 }

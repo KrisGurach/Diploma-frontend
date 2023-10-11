@@ -199,11 +199,11 @@
     top: 12px;
   }
 
-  .header__burger-menu.open-menu span {
+  .header__burger-menu.header__burger-menu_active span {
     opacity: 0; 
     transition: 0.5s;  
   }
-  .header__burger-menu.open-menu:before {
+  .header__burger-menu.header__burger-menu_active:before {
     width: 22px;
     transform: rotate(45deg);
     top: 20px;
@@ -211,7 +211,7 @@
     transition: 0.4s;
   }
 
-  .header__burger-menu.open-menu:after {
+  .header__burger-menu.header__burger-menu_active:after {
     width: 22px;
     transform: rotate(-45deg);
     right: -2px;
@@ -261,12 +261,12 @@
     width: 22px; 
   }   
 
-  .header__burger-menu.open-menu:before {
+  .header__burger-menu.header__burger-menu_active:before {
     top: 15px;
     right: -2px;
   }
 
-  .header__burger-menu.open-menu:after {
+  .header__burger-menu.header__burger-menu_active:after {
     top: 15px;
     right: -2px;
   }

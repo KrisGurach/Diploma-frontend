@@ -1,25 +1,25 @@
-.aboutMe {
+.about-me {
   margin-bottom: 101px;
 }
 
-.aboutMe__subtitle {
+.about-me__subtitle {
   margin: 0 0 18px 70px;
 }
 
-.aboutMe__flexcontainer {
+.about-me__flexcontainer {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.aboutMe__description {
+.about-me__description {
   margin: 0 0 26px 70px;  
   font-size: 18px;
   font-weight: 500;
   line-height: 1.11;  
 }
 
-.aboutMe__text {
+.about-me__text {
   margin: 0 0 99px 70px;  
   max-width: 600px;
   min-height: 88px;
@@ -28,12 +28,12 @@
   line-height: 1.57;
 }
 
-.aboutMe__photo {
+.about-me__photo {
   margin-right: 70px;
   border-radius: 10px;
 }
 
-.aboutMe__link {
+.about-me__link {
   margin: 0;
   margin-left: 70px; 
   color: var(--black-color);
@@ -43,12 +43,12 @@
   text-decoration: none;
 }
 
-.aboutMe__link {
+.about-me__link {
   opacity: 0.7;
 }
 
 @media (min-width: 1281px) {
-  .aboutMe {
+  .about-me {
     margin-bottom: 101px;
     padding-left: calc((100% - 1280px) / 2);
     padding-right: calc((100% - 1280px) / 2);
@@ -56,88 +56,88 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
-  .aboutMe {
+  .about-me {
     margin-bottom: 91px;
   }  
 
-  .aboutMe__title {
+  .about-me__title {
     margin-bottom: 66px;
   }
   
-  .aboutMe__subtitle {
+  .about-me__subtitle {
     margin-left: 50px;
     margin-bottom: 16px;
     font-size: 40px;
     line-height: 1;
   }
 
-  .aboutMe__flexcontainer {
+  .about-me__flexcontainer {
     gap: 49px;
   }
 
-  .aboutMe__description {
+  .about-me__description {
     margin-left: 50px;
     margin-bottom: 20px;
     font-size: 12px;
     line-height: 1.5;
   }
 
-  .aboutMe__text {
+  .about-me__text {
     margin-left: 50px;
     margin-bottom: 87px;
     font-size: 12px;
     line-height: 1.5;
   }
 
-  .aboutMe__photo {
+  .about-me__photo {
     margin-right: 50px;
     width: 255px;
     height: 307px;
   }
 
-  .aboutMe__link {
+  .about-me__link {
     margin-left: 50px;
   }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
-  .aboutMe {
+  .about-me {
     margin-bottom: 70px;
   }  
 
-  .aboutMe__title {
+  .about-me__title {
     margin: 70px 18px 60px;
   }
 
-  .aboutMe__flexcontainer {
+  .about-me__flexcontainer {
     flex-direction: column-reverse;
   }
 
-  .aboutMe__photo {
+  .about-me__photo {
     margin: 0 14px 40px;
     width: 292px;
     height: 352px;
   }
 
-  .aboutMe__subtitle {
+  .about-me__subtitle {
     margin: 0 18px 20px;
     font-size: 30px;
     line-height: 1.21;
   }
 
-  .aboutMe__description {
+  .about-me__description {
     margin: 0 18px 20px;
     font-size: 11px;
     line-height: 1.45;
   }
   
-  .aboutMe__text {
+  .about-me__text {
     margin: 0 18px 40px;
     font-size: 11px;
     line-height: 1.45;
   }
 
-  .aboutMe__link {
+  .about-me__link {
     margin: 0 18px;
     font-size: 14px;
     line-height: 1.45;

@@ -27,7 +27,7 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
   const handleSaveClick = (e) => {
     e.preventDefault();
 
-    if (true) {
+    if (values.name === "" || values.email === "") {
       setHasError(true);
       return;
     }
@@ -35,6 +35,14 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
     setInputDisabled(true);
     onUpdateUser(values);
   };
+
+  const onInputChange = (e) => {
+    if (hasError) {
+      setHasError(false);
+    }
+
+    handleChange(e);
+  }
 
   return (
     <main>
@@ -53,7 +61,7 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
               required
               disabled={inputDisabled}
               value={values.name || ""}
-              onChange={handleChange}
+              onChange={onInputChange}
             />
           </div>
           <div className="profile__container">
@@ -68,7 +76,7 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
               required
               disabled={inputDisabled}
               value={values.email || ""}
-              onChange={handleChange}
+              onChange={onInputChange}
             />
           </div>
           {inputDisabled && (

@@ -7,8 +7,8 @@ export default function MoviesCardList({}) {
   const isSavedMoviesPage = pathname === savedMoviesPathname;
 
   return (
-    <section className="moviesCardList__container">
-      <div className={`moviesCardList ${pathname === savedMoviesPathname && "movieCardList_type_saved-movies"}`}>
+    <section className="movies-list__container">
+      <div className={`movies-list ${pathname === savedMoviesPathname && "movies-list_type_saved-movies"}`}>
         <MoviesCard isSaved={true} />
         <MoviesCard />
         <MoviesCard />
@@ -22,8 +22,8 @@ export default function MoviesCardList({}) {
         <MoviesCard />
         <MoviesCard />
       </div>
-      <div className={isSavedMoviesPage ? "moviesCardList__noMoreFilms" : "moviesCardList__moreFilms"}>
-        <button className={`moviesCardList__moreFilms-button ${isSavedMoviesPage && "movieCardList__moreFilms-button_disable"}`}>Ещё</button>
+      <div className={isSavedMoviesPage ? "movies-list__no-more-films" : "movies-list__more-films"}>
+        <button className={`movies-list__more-films-button ${isSavedMoviesPage && "movies-list__more-films-button_disable"}`}>Ещё</button>
       </div>
     </section>
   );

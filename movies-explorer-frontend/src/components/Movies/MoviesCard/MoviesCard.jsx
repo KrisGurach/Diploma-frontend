@@ -4,29 +4,25 @@ import { savedMoviesPathname } from "../../../utils/constants";
 
 export default function MoviesCard({ isSaved = false }) {
   const { pathname } = useLocation();
-  const saveButtonClass = `movieCard__save-button 
+  const saveButtonClass = `movie-card__save-button 
   ${
     pathname === savedMoviesPathname
-      ? "movieCard__remove-button"
+      ? "movie-card__remove-button"
       : isSaved
-      ? "movieCard__save-button_active"
-      : "movieCard__save-button_disable"
+      ? "movie-card__save-button_active"
+      : "movie-card__save-button_disable"
   }`;
 
-  console.log(pathname);
-  console.log(saveButtonClass);
-  console.log();
-
   return (
-    <section className="movieCard">
-      <img src={image} className="movieCard__image" alt="постер фильма" />
+    <section className="movie-card">
+      <img src={image} className="movie-card__image" alt="постер фильма" />
       <button className={saveButtonClass}>
         {isSaved || pathname === savedMoviesPathname ? "" : "Сохранить"}
       </button>
-      <div className="movieCard__description">
-        <h2 className="movieCard__name">Баския: Взрыв реальности</h2>
-        <div className="movieCard__duration">
-          <p className="movieCard__text">1ч 17м</p>
+      <div className="movie-card__description">
+        <h2 className="movie-card__name">Баския: Взрыв реальности</h2>
+        <div className="movie-card__duration">
+          <p className="movie-card__text">1ч 17м</p>
         </div>
       </div>
     </section>
