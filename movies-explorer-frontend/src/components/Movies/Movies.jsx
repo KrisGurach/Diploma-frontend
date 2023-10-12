@@ -5,7 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 export default function Movies({}) {
   return (
     <main>
-      <section className="Movies">
+      <section className="movies">
         <SearchForm />
         <Preloader />
         <MoviesCardList />

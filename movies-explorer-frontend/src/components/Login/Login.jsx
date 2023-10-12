@@ -26,7 +26,7 @@ export default function Login({}) {
 
   return (
     <main>
-      <section className="login">
+      <section className="login form">
         <div className="form__flex-container">
           <img
             src={logo}
@@ -69,9 +69,9 @@ export default function Login({}) {
             required=""
             onChange={handleInputChange}
           />
-          <div className="input__error-container">
+          <div className="form__error-container">
             {hasError && (
-              <span className="input__error">Что-то пошло не так...</span>
+              <span className="form__error">Что-то пошло не так...</span>
             )}
           </div>
           <button className="form__save-button form__save-button_type_login" type="submit">

@@ -37,7 +37,7 @@ export default function Header({isLoggedIn}) {
 
   function renderNonAuthorizedHeader() {
     return (
-      <header className={`header ${isHidden && "header_display_none"} ${pathname ===  mainPathname && "header_theme_purple"}`}>
+      <header className={`header ${isHidden ? "header_display_none" : ""} ${pathname ===  mainPathname ? "header_theme_purple" : ""}`}>
         <Link to={mainPathname} className="logo" >
         <img src={logo} alt="логотип" />
       </Link>
@@ -52,12 +52,12 @@ export default function Header({isLoggedIn}) {
 
   function renderAuthorizedHeader() {
     return (
-      <header className={`header ${isHidden && "header_display_none"} ${pathname ===  mainPathname && "header_theme_purple"}`}>
+      <header className={`header ${isHidden ? "header_display_none" : ""} ${pathname ===  mainPathname ? "header_theme_purple" : ""}`}>
       <Link to={mainPathname}>
         <img src={logo} className="logo" alt="логотип" />
       </Link>
       <button
-        className={`header__burger-menu ${isOpened && "header__burger-menu_active"}`}
+        className={`header__burger-menu ${isOpened ? "header__burger-menu_active" : ""}`}
         type="button"
         onClick={handleMenuOpened}
       >
@@ -67,22 +67,17 @@ export default function Header({isLoggedIn}) {
 
       <nav className="header__navigation">
         <div className="header__container-films">
-          <Link to={moviesPathname} className={`header__link ${pathname ===  moviesPathname && "header__link_active"}`}>
+          <Link to={moviesPathname} className={`header__link ${pathname ===  moviesPathname ? "header__link_active" : ""}`}>
             Фильмы
           </Link>
-          <Link to={savedMoviesPathname} className={`header__link ${pathname ===  savedMoviesPathname && " header__link_active"}`}>
+          <Link to={savedMoviesPathname} className={`header__link ${pathname ===  savedMoviesPathname ? " header__link_active" : ""}`}>
             Сохранённые фильмы
           </Link>
         </div>
         <div className="header__container-account">
-          <Link to={profilePathname} className={pathname ===  mainPathname ? "header__account" : " header__account_white"}>
+          <Link to={profilePathname} className={`header__account ${pathname ===  mainPathname ? "" : "header__account_white"}`}>
             Аккаунт
           </Link>
-          {/* <img
-            className="header__logo-account"
-            src={pathname ===  mainPathname ? purpleAccount : whiteAccount}
-            alt="логотип аккаунта"
-          /> */}
         </div>
       </nav>
     </header>

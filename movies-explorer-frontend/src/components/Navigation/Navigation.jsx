@@ -12,13 +12,13 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
 
   return (
     <main>
-      <nav className={`navigation ${isOpened && "navigation_opened"}`}>
+      <nav className={`navigation ${isOpened ? "navigation_opened" : ""}`}>
         <div className="navigation__menu-container">
           <div className="navigation__container">
             <Link
               to={mainPathname}
               className={`navigation__link ${
-                pathname === mainPathname && "navigation__link_active"
+                pathname === mainPathname ? "navigation__link_active" : ""
               }`}
               onClick={handleMenuOpened}
             >
@@ -27,7 +27,7 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
             <Link
               to={moviesPathname}
               className={`navigation__link ${
-                pathname === moviesPathname && "navigation__link_active"
+                pathname === moviesPathname ? "navigation__link_active" : ""
               }`}
               onClick={handleMenuOpened}
             >
@@ -36,7 +36,7 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
             <Link
               to={savedMoviesPathname}
               className={`navigation__link ${
-                pathname === savedMoviesPathname && "navigation__link_active"
+                pathname === savedMoviesPathname ? "navigation__link_active" : "  "
               }`}
               onClick={handleMenuOpened}
             >
@@ -46,7 +46,7 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
           <div className="header__container-account">
             <Link
               to={profilePathname}
-              className="header__account_white"
+              className="header__account header__account_white"
               onClick={handleMenuOpened}
             >
               Аккаунт

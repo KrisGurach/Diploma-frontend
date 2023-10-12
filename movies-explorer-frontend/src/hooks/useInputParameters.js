@@ -7,7 +7,7 @@ export function useInputParameters(inputNames, classNames) {
       isInvalid: isInvalid,
       className: `${classNames.baseInputName} 
       ${classNames.inputTypeName}${name}
-       ${isInvalid && classNames.invalidInputName}`,
+       ${isInvalid ? classNames.invalidInputName : ""}`,
     };
   };
 

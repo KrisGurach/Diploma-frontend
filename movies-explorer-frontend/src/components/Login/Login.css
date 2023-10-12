@@ -8,6 +8,10 @@
   margin: 70px 0 40px;
 }
 
+.logo_type_greeting:hover {
+  opacity: 1;
+}
+
 .salut-title {
   margin: 0;
   margin-bottom: 40px;
@@ -64,12 +68,12 @@
   color: var(--red-color)
 }
 
-.input__error-container {
+.form__error-container {
   margin-top: 10px;
   height: 12px;
 }
 
-.input__error {
+.form__error {
   margin: 0;
   padding: 0;
   color: var(--red-color);
@@ -172,7 +176,7 @@
     margin-bottom: 0;
   }
   
-  .input__error-container {
+  .form__error-container {
     margin-left: 30px;
     align-self: flex-start;
   }
