@@ -1,27 +1,55 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import { signUpPathname } from "../../utils/constants";
 import { useState } from "react";
 import { useInputParameters } from "../../hooks/useInputParameters";
+import auth from "../../utils/Api/AuthApi";
+import { useForm } from "../../hooks/useForm";
 
-export default function Login({}) {
+export default function Login({handleLogin}) {
+  const navigate = useNavigate();
+
+  // input validation handling
   const inputClassNames = {
     baseInputName: "login__input",
     inputTypeName: "login__input_type_",
     invalidInputName: "login__input_invalid",
   };
 
-  const { inputParameters, handleInputChange } = useInputParameters(
+  const { inputParameters, validateInput } = useInputParameters(
     ["email", "password"],
     inputClassNames
   );
 
+  // input values handling
+  const { values, handleChange, setValues } = useForm();
+
   // error handling
   const [hasError, setHasError] = useState(false);
+
+  const handleInputChange = (event) => {
+    handleChange(event);
+    validateInput(event);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setHasError(inputParameters.some((input) => input.isInvalid));
+
+    if (hasError) {
+      return;
+    }
+
+    auth
+    .signIn(values.email, values.password)
+    .then((data) => {
+      if (data.token) {
+        setValues({ email: "", password: "" });
+        handleLogin();
+        navigate("/movies", { replace: true });
+      }
+    })
+    .catch(console.error);
   };
 
   return (

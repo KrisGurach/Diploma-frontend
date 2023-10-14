@@ -15,27 +15,29 @@ export function useInputParameters(inputNames, classNames) {
 
   const [inputParameters, setInputParameters] = useState(parameters);
 
-  const handleInputChange = (event) => {
+  const validateInput = (event) => {
     const { name, value } = event.target;
 
-    let isValid = true;
+    let isValid = value !== "";
 
-    // TODO: заменить на актуальные паттерны валидации при реализации логики
-    switch (name) {
-      case "name":
-        isValid = value.length > 1;
-        break;
+    if (isValid) {
+      // TODO: заменить на актуальные паттерны валидации при реализации логики
+      switch (name) {
+        case "name":
+          isValid = value.length > 1;
+          break;
 
-      case "email":
-        isValid = value.includes("@");
-        break;
+        case "email":
+          isValid = value.includes("@");
+          break;
 
-      case "password":
-        isValid = value.length > 2;
-        break;
+        case "password":
+          isValid = value.length > 2;
+          break;
 
-      default:
-        isValid = true;
+        default:
+          isValid = true;
+      }
     }
 
     setInputParameters(
@@ -48,5 +50,5 @@ export function useInputParameters(inputNames, classNames) {
     );
   };
 
-  return { inputParameters, handleInputChange };
+  return { inputParameters, validateInput };
 }

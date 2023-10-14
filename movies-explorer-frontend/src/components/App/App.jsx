@@ -7,9 +7,9 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
 import NotFound from "../NotFound/NotFound";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   mainPathname,
   moviesPathname,
@@ -18,19 +18,54 @@ import {
   signInPathname,
   signUpPathname,
 } from "../../utils/constants";
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
+import auth from "../../utils/Api/AuthApi";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
-  const handleSignOut = () => {
-    setIsLoggedIn(false);
-  }
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
 
   const handleUpdateUser = (userData) => {
     setCurrentUser(userData);
-  }
-  
+  };
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleTokenCheck = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((res) => {
+          if (res) {
+            const { email, name, _id } = res;
+            setCurrentUser({ email, name, _id });
+            setIsLoggedIn(true);
+
+            const protectedRoutes = [
+              moviesPathname,
+              savedMoviesPathname,
+              profilePathname,
+            ];
+            const path = protectedRoutes.includes(pathname)
+              ? pathname
+              : mainPathname;
+            navigate(path, { replace: true });
+          }
+        })
+        .catch(console.error);
+    }
+  };
+
   return (
     <div className="App">
       <Header isLoggedIn={isLoggedIn} />
@@ -39,13 +74,29 @@ function App() {
         <Route path={mainPathname} element={<Main />} />
 
         {/* Страница "Все фильмы" */}
-        <Route path={moviesPathname} element={<Movies />} />
+        <Route
+          path={moviesPathname}
+          element={
+            <ProtectedRouteElement element={Movies} isLoggedIn={isLoggedIn} />
+          }
+        />
 
         {/* Страница "Сохраненные фильмы" */}
-        <Route path={savedMoviesPathname} element={<SavedMovies />} />
+        <Route
+          path={savedMoviesPathname}
+          element={
+            <ProtectedRouteElement
+              element={SavedMovies}
+              isLoggedIn={isLoggedIn}
+            />
+          }
+        />
 
         {/* Вход */}
-        <Route path={signInPathname} element={<Login />} />
+        <Route
+          path={signInPathname}
+          element={<Login handleLogin={handleLogin} />}
+        />
 
         {/* Регистрация */}
         <Route path={signUpPathname} element={<Register />} />
@@ -54,10 +105,11 @@ function App() {
         <Route
           path={profilePathname}
           element={
-            <Profile
-              handleSignOut={handleSignOut}
+            <ProtectedRouteElement
+              element={Profile}
               currentUser={currentUser}
               onUpdateUser={handleUpdateUser}
+              isLoggedIn={isLoggedIn}
             />
           }
         />

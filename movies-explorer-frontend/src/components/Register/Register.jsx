@@ -11,7 +11,7 @@ export default function Register({}) {
     invalidInputName: "register__input_invalid",
   };
 
-  const { inputParameters, handleInputChange } = useInputParameters(
+  const { inputParameters, validateInput } = useInputParameters(
     ["name", "email", "password"],
     inputClassNames
   );
@@ -51,7 +51,7 @@ export default function Register({}) {
                 .className
             }
             required=""
-            onChange={handleInputChange}
+            onChange={validateInput}
           />
           <p className="form__input-text">E-mail</p>
           <input
@@ -65,7 +65,7 @@ export default function Register({}) {
             minLength={2}
             maxLength={40}
             required=""
-            onChange={handleInputChange}
+            onChange={validateInput}
           />
           <p className="form__input-text">Пароль</p>
           <input
@@ -79,7 +79,7 @@ export default function Register({}) {
             minLength={2}
             maxLength={40}
             required=""
-            onChange={handleInputChange}
+            onChange={validateInput}
           />
           <div className="form__error-container">
           {hasError && (

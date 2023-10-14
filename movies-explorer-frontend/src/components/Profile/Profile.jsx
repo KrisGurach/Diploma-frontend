@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signInPathname } from "../../utils/constants";
 import { useForm } from "../../hooks/useForm";
 
-export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
+export default function Profile({ currentUser, onUpdateUser }) {
   const navigate = useNavigate();
 
   const { values, handleChange, setValues } = useForm(currentUser);
@@ -20,7 +20,7 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
   };
 
   const handleSignOutClick = () => {
-    handleSignOut();
+    localStorage.removeItem("token");
     navigate(signInPathname, { replace: true });
   };
 
