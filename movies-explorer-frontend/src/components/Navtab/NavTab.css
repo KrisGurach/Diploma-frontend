@@ -1,0 +1,32 @@
+.navbar {
+  min-height: 66px;
+  background-color: var(--black-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.navbar__link {
+  margin: 0;
+  padding: 0;
+  color: var(--white-color);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  text-decoration: underline;
+}
+
+.navbar__link:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .navbar {
+    gap: 24px;
+  }
+  .navbar__link {
+    font-size: 11px;
+    line-height: 1.45;   
+  }  
+}
