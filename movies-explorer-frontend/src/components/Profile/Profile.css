@@ -107,6 +107,7 @@
 .profile__save-button:disabled {
   background-color: var(--disable-grey-color);
   color: var(--disable-text-grey-color);
+  cursor: default;
 }
 
 .profile__error-message {

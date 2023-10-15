@@ -32,6 +32,10 @@ function App() {
     handleTokenCheck();
   }, []);
 
+  // useEffect(() => {
+  //   application.usersme
+  // }, [isLoggedIn])
+
   const handleUpdateUser = (userData) => {
     setCurrentUser(userData);
   };
@@ -95,11 +99,24 @@ function App() {
         {/* Вход */}
         <Route
           path={signInPathname}
-          element={<Login handleLogin={handleLogin} />}
+          element={
+            <Login
+              handleLogin={handleLogin}
+              handleUpdateUser={handleUpdateUser}
+            />
+          }
         />
 
         {/* Регистрация */}
-        <Route path={signUpPathname} element={<Register />} />
+        <Route
+          path={signUpPathname}
+          element={
+            <Register
+              handleLogin={handleLogin}
+              handleUpdateUser={handleUpdateUser}
+            />
+          }
+        />
 
         {/* Профиль */}
         <Route
@@ -109,7 +126,6 @@ function App() {
               element={Profile}
               currentUser={currentUser}
               onUpdateUser={handleUpdateUser}
-              isLoggedIn={isLoggedIn}
             />
           }
         />

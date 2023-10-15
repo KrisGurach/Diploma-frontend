@@ -10,10 +10,6 @@ export default function Profile({ currentUser, onUpdateUser }) {
   const [inputDisabled, setInputDisabled] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
-    setValues(currentUser);
-  }, [currentUser]);
-
   const enableInput = (e) => {
     e.preventDefault();
     setInputDisabled(false);

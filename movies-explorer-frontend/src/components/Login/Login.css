@@ -46,7 +46,6 @@
   width: 396px;
   min-height: 45px;
   margin: 0;
-  margin-bottom: 20px;
   padding: 0;
   padding-left: 15px;
   box-sizing: border-box;
@@ -64,13 +63,19 @@
 }
 
 .login__input_invalid {
+  margin: 0;
   border: 1px solid var(--red-color);
-  color: var(--red-color)
+  color: var(--red-color);
 }
 
 .form__error-container {
-  margin-top: 10px;
+  margin-top: 2px;
+  margin-bottom: 6px;
   height: 12px;
+}
+
+.form__error-container:last-of-type {
+  margin-bottom: 0;
 }
 
 .form__error {
@@ -78,6 +83,21 @@
   padding: 0;
   color: var(--red-color);
   font-size: 10px;
+  font-weight: 400;
+  line-height: 1.21;
+}
+
+.form__server-error-container {
+  margin-bottom: 20px;
+  height: 137px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.form__server-error {
+  color: var(--red-error-color);
+  font-size: 11px;
   font-weight: 400;
   line-height: 1.21;
 }
@@ -95,8 +115,14 @@
   line-height: 1.21;
 }
 
-.form__save-button_type_login {
-  margin-top: 157px;
+.form__save-button:disabled {
+  background-color: var(--disable-grey-color);
+  color: var(--disable-text-grey-color);
+  cursor: default;
+}
+
+.form__save-button:disabled:hover {
+  opacity: 1;
 }
 
 .form__save-button:hover {
@@ -181,13 +207,14 @@
     align-self: flex-start;
   }
 
+  .form__server-error-container {
+    margin-bottom: 20px;
+    height: 230px;
+  }
+
   .form__save-button {
     width: calc(100% - 60px);
     font-size: 12px;
-  }
-
-  .form__save-button_type_login {
-    margin-top: 245px;
   }
 
   .form__text {

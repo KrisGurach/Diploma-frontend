@@ -8,7 +8,21 @@ class Authorization {
   }
 
   _getResponseData = (res) => {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+    return res.ok ? res.json() : Promise.reject(res.status);
+  };
+
+  signUp = (values) => {
+    return this._request("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        password: values.password,
+        email: values.email,
+        name: values.name,
+      }),
+    });
   };
 
   signIn = (email, password) => {

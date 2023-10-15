@@ -8,7 +8,7 @@
   width: 396px;
   height: 45px;
   margin: 0;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   padding: 0;
   padding-left: 15px;
   box-sizing: border-box;
@@ -30,8 +30,8 @@
   margin-bottom: 0;
 }
 
-.form__save-button_type_register {
-  margin-top: 69px;
+.form__server-error-container_type_register {
+  height: 49px;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -43,7 +43,8 @@
     margin-bottom: 0; 
   } 
 
-  .form__save-button_type_register {
-    margin-top: 157px;
+  .form__server-error-container_type_register {
+    margin-bottom: 20px;
+    height: 142px;
   }
 }
