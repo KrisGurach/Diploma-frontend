@@ -56,7 +56,7 @@ class Authorization {
 
 const config = {
     baseUrl: "https://api.kinofilms.nomoredomainsrocks.ru",
-  };
+};
   
   const auth = new Authorization(config);
   

@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInPathname } from "../../utils/constants";
 import { useForm } from "../../hooks/useForm";
+import { useInputParameters } from "../../hooks/useInputParameters";
+import checkUserDataInputs from "../../utils/userDataHelper";
+import mainApi from "../../utils/Api/MainApi";
 
-export default function Profile({ currentUser, onUpdateUser }) {
+export default function Profile({ currentUser, onUpdateUser, handleSignOut }) {
   const navigate = useNavigate();
 
-  const { values, handleChange, setValues } = useForm(currentUser);
+  const { values, handleChange } = useForm(currentUser);
   const [inputDisabled, setInputDisabled] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const [hasServerError, setHasServerError] = useState(false);
 
   const enableInput = (e) => {
     e.preventDefault();
@@ -17,33 +20,62 @@ export default function Profile({ currentUser, onUpdateUser }) {
 
   const handleSignOutClick = () => {
     localStorage.removeItem("token");
+    handleSignOut();
     navigate(signInPathname, { replace: true });
   };
 
   const handleSaveClick = (e) => {
     e.preventDefault();
+    setHasServerError(false);
+    
+    mainApi.updateUser(values)
+      .then(() => {
+        setInputDisabled(true);
+        onUpdateUser(values);
+      })
+      .catch((error) => {
+        console.error(error);
+        setHasServerError(true);
+      })
 
-    if (values.name === "" || values.email === "") {
-      setHasError(true);
-      return;
-    }
-
-    setInputDisabled(true);
-    onUpdateUser(values);
   };
 
-  const onInputChange = (e) => {
-    if (hasError) {
-      setHasError(false);
-    }
+  // input validation handling
+    const inputClassNames = {
+      baseInputName: "profile__input",
+      inputTypeName: "profile__input_type_",
+      invalidInputName: "profile__input_invalid",
+    };
 
-    handleChange(e);
-  }
+  const { inputParameters, validateInput } = useInputParameters(
+    ["email", "name"],
+    inputClassNames
+  );
+  
+  // submit button handling
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const hasInvalidInput = checkUserDataInputs(inputParameters, values);
+
+    const hasSameValues = values.name === currentUser.name && values.email === currentUser.email;
+
+    setIsSubmitButtonDisabled(hasInvalidInput || hasSameValues);
+  }, [inputParameters, values]);
+
+  
+  const handleInputChange = (event) => {
+    setHasServerError(false);
+
+    handleChange(event);
+    validateInput(event);
+  };
+
 
   return (
     <main>
       <section className="profile">
-        <h1 className="profile__title">Привет, username!</h1>
+        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
         <form className="profile__form" name="form-of-profile" onSubmit={handleSaveClick} noValidate>
           <div className="profile__container">
             <p className="profile__input-text">Имя</p>
@@ -51,13 +83,14 @@ export default function Profile({ currentUser, onUpdateUser }) {
               type="text"
               name="name"
               placeholder="Имя"
-              className="profile__input profile__input_type_email"
-              minLength={2}
-              maxLength={40}
+              className={
+                inputParameters.find((input) => input.inputName === "name")
+                  .className
+              }
               required
               disabled={inputDisabled}
               value={values.name || ""}
-              onChange={onInputChange}
+              onChange={handleInputChange}
             />
           </div>
           <div className="profile__container">
@@ -66,13 +99,14 @@ export default function Profile({ currentUser, onUpdateUser }) {
               type="email"
               name="email"
               placeholder="E-mail"
-              className="profile__input profile__input_type_email"
-              minLength={2}
-              maxLength={40}
+              className={
+                inputParameters.find((input) => input.inputName === "email")
+                  .className
+              }
               required
               disabled={inputDisabled}
               value={values.email || ""}
-              onChange={onInputChange}
+              onChange={handleInputChange}
             />
           </div>
           {inputDisabled && (
@@ -80,12 +114,12 @@ export default function Profile({ currentUser, onUpdateUser }) {
               Редактировать
             </button>
           )}
-        {hasError && <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>}
+        {hasServerError && <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>}
         {!inputDisabled && (
           <button
             className="profile__save-button"
             type="submit"
-            disabled={hasError}
+            disabled={isSubmitButtonDisabled}
           >
             Сохранить
           </button>

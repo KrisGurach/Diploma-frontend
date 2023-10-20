@@ -32,16 +32,16 @@ function App() {
     handleTokenCheck();
   }, []);
 
-  // useEffect(() => {
-  //   application.usersme
-  // }, [isLoggedIn])
+  useEffect(() => {
+    handleTokenCheck();
+  }, [isLoggedIn])
 
   const handleUpdateUser = (userData) => {
     setCurrentUser(userData);
   };
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    setIsLoggedIn(!isLoggedIn);
   };
 
   const handleTokenCheck = () => {
@@ -126,6 +126,8 @@ function App() {
               element={Profile}
               currentUser={currentUser}
               onUpdateUser={handleUpdateUser}
+              handleSignOut={handleLogin}
+              isLoggedIn={isLoggedIn}
             />
           }
         />
