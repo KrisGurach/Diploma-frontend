@@ -4,9 +4,10 @@ export default function SearchForm({ onSearchClick }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    
+    const isShortOnly = event.target[2].checked;
     const query = event.target[0].value;
-    onSearchClick(query);
+    onSearchClick(query, isShortOnly);
   }
 
   return (
