@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { savedMoviesPathname } from "../../utils/constants";
 
-export default function MoviesCardList({}) {
+export default function MoviesCardList({ movies }) {
   const { pathname } = useLocation();
   const isSavedMoviesPage = pathname === savedMoviesPathname;
 
@@ -15,18 +15,16 @@ export default function MoviesCardList({}) {
             : ""
         }`}
       >
-        <MoviesCard isSaved={true} />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
+        {movies.map((movie) => {
+          return (
+            <MoviesCard
+              key={movie.id}
+              nameRU={movie.nameRU}
+              duration={movie.duration}
+              image={movie.image.url}
+            />
+          );
+        })}
       </div>
       <div
         className={

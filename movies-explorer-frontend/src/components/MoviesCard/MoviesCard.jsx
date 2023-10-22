@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import image from "../../images/moviecard.jpg";
 import { savedMoviesPathname } from "../../utils/constants";
 
-export default function MoviesCard({ isSaved = false }) {
+export default function MoviesCard({ nameRU, duration, image, isSaved = false }) {
   const { pathname } = useLocation();
+
   const saveButtonClass = `movie-card__save-button 
   ${
     pathname === savedMoviesPathname
@@ -15,14 +15,14 @@ export default function MoviesCard({ isSaved = false }) {
 
   return (
     <section className="movie-card">
-      <img src={image} className="movie-card__image" alt="постер фильма" />
+      <img src={`https://api.nomoreparties.co${image}`} className="movie-card__image" alt="постер фильма" />
       <button className={saveButtonClass}>
         {isSaved || pathname === savedMoviesPathname ? "" : "Сохранить"}
       </button>
       <div className="movie-card__description">
-        <h2 className="movie-card__name">Баския: Взрыв реальности</h2>
+        <h2 className="movie-card__name">{nameRU}</h2>
         <div className="movie-card__duration">
-          <p className="movie-card__text">1ч 17м</p>
+          <p className="movie-card__text">{`${Math.floor(duration / 60)}ч ${duration % 60}м`}</p>
         </div>
       </div>
     </section>

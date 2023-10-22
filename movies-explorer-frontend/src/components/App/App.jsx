@@ -22,12 +22,15 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import auth from "../../utils/Api/AuthApi";
 
 function App() {
+  // constants 
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  //state-vars
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
+  // useEffects
   useEffect(() => {
     handleTokenCheck();
   }, []);
@@ -36,6 +39,7 @@ function App() {
     handleTokenCheck();
   }, [isLoggedIn])
 
+  // handlers for update and login user
   const handleUpdateUser = (userData) => {
     setCurrentUser(userData);
   };
@@ -69,6 +73,8 @@ function App() {
         .catch(console.error);
     }
   };
+
+  //
 
   return (
     <div className="App">
