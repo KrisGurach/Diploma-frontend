@@ -29,6 +29,7 @@ function App() {
   //state-vars
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [savedMovies, setSavedMovies] = useState([]);
 
   // useEffects
   useEffect(() => {
@@ -74,7 +75,9 @@ function App() {
     }
   };
 
-  //
+  const handleSavedMovies = (newMovies) => {
+    setSavedMovies(newMovies);
+  }
 
   return (
     <div className="App">
@@ -87,7 +90,12 @@ function App() {
         <Route
           path={moviesPathname}
           element={
-            <ProtectedRouteElement element={Movies} isLoggedIn={isLoggedIn} />
+            <ProtectedRouteElement
+              element={Movies}
+              isLoggedIn={isLoggedIn}
+              savedMovies={savedMovies}
+              handleSavedMovies={handleSavedMovies}
+            />
           }
         />
 

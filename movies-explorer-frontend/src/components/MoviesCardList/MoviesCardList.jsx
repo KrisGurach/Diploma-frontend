@@ -1,10 +1,15 @@
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { savedMoviesPathname } from "../../utils/constants";
+import { useEffect } from "react";
 
-export default function MoviesCardList({ movies }) {
+export default function MoviesCardList({ movies, handleOnClick, savedMovies }) {
   const { pathname } = useLocation();
   const isSavedMoviesPage = pathname === savedMoviesPathname;
+
+  useEffect(() => {
+    
+  }, [savedMovies]);
 
   return (
     <section className="movies-list">
@@ -22,6 +27,9 @@ export default function MoviesCardList({ movies }) {
               nameRU={movie.nameRU}
               duration={movie.duration}
               image={movie.image.url}
+              id={movie.id}
+              handleOnClick={handleOnClick}
+              savedMovies={savedMovies}
             />
           );
         })}

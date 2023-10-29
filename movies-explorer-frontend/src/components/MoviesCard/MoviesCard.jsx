@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { savedMoviesPathname } from "../../utils/constants";
 
-export default function MoviesCard({ nameRU, duration, image, isSaved = false }) {
+export default function MoviesCard({ nameRU, duration, image, id, handleOnClick, savedMovies }) {
   const { pathname } = useLocation();
+
+  const isSaved = savedMovies.some((savedMovie) => savedMovie.movieId === id);
 
   const saveButtonClass = `movie-card__save-button 
   ${
@@ -13,10 +15,14 @@ export default function MoviesCard({ nameRU, duration, image, isSaved = false })
       : "movie-card__save-button_disable"
   }`;
 
+  const handleClick = () => {
+    handleOnClick(id);
+  }
+
   return (
     <section className="movie-card">
       <img src={`https://api.nomoreparties.co${image}`} className="movie-card__image" alt="постер фильма" />
-      <button className={saveButtonClass}>
+      <button className={saveButtonClass} onClick={handleClick}>
         {isSaved || pathname === savedMoviesPathname ? "" : "Сохранить"}
       </button>
       <div className="movie-card__description">
