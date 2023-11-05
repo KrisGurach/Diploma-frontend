@@ -11,11 +11,12 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
   const [movies, setMovies] = useState(lastSearch ? lastSearch.movies : []);
 
   useEffect(() => {
-    mainApi.getSavedMovies()
-    .then((newMovies) => {
-      handleSavedMovies(newMovies);
-    })
-    .catch(console.error);
+    mainApi
+      .getSavedMovies()
+      .then((newMovies) => {
+        handleSavedMovies(newMovies);
+      })
+      .catch(console.error);
   }, []);
 
   const handleSearchClick = (query, isShortOnly) => {
@@ -40,31 +41,35 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       });
   };
 
-  const handleSaveClick = (id, isSaved) => {
-    if (!isSaved) {
-    const movieToSend = movies.find((movie) => movie.id === id);
+  const saveMovie = (id) => {
+    const movieToSave = movies.find((movie) => movie.id === id);
 
     mainApi
-      .saveMovie(movieToSend)
+      .saveMovie(movieToSave)
       .then((savedMovie) => {
         const newMovies = [...savedMovies, savedMovie];
         handleSavedMovies(newMovies);
       })
       .catch(console.error);
-  }
-  if (isSaved) {
+  };
+
+  const deleteMovie = (id) => {
     const movieToDelete = savedMovies.find((movie) => movie.movieId === id);
 
     mainApi
       .deleteMovie(movieToDelete._id)
       .then(() => {
-        const newMovies = savedMovies.filter((savedMovie) => savedMovie.movieId !== id);
+        const newMovies = savedMovies.filter(
+          (savedMovie) => savedMovie.movieId !== id
+        );
         handleSavedMovies(newMovies);
       })
       .catch(console.error);
+  };
 
-  }
-};
+  const handleOnClick = (id, isSaved) => {
+    isSaved ? deleteMovie(id) : saveMovie(id);
+  };
 
   return (
     <main>
@@ -74,7 +79,7 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
         {movies.length !== 0 && (
           <MoviesCardList
             movies={movies}
-            handleOnClick={handleSaveClick}
+            handleOnClick={handleOnClick}
             savedMovies={savedMovies}
           />
         )}
