@@ -40,7 +40,8 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       });
   };
 
-  const handleSaveClick = (id) => {
+  const handleSaveClick = (id, isSaved) => {
+    if (!isSaved) {
     const movieToSend = movies.find((movie) => movie.id === id);
 
     mainApi
@@ -50,7 +51,20 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
         handleSavedMovies(newMovies);
       })
       .catch(console.error);
-  };
+  }
+  if (isSaved) {
+    const movieToDelete = savedMovies.find((movie) => movie.movieId === id);
+
+    mainApi
+      .deleteMovie(movieToDelete._id)
+      .then(() => {
+        const newMovies = savedMovies.filter((savedMovie) => savedMovie.movieId !== id);
+        handleSavedMovies(newMovies);
+      })
+      .catch(console.error);
+
+  }
+};
 
   return (
     <main>

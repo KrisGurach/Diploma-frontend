@@ -16,7 +16,7 @@ export default function MoviesCard({ nameRU, duration, image, id, handleOnClick,
   }`;
 
   const handleClick = () => {
-    handleOnClick(id);
+    handleOnClick(id, isSaved);
   }
 
   return (

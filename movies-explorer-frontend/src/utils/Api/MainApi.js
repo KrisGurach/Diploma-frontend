@@ -57,7 +57,16 @@ class MainApi {
         nameEN: movie.nameEN,
       })
     })
-  }
+  };
+
+  deleteMovie = (id) => {
+    return this._request(`/movies/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._getToken(),
+      },
+    })
+  };
 }
 
 const config = {
