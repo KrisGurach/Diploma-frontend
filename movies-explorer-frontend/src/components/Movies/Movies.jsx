@@ -9,6 +9,11 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
   const lastSearch = JSON.parse(localStorage.getItem("lastSearch"));
 
   const [movies, setMovies] = useState(lastSearch ? lastSearch.movies : []);
+  const [searchData, setSearchData] = useState(
+    lastSearch
+      ? { query: lastSearch.query, isShortOnly: lastSearch.isShortOnly }
+      : {}
+  );
 
   useEffect(() => {
     mainApi
@@ -23,9 +28,15 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
     moviesApi
       .getMovies()
       .then((allMovies) => {
-        const filtered = allMovies.filter((movie) =>
+        let filtered = allMovies.filter((movie) =>
           movie.nameRU.toLowerCase().includes(query.toLowerCase())
         );
+
+        if (isShortOnly) {
+          filtered = filtered.filter((movie) => 
+            movie.duration < 40)
+        };
+
         localStorage.setItem(
           "lastSearch",
           JSON.stringify({
@@ -74,7 +85,10 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
   return (
     <main>
       <section className="movies">
-        <SearchForm onSearchClick={handleSearchClick} />
+        <SearchForm
+          onSearchClick={handleSearchClick}
+          searchData={searchData}
+        />
         <Preloader />
         {movies.length !== 0 && (
           <MoviesCardList
