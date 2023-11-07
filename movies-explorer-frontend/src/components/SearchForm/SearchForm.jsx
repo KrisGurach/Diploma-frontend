@@ -1,18 +1,30 @@
+import { useEffect } from "react";
 import { useCheckbox } from "../../hooks/useCheckbox";
 import { useForm } from "../../hooks/useForm";
 import icon from "../../images/search-icon.svg";
 
-export default function SearchForm({ onSearchClick, searchData }) {
+export default function SearchForm({ onSearchClick, searchData, isShortOnlyChange }) {
   const { values, handleChange } = useForm({ searchText: searchData.query });
-  const { checkboxValues, handleCheckboxChange } = useCheckbox({ shortFilms: searchData.isShortOnly });
+  const { checkboxValues, handleCheckboxChange, setCheckboxValues } = useCheckbox({
+    shortFilmsDesktop: searchData.isShortOnly,
+  });
+
+  // useEffect(() => {
+  //   setCheckboxValues({shortFilmsDesktop: searchData.isShortOnly});
+  // }, [searchData]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const isShortOnly = checkboxValues.shortFilms;
+    const isShortOnly = checkboxValues.shortFilmsDesktop;
     const query = values.searchText;
     onSearchClick(query, isShortOnly);
   };
+
+  const handleSortButtonChange = (e) => {
+    handleCheckboxChange(e);
+    isShortOnlyChange(e.target.checked);
+  }
 
   return (
     <section className="search-form">
@@ -42,9 +54,9 @@ export default function SearchForm({ onSearchClick, searchData }) {
             <label className="search-form__toggle-button">
               <input
                 type="checkbox"
-                name="shortFilms"
-                defaultChecked={checkboxValues.shortFilms}
-                onChange={handleCheckboxChange}
+                name="shortFilmsDesktop"
+                checked={checkboxValues.shortFilmsDesktop}
+                onChange={handleSortButtonChange}
               ></input>
               <span className="search-form__toggle-button-switch"></span>
               Короткометражки
@@ -54,7 +66,12 @@ export default function SearchForm({ onSearchClick, searchData }) {
       </form>
       <div className="search-form__box search-form__box_size_s">
         <label className="search-form__toggle-button">
-          <input type="checkbox"></input>
+          <input
+            type="checkbox"
+            name="shortFilmsDesktop"
+            checked={checkboxValues.shortFilmsDesktop}
+            onChange={handleSortButtonChange}
+          ></input>
           <span className="search-form__toggle-button-switch"></span>
           Короткометражки
         </label>

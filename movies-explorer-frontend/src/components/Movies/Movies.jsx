@@ -82,12 +82,24 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
     isSaved ? deleteMovie(id) : saveMovie(id);
   };
 
+  const isShortOnlyChange = (isChecked) => {
+    const data = {
+      ...searchData,
+      isShortOnly: isChecked,
+    };
+
+    console.log(data);
+    
+    setSearchData(data);
+  };
+
   return (
     <main>
       <section className="movies">
         <SearchForm
           onSearchClick={handleSearchClick}
           searchData={searchData}
+          isShortOnlyChange={isShortOnlyChange}
         />
         <Preloader />
         {movies.length !== 0 && (
