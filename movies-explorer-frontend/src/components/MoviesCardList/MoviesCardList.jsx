@@ -1,15 +1,24 @@
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { savedMoviesPathname } from "../../utils/constants";
-import { useEffect } from "react";
 
-export default function MoviesCardList({ movies, handleOnClick, savedMovies }) {
+export default function MoviesCardList({
+  movies,
+  handleOnClick,
+  savedMovies,
+  addMoreFilms,
+  isShown,
+}) {
   const { pathname } = useLocation();
   const isSavedMoviesPage = pathname === savedMoviesPathname;
 
-  useEffect(() => {
-    
-  }, [savedMovies]);
+  // useEffect(() => {
+
+  // }, [savedMovies]);
+
+  const handleMoreFilmsClick = () => {
+    addMoreFilms();
+  };
 
   return (
     <section className="movies-list">
@@ -41,13 +50,16 @@ export default function MoviesCardList({ movies, handleOnClick, savedMovies }) {
             : "movies-list__more-films"
         }
       >
-        <button
-          className={`movies-list__more-films-button ${
-            isSavedMoviesPage ? "movies-list__more-films-button_disable" : ""
-          }`}
-        >
-          Ещё
-        </button>
+        {isShown && (
+          <button
+            className={`movies-list__more-films-button ${
+              isSavedMoviesPage ? "movies-list__more-films-button_disable" : ""
+            }`}
+            onClick={handleMoreFilmsClick}
+          >
+            Ещё
+          </button>
+        )}
       </div>
     </section>
   );

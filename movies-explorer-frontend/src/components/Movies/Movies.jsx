@@ -4,9 +4,12 @@ import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import moviesApi from "../../utils/Api/MoviesApi";
 import mainApi from "../../utils/Api/MainApi";
+import { screenSizeEnum } from "../../utils/enums";
+import { useScreenSize } from "../../hooks/useScreenSize";
 
 export default function Movies({ savedMovies, handleSavedMovies }) {
   const lastSearch = JSON.parse(localStorage.getItem("lastSearch"));
+  const storedMovies = lastSearch ? lastSearch.movies : [];
 
   const [movies, setMovies] = useState(lastSearch ? lastSearch.movies : []);
   const [searchData, setSearchData] = useState(
@@ -15,6 +18,10 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       : {}
   );
 
+  const screenSize = useScreenSize();
+
+  const [isShown, setIsShown] = useState(false);
+
   useEffect(() => {
     mainApi
       .getSavedMovies()
@@ -22,30 +29,93 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
         handleSavedMovies(newMovies);
       })
       .catch(console.error);
+
+
+    let count;
+    switch (screenSize) {
+      case screenSizeEnum.L:
+        count = 12;
+        break;
+      case screenSizeEnum.M:
+        count = 8;
+        break;
+      case screenSizeEnum.S:
+        count = 5;
+        break;
+      default:
+        count = storedMovies.length;
+        break;
+    }  
+    const newSortedMovies = movies.slice(0, count); 
+    setMovies(newSortedMovies);
+
+    setIsShown(storedMovies.length > count);
   }, []);
+
+  useEffect(() => {
+    let count;
+    switch (screenSize) {
+      case screenSizeEnum.L:
+        count = 12;
+        break;
+      case screenSizeEnum.M:
+        count = 8;
+        break;
+      case screenSizeEnum.S:
+        count = 5;
+        break;
+      default:
+        count = storedMovies.length;
+        break;
+    }  
+
+    setIsShown(storedMovies.length > count);
+
+    setMovies(storedMovies.slice(0, count));
+  }, [screenSize]);
 
   const handleSearchClick = (query, isShortOnly) => {
     moviesApi
       .getMovies()
       .then((allMovies) => {
-        let filtered = allMovies.filter((movie) =>
+        let filteredToStore = allMovies.filter((movie) =>
           movie.nameRU.toLowerCase().includes(query.toLowerCase())
         );
 
         if (isShortOnly) {
-          filtered = filtered.filter((movie) => 
+          filteredToStore = filteredToStore.filter((movie) => 
             movie.duration < 40)
         };
 
         localStorage.setItem(
           "lastSearch",
           JSON.stringify({
-            movies: filtered,
+            movies: filteredToStore,
             query,
             isShortOnly,
           })
         );
+
+        let count;
+        switch (screenSize) {
+          case screenSizeEnum.L:
+            count = 12;
+            break;
+          case screenSizeEnum.M:
+            count = 8;
+            break;
+          case screenSizeEnum.S:
+            count = 5;
+            break;
+          default:
+            count = storedMovies.length;
+            break;
+        } 
+
+        const filtered = filteredToStore.slice(0, count);
         setMovies(filtered);
+
+        setIsShown(filteredToStore.length > count);
       })
       .catch((error) => {
         console.error(error);
@@ -93,6 +163,11 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
     setSearchData(data);
   };
 
+  const addMoreFilms = () => {
+    setMovies(lastSearch.movies);
+    setIsShown(false);
+  };
+
   return (
     <main>
       <section className="movies">
@@ -107,6 +182,8 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
             movies={movies}
             handleOnClick={handleOnClick}
             savedMovies={savedMovies}
+            addMoreFilms={addMoreFilms}
+            isShown={isShown}
           />
         )}
       </section>

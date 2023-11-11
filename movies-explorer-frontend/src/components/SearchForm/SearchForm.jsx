@@ -5,15 +5,11 @@ import icon from "../../images/search-icon.svg";
 
 export default function SearchForm({ onSearchClick, searchData, isShortOnlyChange }) {
   const { values, handleChange } = useForm({ searchText: searchData.query });
-  const { checkboxValues, handleCheckboxChange, setCheckboxValues } = useCheckbox({
+  const { checkboxValues, handleCheckboxChange } = useCheckbox({
     shortFilmsDesktop: searchData.isShortOnly,
   });
 
-  // useEffect(() => {
-  //   setCheckboxValues({shortFilmsDesktop: searchData.isShortOnly});
-  // }, [searchData]);
-
-  const handleSubmit = (event) => {
+   const handleSubmit = (event) => {
     event.preventDefault();
 
     const isShortOnly = checkboxValues.shortFilmsDesktop;
