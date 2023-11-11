@@ -37,6 +37,7 @@ export default function MoviesCardList({
               duration={movie.duration}
               image={movie.image.url}
               id={movie.id}
+              trailer={movie.trailerLink}
               handleOnClick={handleOnClick}
               savedMovies={savedMovies}
             />
