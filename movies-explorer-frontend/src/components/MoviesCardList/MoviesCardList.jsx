@@ -32,12 +32,12 @@ export default function MoviesCardList({
         {movies.map((movie) => {
           return (
             <MoviesCard
-              key={movie.id}
+              key={movie.id || movie.movieId}
               nameRU={movie.nameRU}
               duration={movie.duration}
-              image={movie.image.url}
-              id={movie.id}
-              trailer={movie.trailerLink}
+              image={movie.image.url ? `https://api.nomoreparties.co${movie.image.url}` : movie.image}
+              id={movie.id || movie.movieId}
+              trailer={movie.trailerLink || movie.traier}
               handleOnClick={handleOnClick}
               savedMovies={savedMovies}
             />

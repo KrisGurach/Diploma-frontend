@@ -6,6 +6,8 @@ import moviesApi from "../../utils/Api/MoviesApi";
 import mainApi from "../../utils/Api/MainApi";
 import { screenSizeEnum } from "../../utils/enums";
 import { useScreenSize } from "../../hooks/useScreenSize";
+import { getAddCount, getFilmsCount, getSlicedFilms } from "../../utils/movieDataHelper";
+import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 
 export default function Movies({ savedMovies, handleSavedMovies }) {
   const lastSearch = JSON.parse(localStorage.getItem("lastSearch"));
@@ -30,48 +32,13 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       })
       .catch(console.error);
 
-
-    let count;
-    switch (screenSize) {
-      case screenSizeEnum.L:
-        count = 12;
-        break;
-      case screenSizeEnum.M:
-        count = 8;
-        break;
-      case screenSizeEnum.S:
-        count = 5;
-        break;
-      default:
-        count = storedMovies.length;
-        break;
-    }  
-    const newSortedMovies = movies.slice(0, count); 
-    setMovies(newSortedMovies);
-
-    setIsShown(storedMovies.length > count);
+    setMovies(getSlicedFilms(screenSize, movies));
+    setIsShown(storedMovies.length > getFilmsCount(screenSize));
   }, []);
 
   useEffect(() => {
-    let count;
-    switch (screenSize) {
-      case screenSizeEnum.L:
-        count = 12;
-        break;
-      case screenSizeEnum.M:
-        count = 8;
-        break;
-      case screenSizeEnum.S:
-        count = 5;
-        break;
-      default:
-        count = storedMovies.length;
-        break;
-    }  
-
-    setIsShown(storedMovies.length > count);
-
-    setMovies(storedMovies.slice(0, count));
+    setIsShown(storedMovies.length > getFilmsCount(screenSize));
+    setMovies(getSlicedFilms(screenSize, storedMovies));
   }, [screenSize]);
 
   const handleSearchClick = (query, isShortOnly) => {
@@ -96,26 +63,8 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
           })
         );
 
-        let count;
-        switch (screenSize) {
-          case screenSizeEnum.L:
-            count = 12;
-            break;
-          case screenSizeEnum.M:
-            count = 8;
-            break;
-          case screenSizeEnum.S:
-            count = 5;
-            break;
-          default:
-            count = storedMovies.length;
-            break;
-        } 
-
-        const filtered = filteredToStore.slice(0, count);
-        setMovies(filtered);
-
-        setIsShown(filteredToStore.length > count);
+        setMovies(getSlicedFilms(screenSize, filteredToStore));
+        setIsShown(filteredToStore.length > getFilmsCount(screenSize));
       })
       .catch((error) => {
         console.error(error);
@@ -157,15 +106,14 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       ...searchData,
       isShortOnly: isChecked,
     };
-
-    console.log(data);
-    
     setSearchData(data);
   };
 
   const addMoreFilms = () => {
-    setMovies(lastSearch.movies);
-    setIsShown(false);
+    const newCount = movies.length + getAddCount(screenSize);
+
+    setMovies(lastSearch.movies.slice(0, newCount));
+    setIsShown(lastSearch.movies.length > newCount);
   };
 
   return (

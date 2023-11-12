@@ -25,7 +25,7 @@ export default function MoviesCard({ nameRU, duration, image, id, trailer, handl
 
   return (
     <section className="movie-card">
-      <img src={`https://api.nomoreparties.co${image}`} className="movie-card__image" alt="постер фильма" onClick={handleCardClick} />
+      <img src={image} className="movie-card__image" alt="постер фильма" onClick={handleCardClick} />
       <button className={saveButtonClass} onClick={handleClick}>
         {isSaved || pathname === savedMoviesPathname ? "" : "Сохранить"}
       </button>

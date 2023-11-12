@@ -105,6 +105,8 @@ function App() {
           element={
             <ProtectedRouteElement
               element={SavedMovies}
+              savedMovies={savedMovies}
+              handleSavedMovies={handleSavedMovies}
               isLoggedIn={isLoggedIn}
             />
           }
