@@ -22,7 +22,7 @@ export default function SearchForm({
     const query = values.searchText;
 
     if (!query) {
-      alert("Поле поиска должно быть заполнено.");
+      alert("Нужно ввести ключевое слово.");
       return;
     }
 

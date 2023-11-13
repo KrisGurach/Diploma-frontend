@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInPathname } from "../../utils/constants";
 import { useForm } from "../../hooks/useForm";
 import { useInputParameters } from "../../hooks/useInputParameters";
 import checkUserDataInputs from "../../utils/userDataHelper";
 import mainApi from "../../utils/Api/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function Profile({ currentUser, onUpdateUser, handleSignOut }) {
+export default function Profile({ onUpdateUser, handleSignOut }) {
   const navigate = useNavigate();
+
+  const currentUser = useContext(CurrentUserContext);
 
   const { values, handleChange } = useForm(currentUser);
   const [inputDisabled, setInputDisabled] = useState(true);
@@ -20,6 +23,7 @@ export default function Profile({ currentUser, onUpdateUser, handleSignOut }) {
 
   const handleSignOutClick = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("lastSearch");
     handleSignOut();
     navigate(signInPathname, { replace: true });
   };

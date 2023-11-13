@@ -19,11 +19,12 @@ export default function SavedMovies({ savedMovies, handleSavedMovies }) {
 
   const handleSearchClick = (query, isShortOnly) => {
     let newMovies = savedMovies.filter((movie) =>
-      movie.nameRU.toLowerCase().includes(query.toLowerCase())
+      movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
+      movie.nameEN.toLowerCase().includes(query.toLowerCase())
     );
 
     if (isShortOnly) {
-      newMovies = newMovies.filter((movie) => movie.duration < 40);
+      newMovies = newMovies.filter((movie) => movie.duration <= 40);
     }
 
     setMoviesToDisplay(newMovies);

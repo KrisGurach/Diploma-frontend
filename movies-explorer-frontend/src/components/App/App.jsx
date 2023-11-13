@@ -20,9 +20,10 @@ import {
 } from "../../utils/constants";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import auth from "../../utils/Api/AuthApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
-  // constants 
+  // constants
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -38,7 +39,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-  }, [isLoggedIn])
+  }, [isLoggedIn]);
 
   // handlers for update and login user
   const handleUpdateUser = (userData) => {
@@ -77,82 +78,83 @@ function App() {
 
   const handleSavedMovies = (newMovies) => {
     setSavedMovies(newMovies);
-  }
+  };
 
   return (
-    <div className="App">
-      <Header isLoggedIn={isLoggedIn} />
-      <Routes>
-        {/* Лэндинг главный */}
-        <Route path={mainPathname} element={<Main />} />
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="App">
+        <Header isLoggedIn={isLoggedIn} />
+        <Routes>
+          {/* Лэндинг главный */}
+          <Route path={mainPathname} element={<Main />} />
 
-        {/* Страница "Все фильмы" */}
-        <Route
-          path={moviesPathname}
-          element={
-            <ProtectedRouteElement
-              element={Movies}
-              isLoggedIn={isLoggedIn}
-              savedMovies={savedMovies}
-              handleSavedMovies={handleSavedMovies}
-            />
-          }
-        />
+          {/* Страница "Все фильмы" */}
+          <Route
+            path={moviesPathname}
+            element={
+              <ProtectedRouteElement
+                element={Movies}
+                isLoggedIn={isLoggedIn}
+                savedMovies={savedMovies}
+                handleSavedMovies={handleSavedMovies}
+              />
+            }
+          />
 
-        {/* Страница "Сохраненные фильмы" */}
-        <Route
-          path={savedMoviesPathname}
-          element={
-            <ProtectedRouteElement
-              element={SavedMovies}
-              savedMovies={savedMovies}
-              handleSavedMovies={handleSavedMovies}
-              isLoggedIn={isLoggedIn}
-            />
-          }
-        />
+          {/* Страница "Сохраненные фильмы" */}
+          <Route
+            path={savedMoviesPathname}
+            element={
+              <ProtectedRouteElement
+                element={SavedMovies}
+                savedMovies={savedMovies}
+                handleSavedMovies={handleSavedMovies}
+                isLoggedIn={isLoggedIn}
+              />
+            }
+          />
 
-        {/* Вход */}
-        <Route
-          path={signInPathname}
-          element={
-            <Login
-              handleLogin={handleLogin}
-              handleUpdateUser={handleUpdateUser}
-            />
-          }
-        />
+          {/* Вход */}
+          <Route
+            path={signInPathname}
+            element={
+              <Login
+                handleLogin={handleLogin}
+                handleUpdateUser={handleUpdateUser}
+              />
+            }
+          />
 
-        {/* Регистрация */}
-        <Route
-          path={signUpPathname}
-          element={
-            <Register
-              handleLogin={handleLogin}
-              handleUpdateUser={handleUpdateUser}
-            />
-          }
-        />
+          {/* Регистрация */}
+          <Route
+            path={signUpPathname}
+            element={
+              <Register
+                handleLogin={handleLogin}
+                handleUpdateUser={handleUpdateUser}
+              />
+            }
+          />
 
-        {/* Профиль */}
-        <Route
-          path={profilePathname}
-          element={
-            <ProtectedRouteElement
-              element={Profile}
-              currentUser={currentUser}
-              onUpdateUser={handleUpdateUser}
-              handleSignOut={handleLogin}
-              isLoggedIn={isLoggedIn}
-            />
-          }
-        />
+          {/* Профиль */}
+          <Route
+            path={profilePathname}
+            element={
+              <ProtectedRouteElement
+                element={Profile}
+                onUpdateUser={handleUpdateUser}
+                handleSignOut={handleLogin}
+                isLoggedIn={isLoggedIn}
+              />
+            }
+          />
 
-        {/* 404 */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-    </div>
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

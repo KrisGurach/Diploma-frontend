@@ -22,6 +22,10 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
 
   const [isShown, setIsShown] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [message, setMessage] = useState("");
+
   useEffect(() => {
     mainApi
       .getSavedMovies()
@@ -39,17 +43,23 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
     setMovies(getSlicedFilms(screenSize, storedMovies));
   }, [screenSize]);
 
+  useEffect(() => {
+    
+  }, [movies])
+
   const handleSearchClick = (query, isShortOnly) => {
+    setIsLoading(true);
     moviesApi
       .getMovies()
       .then((allMovies) => {
         let filteredToStore = allMovies.filter((movie) =>
-          movie.nameRU.toLowerCase().includes(query.toLowerCase())
+          movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(query.toLowerCase())
         );
 
         if (isShortOnly) {
           filteredToStore = filteredToStore.filter((movie) => 
-            movie.duration < 40)
+            movie.duration <= 40)
         };
 
         localStorage.setItem(
@@ -61,12 +71,22 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
           })
         );
 
-        setMovies(getSlicedFilms(screenSize, filteredToStore));
+        const newMovies = getSlicedFilms(screenSize, filteredToStore);
+        setMovies(newMovies);
         setIsShown(filteredToStore.length > getFilmsCount(screenSize));
+
+        if (newMovies.length === 0) {
+          setMessage("Ничего не найдено");
+        }
       })
       .catch((error) => {
+        setMessage(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. "
+          + "Подождите немного и попробуйте ещё раз"
+        );
         console.error(error);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const saveMovie = (id) => {
@@ -122,16 +142,19 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
           searchData={searchData}
           isShortOnlyChange={isShortOnlyChange}
         />
-        <Preloader />
-        {movies.length !== 0 && (
-          <MoviesCardList
-            movies={movies}
-            handleOnClick={handleOnClick}
-            savedMovies={savedMovies}
-            addMoreFilms={addMoreFilms}
-            isShown={isShown}
-          />
-        )}
+        <Preloader isLoading={isLoading} />
+        {!isLoading &&
+          (movies.length === 0 ? (
+            <p className="not-found">{message}</p>
+          ) : (
+            <MoviesCardList
+              movies={movies}
+              handleOnClick={handleOnClick}
+              savedMovies={savedMovies}
+              addMoreFilms={addMoreFilms}
+              isShown={isShown}
+            />
+          ))}
       </section>
     </main>
   );

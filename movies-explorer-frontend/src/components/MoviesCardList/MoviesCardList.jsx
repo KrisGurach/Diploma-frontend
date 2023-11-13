@@ -12,10 +12,6 @@ export default function MoviesCardList({
   const { pathname } = useLocation();
   const isSavedMoviesPage = pathname === savedMoviesPathname;
 
-  // useEffect(() => {
-
-  // }, [savedMovies]);
-
   const handleMoreFilmsClick = () => {
     addMoreFilms();
   };
