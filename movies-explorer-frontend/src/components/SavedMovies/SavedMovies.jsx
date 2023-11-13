@@ -48,7 +48,7 @@ export default function SavedMovies({ savedMovies, handleSavedMovies }) {
       <section className="saved-movies">
         <SearchForm
           onSearchClick={handleSearchClick}
-          searchData={{}}
+          searchData={{isShortOnly: false}}
         />
         <MoviesCardList
           movies={moviesToDisplay}

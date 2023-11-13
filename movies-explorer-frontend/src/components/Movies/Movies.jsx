@@ -4,10 +4,8 @@ import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import moviesApi from "../../utils/Api/MoviesApi";
 import mainApi from "../../utils/Api/MainApi";
-import { screenSizeEnum } from "../../utils/enums";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import { getAddCount, getFilmsCount, getSlicedFilms } from "../../utils/movieDataHelper";
-import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 
 export default function Movies({ savedMovies, handleSavedMovies }) {
   const lastSearch = JSON.parse(localStorage.getItem("lastSearch"));
