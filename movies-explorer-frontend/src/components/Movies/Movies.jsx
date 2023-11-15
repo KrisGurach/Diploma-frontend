@@ -5,26 +5,43 @@ import SearchForm from "../SearchForm/SearchForm";
 import moviesApi from "../../utils/Api/MoviesApi";
 import mainApi from "../../utils/Api/MainApi";
 import { useScreenSize } from "../../hooks/useScreenSize";
-import { getAddCount, getFilmsCount, getSlicedFilms } from "../../utils/movieDataHelper";
+import {
+  getAddCount,
+  getFilmsCount,
+  getSlicedFilms,
+} from "../../utils/movieDataHelper";
 
 export default function Movies({ savedMovies, handleSavedMovies }) {
   const lastSearch = JSON.parse(localStorage.getItem("lastSearch"));
-  const storedMovies = lastSearch ? lastSearch.movies : [];
+  const storedMovies = !lastSearch
+    ? []
+    : lastSearch.movies
+    ? lastSearch.movies
+    : [];
 
-  const [movies, setMovies] = useState(lastSearch ? lastSearch.movies : []);
+  const [movies, setMovies] = useState(storedMovies);
+  const [isShown, setIsShown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const [searchData, setSearchData] = useState(
     lastSearch
-      ? { query: lastSearch.query, isShortOnly: lastSearch.isShortOnly }
+      ? {
+          query: lastSearch.query,
+          isShortOnly: lastSearch.isShortOnly || false,
+        }
       : {}
   );
 
   const screenSize = useScreenSize();
 
-  const [isShown, setIsShown] = useState(false);
+  const renderCardList = (newMovies) => {
+    if (!newMovies) {
+      newMovies = [];
+    }
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [message, setMessage] = useState("");
+    setMovies(getSlicedFilms(screenSize, newMovies));
+    setIsShown(newMovies.length > getFilmsCount(screenSize));
+  };
 
   useEffect(() => {
     mainApi
@@ -34,55 +51,52 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       })
       .catch(console.error);
 
-    setMovies(getSlicedFilms(screenSize, movies));
-    setIsShown(storedMovies.length > getFilmsCount(screenSize));
+    renderCardList(storedMovies);
   }, []);
 
   useEffect(() => {
-    setIsShown(storedMovies.length > getFilmsCount(screenSize));
-    setMovies(getSlicedFilms(screenSize, storedMovies));
+    let newMovies = storedMovies;
+
+    if (searchData.isShortOnly) {
+      newMovies = newMovies.filter((movie) => movie.duration <= 40);
+    }
+
+    renderCardList(newMovies);
   }, [screenSize]);
 
-  useEffect(() => {
-    
-  }, [movies])
-
-  const handleSearchClick = (query, isShortOnly) => {
+  const handleSearchClick = (query) => {
     setIsLoading(true);
     moviesApi
       .getMovies()
       .then((allMovies) => {
-        let filteredToStore = allMovies.filter((movie) =>
-          movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
-          movie.nameEN.toLowerCase().includes(query.toLowerCase())
+        let filteredToStore = allMovies.filter(
+          (movie) =>
+            movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
+            movie.nameEN.toLowerCase().includes(query.toLowerCase())
         );
 
-        if (isShortOnly) {
-          filteredToStore = filteredToStore.filter((movie) => 
-            movie.duration <= 40)
-        };
+        let newMovies = filteredToStore;
+        if (searchData.isShortOnly) {
+          newMovies = filteredToStore.filter((movie) => movie.duration <= 40);
+        }
 
         localStorage.setItem(
           "lastSearch",
           JSON.stringify({
+            ...lastSearch,
             movies: filteredToStore,
             query,
-            isShortOnly,
           })
         );
 
-        const newMovies = getSlicedFilms(screenSize, filteredToStore);
-        setMovies(newMovies);
-        setIsShown(filteredToStore.length > getFilmsCount(screenSize));
+        setMessage("Ничего не найдено.");
 
-        if (newMovies.length === 0) {
-          setMessage("Ничего не найдено");
-        }
+        renderCardList(newMovies);
       })
       .catch((error) => {
         setMessage(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. "
-          + "Подождите немного и попробуйте ещё раз"
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. " +
+            "Подождите немного и попробуйте ещё раз"
         );
         console.error(error);
       })
@@ -125,13 +139,28 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       isShortOnly: isChecked,
     };
     setSearchData(data);
+
+    localStorage.setItem(
+      "lastSearch",
+      JSON.stringify({
+        ...lastSearch,
+        isShortOnly: isChecked,
+      })
+    );
+
+    let newMovies = storedMovies;
+    if (isChecked) {
+      newMovies = newMovies.filter((movie) => movie.duration <= 40);
+    }
+
+    renderCardList(newMovies);
   };
 
   const addMoreFilms = () => {
     const newCount = movies.length + getAddCount(screenSize);
 
-    setMovies(lastSearch.movies.slice(0, newCount));
-    setIsShown(lastSearch.movies.length > newCount);
+    setMovies(storedMovies.slice(0, newCount));
+    setIsShown(storedMovies.length > newCount);
   };
 
   return (
@@ -144,7 +173,7 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
         />
         <Preloader isLoading={isLoading} />
         {!isLoading &&
-          (movies.length === 0 ? (
+          (storedMovies.length === 0 ? (
             <p className="not-found">{message}</p>
           ) : (
             <MoviesCardList

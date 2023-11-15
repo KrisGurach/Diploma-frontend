@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export function useCheckbox(isChecked = false) {
-    const [checkboxValues, setCheckboxValues] = useState(isChecked);
+export function useCheckbox(values = {}) {
+    const [checkboxValues, setCheckboxValues] = useState(values);
   
     const handleCheckboxChange = (event) => {
       const { checked, name } = event.target;

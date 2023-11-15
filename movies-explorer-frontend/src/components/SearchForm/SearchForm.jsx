@@ -1,8 +1,6 @@
 import { useCheckbox } from "../../hooks/useCheckbox";
 import { useForm } from "../../hooks/useForm";
 import icon from "../../images/search-icon.svg";
-import { useLocation } from "react-router-dom";
-import { moviesPathname } from "../../utils/constants";
 
 export default function SearchForm({
   onSearchClick,
@@ -13,12 +11,10 @@ export default function SearchForm({
   const { checkboxValues, handleCheckboxChange } = useCheckbox({
     shortFilms: searchData.isShortOnly,
   });
-  const pathname = useLocation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const isShortOnly = checkboxValues.shortFilms;
     const query = values.searchText;
 
     if (!query) {
@@ -26,15 +22,13 @@ export default function SearchForm({
       return;
     }
 
-    onSearchClick(query, isShortOnly);
+    onSearchClick(query);
   };
 
   const handleSortButtonChange = (e) => {
     handleCheckboxChange(e);
 
-    if (pathname === moviesPathname) {
-      isShortOnlyChange(e.target.checked);
-    }
+    isShortOnlyChange(e.target.checked);
   };
 
   return (
@@ -66,7 +60,7 @@ export default function SearchForm({
               <input
                 type="checkbox"
                 name="shortFilms"
-                checked={checkboxValues.shortFilms}
+                checked={checkboxValues.shortFilms || false}
                 onChange={handleSortButtonChange}
               ></input>
               <span className="search-form__toggle-button-switch"></span>
@@ -80,7 +74,7 @@ export default function SearchForm({
           <input
             type="checkbox"
             name="shortFilms"
-            checked={checkboxValues.shortFilms}
+            checked={checkboxValues.shortFilms || false}
             onChange={handleSortButtonChange}
           ></input>
           <span className="search-form__toggle-button-switch"></span>
