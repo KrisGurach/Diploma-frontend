@@ -36,7 +36,9 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
             <Link
               to={savedMoviesPathname}
               className={`navigation__link ${
-                pathname === savedMoviesPathname ? "navigation__link_active" : "  "
+                pathname === savedMoviesPathname
+                  ? "navigation__link_active"
+                  : "  "
               }`}
               onClick={handleMenuOpened}
             >

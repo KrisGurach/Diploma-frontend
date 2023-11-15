@@ -120,8 +120,12 @@ export default function Login({ handleLogin, handleUpdateUser }) {
             )}
           </div>
           <div className="form__server-error-container">
-            {hasServerError && <span className="form__server-error">Вы ввели неправильный логин или пароль.</span>}
-          </div>  
+            {hasServerError && (
+              <span className="form__server-error">
+                Вы ввели неправильный логин или пароль.
+              </span>
+            )}
+          </div>
           <button
             className="form__save-button form__save-button_type_login"
             type="submit"

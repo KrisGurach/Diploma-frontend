@@ -13,13 +13,13 @@ import {
   signUpPathname,
 } from "../../utils/constants";
 
-export default function Header({isLoggedIn}) {
+export default function Header({ isLoggedIn }) {
   const { pathname } = useLocation();
 
   const [isOpened, setIsOpened] = useState(false);
   function handleMenuOpened() {
     setIsOpened(!isOpened);
-  };
+  }
 
   let isHidden = true;
 
@@ -27,64 +27,91 @@ export default function Header({isLoggedIn}) {
     case mainPathname:
     case moviesPathname:
     case savedMoviesPathname:
-    case profilePathname:    
+    case profilePathname:
       isHidden = false;
       break;
 
     default:
-      isHidden = true;  
-  };
+      isHidden = true;
+  }
 
   function renderNonAuthorizedHeader() {
     return (
-      <header className={`header ${isHidden ? "header_display_none" : ""} ${pathname ===  mainPathname ? "header_theme_purple" : ""}`}>
-        <Link to={mainPathname} className="logo" >
-        <img src={logo} alt="логотип" />
-      </Link>
+      <header
+        className={`header ${isHidden ? "header_display_none" : ""} ${
+          pathname === mainPathname ? "header_theme_purple" : ""
+        }`}
+      >
+        <Link to={mainPathname} className="logo">
+          <img src={logo} alt="логотип" />
+        </Link>
 
-      <nav className="header__navigation-noauth">
-        <Link to={signUpPathname} className="header__signup">Регистрация</Link>
-        <Link to={signInPathname} className="header__signin">Войти</Link>
-      </nav>
+        <nav className="header__navigation-noauth">
+          <Link to={signUpPathname} className="header__signup">
+            Регистрация
+          </Link>
+          <Link to={signInPathname} className="header__signin">
+            Войти
+          </Link>
+        </nav>
       </header>
-    )
+    );
   }
 
   function renderAuthorizedHeader() {
     return (
-      <header className={`header ${isHidden ? "header_display_none" : ""} ${pathname ===  mainPathname ? "header_theme_purple" : ""}`}>
-      <Link to={mainPathname}>
-        <img src={logo} className="logo" alt="логотип" />
-      </Link>
-      <button
-        className={`header__burger-menu ${isOpened ? "header__burger-menu_active" : ""}`}
-        type="button"
-        onClick={handleMenuOpened}
+      <header
+        className={`header ${isHidden ? "header_display_none" : ""} ${
+          pathname === mainPathname ? "header_theme_purple" : ""
+        }`}
       >
-        <span></span>
-      </button>
-      <Navigation isOpened={isOpened} handleMenuOpened={handleMenuOpened}/>
+        <Link to={mainPathname}>
+          <img src={logo} className="logo" alt="логотип" />
+        </Link>
+        <button
+          className={`header__burger-menu ${
+            isOpened ? "header__burger-menu_active" : ""
+          }`}
+          type="button"
+          onClick={handleMenuOpened}
+        >
+          <span></span>
+        </button>
+        <Navigation isOpened={isOpened} handleMenuOpened={handleMenuOpened} />
 
-      <nav className="header__navigation">
-        <div className="header__container-films">
-          <Link to={moviesPathname} className={`header__link ${pathname ===  moviesPathname ? "header__link_active" : ""}`}>
-            Фильмы
-          </Link>
-          <Link to={savedMoviesPathname} className={`header__link ${pathname ===  savedMoviesPathname ? " header__link_active" : ""}`}>
-            Сохранённые фильмы
-          </Link>
-        </div>
-        <div className="header__container-account">
-          <Link to={profilePathname} className={`header__account ${pathname ===  mainPathname ? "" : "header__account_white"}`}>
-            Аккаунт
-          </Link>
-        </div>
-      </nav>
-    </header>
-    )
+        <nav className="header__navigation">
+          <div className="header__container-films">
+            <Link
+              to={moviesPathname}
+              className={`header__link ${
+                pathname === moviesPathname ? "header__link_active" : ""
+              }`}
+            >
+              Фильмы
+            </Link>
+            <Link
+              to={savedMoviesPathname}
+              className={`header__link ${
+                pathname === savedMoviesPathname ? " header__link_active" : ""
+              }`}
+            >
+              Сохранённые фильмы
+            </Link>
+          </div>
+          <div className="header__container-account">
+            <Link
+              to={profilePathname}
+              className={`header__account ${
+                pathname === mainPathname ? "" : "header__account_white"
+              }`}
+            >
+              Аккаунт
+            </Link>
+          </div>
+        </nav>
+      </header>
+    );
   }
 
-  return (
-    isLoggedIn ? renderAuthorizedHeader() : renderNonAuthorizedHeader()
-  );
+  return isLoggedIn ? renderAuthorizedHeader() : renderNonAuthorizedHeader();
 }

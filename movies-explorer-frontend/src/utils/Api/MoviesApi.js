@@ -8,9 +8,8 @@ class MoviesApi {
   };
 
   getMovies = () => {
-    return fetch(this._baseUrl, {})
-      .then(this._getResponseData);    
-  }
+    return fetch(this._baseUrl, {}).then(this._getResponseData);
+  };
 }
 
 const config = {

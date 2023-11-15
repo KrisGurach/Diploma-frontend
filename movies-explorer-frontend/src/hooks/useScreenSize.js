@@ -19,7 +19,7 @@ export function useScreenSize() {
 
   useEffect(() => {
     const onResize = () => {
-        setScreenSize(getScreenSize());
+      setScreenSize(getScreenSize());
     };
 
     window.addEventListener("resize", onResize);

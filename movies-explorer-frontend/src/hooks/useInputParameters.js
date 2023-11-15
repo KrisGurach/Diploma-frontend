@@ -26,7 +26,8 @@ export function useInputParameters(inputNames, classNames) {
     if (isValid) {
       switch (name) {
         case "name":
-          isValid = namePattern.test(value) && value.length >= 2 && value.length <= 30;
+          isValid =
+            namePattern.test(value) && value.length >= 2 && value.length <= 30;
           break;
 
         case "email":

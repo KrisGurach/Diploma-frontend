@@ -89,7 +89,9 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
           })
         );
 
-        setMessage("Ничего не найдено.");
+        if (newMovies.length === 0) {
+          setMessage("Ничего не найдено");
+        }
 
         renderCardList(newMovies);
       })

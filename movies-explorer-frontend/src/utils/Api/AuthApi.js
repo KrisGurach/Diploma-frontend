@@ -45,19 +45,19 @@ class Authorization {
 
   checkToken = (token) => {
     return this._request("/users/me", {
-      method: "GET", 
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization" : `Bearer ${token}`
-      }
-    })
-  }
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  };
 }
 
 const config = {
-    baseUrl: "https://api.kinofilms.nomoredomainsrocks.ru",
+  baseUrl: "https://api.kinofilms.nomoredomainsrocks.ru",
 };
-  
-  const auth = new Authorization(config);
-  
-  export default auth;
+
+const auth = new Authorization(config);
+
+export default auth;

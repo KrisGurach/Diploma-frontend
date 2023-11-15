@@ -15,13 +15,14 @@ export default function SavedMovies({ savedMovies, handleSavedMovies }) {
     mainApi
       .getSavedMovies()
       .then((movies) => handleSavedMovies(movies))
-      .catch(console.error)
+      .catch(console.error);
   }, []);
 
   const handleSearchClick = (query) => {
-    let newMovies = savedMovies.filter((movie) =>
-      movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
-      movie.nameEN.toLowerCase().includes(query.toLowerCase())
+    let newMovies = savedMovies.filter(
+      (movie) =>
+        movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
+        movie.nameEN.toLowerCase().includes(query.toLowerCase())
     );
 
     if (isShortOnly) {
@@ -61,7 +62,7 @@ export default function SavedMovies({ savedMovies, handleSavedMovies }) {
       <section className="saved-movies">
         <SearchForm
           onSearchClick={handleSearchClick}
-          searchData={{isShortOnly}}
+          searchData={{ isShortOnly }}
           isShortOnlyChange={isShortOnlyChange}
         />
         <MoviesCardList

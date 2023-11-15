@@ -13,27 +13,27 @@ class MainApi {
 
   _getToken = () => `Bearer ${localStorage.getItem("token")}`;
 
-  updateUser = ({email, name}) => {
+  updateUser = ({ email, name }) => {
     return this._request("/users/me", {
-        method: "PATCH",   
-        headers: {
-            "Content-Type": "application/json",
-            authorization: this._getToken(),
-        },
-        body: JSON.stringify({
-          email: email,
-          name: name,
-        }),
-    })
-  }
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: this._getToken(),
+      },
+      body: JSON.stringify({
+        email: email,
+        name: name,
+      }),
+    });
+  };
 
   getSavedMovies = () => {
     return this._request("/movies", {
       method: "GET",
       headers: {
         authorization: this._getToken(),
-      }
-    })
+      },
+    });
   };
 
   saveMovie = (movie) => {
@@ -55,8 +55,8 @@ class MainApi {
         movieId: movie.id,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
-      })
-    })
+      }),
+    });
   };
 
   deleteMovie = (id) => {
@@ -65,7 +65,7 @@ class MainApi {
       headers: {
         authorization: this._getToken(),
       },
-    })
+    });
   };
 }
 

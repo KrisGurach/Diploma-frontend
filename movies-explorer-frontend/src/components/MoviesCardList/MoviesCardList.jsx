@@ -31,7 +31,11 @@ export default function MoviesCardList({
               key={movie.id || movie.movieId}
               nameRU={movie.nameRU}
               duration={movie.duration}
-              image={movie.image.url ? `https://api.nomoreparties.co${movie.image.url}` : movie.image}
+              image={
+                movie.image.url
+                  ? `https://api.nomoreparties.co${movie.image.url}`
+                  : movie.image
+              }
               id={movie.id || movie.movieId}
               trailer={movie.trailerLink || movie.traier}
               handleOnClick={handleOnClick}

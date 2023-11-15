@@ -1,7 +1,15 @@
 import { useLocation } from "react-router-dom";
 import { savedMoviesPathname } from "../../utils/constants";
 
-export default function MoviesCard({ nameRU, duration, image, id, trailer, handleOnClick, savedMovies }) {
+export default function MoviesCard({
+  nameRU,
+  duration,
+  image,
+  id,
+  trailer,
+  handleOnClick,
+  savedMovies,
+}) {
   const { pathname } = useLocation();
 
   const isSaved = savedMovies.some((savedMovie) => savedMovie.movieId === id);
@@ -17,22 +25,29 @@ export default function MoviesCard({ nameRU, duration, image, id, trailer, handl
 
   const handleClick = () => {
     handleOnClick(id, isSaved);
-  }
+  };
 
   const handleCardClick = () => {
     window.open(trailer, "_blank", "noreferrer");
-  }
+  };
 
   return (
     <section className="movie-card">
-      <img src={image} className="movie-card__image" alt="постер фильма" onClick={handleCardClick} />
+      <img
+        src={image}
+        className="movie-card__image"
+        alt="постер фильма"
+        onClick={handleCardClick}
+      />
       <button className={saveButtonClass} onClick={handleClick}>
         {isSaved || pathname === savedMoviesPathname ? "" : "Сохранить"}
       </button>
       <div className="movie-card__description">
         <h2 className="movie-card__name">{nameRU}</h2>
         <div className="movie-card__duration">
-          <p className="movie-card__text">{`${Math.floor(duration / 60)}ч ${duration % 60}м`}</p>
+          <p className="movie-card__text">{`${Math.floor(duration / 60)}ч ${
+            duration % 60
+          }м`}</p>
         </div>
       </div>
     </section>
