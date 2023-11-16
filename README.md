@@ -4,3 +4,4 @@
 
 ссылка на задеплоенный проект: https://kinofilms.nomoredomainsrocks.ru/
 
+https://github.com/KrisGurach/Diploma-frontend/pull/2
