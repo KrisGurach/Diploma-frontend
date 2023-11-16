@@ -6,6 +6,7 @@ export default function SearchForm({
   onSearchClick,
   searchData,
   isShortOnlyChange,
+  isLoading
 }) {
   const { values, handleChange } = useForm({ searchText: searchData.query });
   const { checkboxValues, handleCheckboxChange } = useCheckbox({
@@ -51,7 +52,7 @@ export default function SearchForm({
         </div>
         <div className="search-form__container">
           <div className="search-form__container-button">
-            <button className="search-form__search-button" type="submit">
+            <button className="search-form__search-button" type="submit" disabled={isLoading}>
               Найти
             </button>
           </div>

@@ -15,6 +15,7 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
   const { values, handleChange } = useForm(currentUser);
   const [inputDisabled, setInputDisabled] = useState(true);
   const [hasServerError, setHasServerError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const enableInput = (e) => {
     e.preventDefault();
@@ -31,6 +32,7 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
   const handleSaveClick = (e) => {
     e.preventDefault();
     setHasServerError(false);
+    setIsLoading(true);
 
     mainApi
       .updateUser(values)
@@ -41,7 +43,8 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
       .catch((error) => {
         console.error(error);
         setHasServerError(true);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   // input validation handling
@@ -131,7 +134,7 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
             <button
               className="profile__save-button"
               type="submit"
-              disabled={isSubmitButtonDisabled}
+              disabled={isSubmitButtonDisabled || isLoading}
             >
               Сохранить
             </button>

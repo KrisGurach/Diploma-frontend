@@ -6,6 +6,7 @@ import SearchForm from "../SearchForm/SearchForm";
 export default function SavedMovies({ savedMovies, handleSavedMovies }) {
   const [moviesToDisplay, setMoviesToDisplay] = useState(savedMovies);
   const [isShortOnly, setIsShortOnly] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setMoviesToDisplay(savedMovies);
@@ -45,6 +46,7 @@ export default function SavedMovies({ savedMovies, handleSavedMovies }) {
 
   const deleteMovie = (id, _) => {
     const movieToDelete = savedMovies.find((movie) => movie.movieId === id);
+    setIsLoading(true);
 
     mainApi
       .deleteMovie(movieToDelete._id)
@@ -54,7 +56,8 @@ export default function SavedMovies({ savedMovies, handleSavedMovies }) {
         );
         handleSavedMovies(newMovies);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -70,6 +73,7 @@ export default function SavedMovies({ savedMovies, handleSavedMovies }) {
           handleOnClick={deleteMovie}
           savedMovies={savedMovies}
           isShown={false}
+          isLoading={isLoading}
         />
       </section>
     </main>

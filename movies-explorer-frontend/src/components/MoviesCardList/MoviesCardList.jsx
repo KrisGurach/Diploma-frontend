@@ -8,6 +8,7 @@ export default function MoviesCardList({
   savedMovies,
   addMoreFilms,
   isShown,
+  isLoading
 }) {
   const { pathname } = useLocation();
   const isSavedMoviesPage = pathname === savedMoviesPathname;
@@ -40,6 +41,7 @@ export default function MoviesCardList({
               trailer={movie.trailerLink || movie.traier}
               handleOnClick={handleOnClick}
               savedMovies={savedMovies}
+              isLoading={isLoading}
             />
           );
         })}

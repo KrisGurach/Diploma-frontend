@@ -43,6 +43,28 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
     setIsShown(newMovies.length > getFilmsCount(screenSize));
   };
 
+  const filterMovies = (
+    allMovies = storedMovies,
+    query = searchData.query,
+    isShortOnly = searchData.isShortOnly
+  ) => {
+    let sortedMovies = allMovies.filter(
+      (movie) =>
+        movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
+        movie.nameEN.toLowerCase().includes(query.toLowerCase())
+    );
+
+    if (isShortOnly) {
+      sortedMovies = sortedMovies.filter((movie) => movie.duration <= 40);
+    }
+
+    if (sortedMovies.length === 0) {
+      setMessage("Ничего не найдено");
+    }
+
+    return sortedMovies;
+  };
+
   useEffect(() => {
     mainApi
       .getSavedMovies()
@@ -51,62 +73,62 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       })
       .catch(console.error);
 
-    renderCardList(storedMovies);
+    renderCardList(filterMovies());
   }, []);
 
   useEffect(() => {
-    let newMovies = storedMovies;
-
-    if (searchData.isShortOnly) {
-      newMovies = newMovies.filter((movie) => movie.duration <= 40);
-    }
-
-    renderCardList(newMovies);
+    renderCardList(filterMovies());
   }, [screenSize]);
 
   const handleSearchClick = (query) => {
     setIsLoading(true);
-    moviesApi
-      .getMovies()
-      .then((allMovies) => {
-        let filteredToStore = allMovies.filter(
-          (movie) =>
-            movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
-            movie.nameEN.toLowerCase().includes(query.toLowerCase())
-        );
+    setSearchData({ ...searchData, query });
 
-        let newMovies = filteredToStore;
-        if (searchData.isShortOnly) {
-          newMovies = filteredToStore.filter((movie) => movie.duration <= 40);
-        }
+    if (storedMovies.length === 0) {
+      moviesApi
+        .getMovies()
+        .then((allMovies) => {
+          localStorage.setItem(
+            "lastSearch",
+            JSON.stringify({
+              ...lastSearch,
+              movies: allMovies,
+              query,
+            })
+          );
 
-        localStorage.setItem(
-          "lastSearch",
-          JSON.stringify({
-            ...lastSearch,
-            movies: filteredToStore,
-            query,
-          })
-        );
+          const newMovies = filterMovies(allMovies, query);
+          renderCardList(newMovies);
+        })
+        .catch((error) => {
+          setMessage(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. " +
+              "Подождите немного и попробуйте ещё раз"
+          );
+          console.error(error);
+        })
+        .finally(() => setIsLoading(false));
 
-        if (newMovies.length === 0) {
-          setMessage("Ничего не найдено");
-        }
+      return;
+    }
 
-        renderCardList(newMovies);
+    localStorage.setItem(
+      "lastSearch",
+      JSON.stringify({
+        ...lastSearch,
+        query,
       })
-      .catch((error) => {
-        setMessage(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. " +
-            "Подождите немного и попробуйте ещё раз"
-        );
-        console.error(error);
-      })
-      .finally(() => setIsLoading(false));
+    );
+
+    const newMovies = filterMovies(storedMovies, query);
+    setIsLoading(false);
+    renderCardList(newMovies);
   };
 
   const saveMovie = (id) => {
     const movieToSave = movies.find((movie) => movie.id === id);
+
+    setIsLoading(true);
 
     mainApi
       .saveMovie(movieToSave)
@@ -114,11 +136,14 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
         const newMovies = [...savedMovies, savedMovie];
         handleSavedMovies(newMovies);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   const deleteMovie = (id) => {
     const movieToDelete = savedMovies.find((movie) => movie.movieId === id);
+
+    setIsLoading(true);
 
     mainApi
       .deleteMovie(movieToDelete._id)
@@ -128,7 +153,8 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
         );
         handleSavedMovies(newMovies);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   const handleOnClick = (id, isSaved) => {
@@ -150,19 +176,16 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
       })
     );
 
-    let newMovies = storedMovies;
-    if (isChecked) {
-      newMovies = newMovies.filter((movie) => movie.duration <= 40);
-    }
-
+    const newMovies = filterMovies(storedMovies, searchData.query, isChecked);
     renderCardList(newMovies);
   };
 
   const addMoreFilms = () => {
     const newCount = movies.length + getAddCount(screenSize);
 
-    setMovies(storedMovies.slice(0, newCount));
-    setIsShown(storedMovies.length > newCount);
+    const newMovies = filterMovies();
+    setMovies(newMovies.slice(0, newCount));
+    setIsShown(newMovies.length > newCount);
   };
 
   return (
@@ -172,11 +195,14 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
           onSearchClick={handleSearchClick}
           searchData={searchData}
           isShortOnlyChange={isShortOnlyChange}
+          isLoading={isLoading}
         />
         <Preloader isLoading={isLoading} />
         {!isLoading &&
-          (storedMovies.length === 0 ? (
-            <p className="not-found">{message}</p>
+          (movies.length === 0 ? (
+            <p className="not-found">
+              {storedMovies.length === 0 ? "" : message}
+            </p>
           ) : (
             <MoviesCardList
               movies={movies}
@@ -184,6 +210,7 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
               savedMovies={savedMovies}
               addMoreFilms={addMoreFilms}
               isShown={isShown}
+              isLoading={isLoading}
             />
           ))}
       </section>
