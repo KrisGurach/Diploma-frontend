@@ -35,10 +35,6 @@ function App() {
   // useEffects
   useEffect(() => {
     handleTokenCheck();
-  }, []);
-
-  useEffect(() => {
-    handleTokenCheck();
   }, [isLoggedIn]);
 
   // handlers for update and login user
