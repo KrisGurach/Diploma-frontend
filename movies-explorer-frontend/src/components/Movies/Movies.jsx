@@ -66,6 +66,10 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
   };
 
   useEffect(() => {
+    if (savedMovies.length) {
+      return;
+    }
+
     mainApi
       .getSavedMovies()
       .then((newMovies) => {
@@ -79,6 +83,16 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
   useEffect(() => {
     renderCardList(filterMovies());
   }, [screenSize]);
+
+  useEffect(() => {
+    if (movies.length) {
+      const scrollPosition = sessionStorage.getItem('scrollPosition');
+      if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+        sessionStorage.removeItem('scrollPosition');
+      }
+    }
+  }, [savedMovies]);
 
   const handleSearchClick = (query) => {
     setIsLoading(true);
@@ -130,6 +144,8 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
 
     setIsLoading(true);
 
+    sessionStorage.setItem('scrollPosition', window.scrollY);
+
     mainApi
       .saveMovie(movieToSave)
       .then((savedMovie) => {
@@ -144,6 +160,8 @@ export default function Movies({ savedMovies, handleSavedMovies }) {
     const movieToDelete = savedMovies.find((movie) => movie.movieId === id);
 
     setIsLoading(true);
+
+    sessionStorage.setItem('scrollPosition', window.scrollY);
 
     mainApi
       .deleteMovie(movieToDelete._id)

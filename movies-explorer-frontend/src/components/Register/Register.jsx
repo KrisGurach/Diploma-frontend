@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import { signInPathname } from "../../utils/constants";
+import { SIGNIN_PATHNAME } from "../../utils/constants";
 import { useEffect, useState } from "react";
 import { useInputParameters } from "../../hooks/useInputParameters";
 import checkUserDataInputs from "../../utils/userDataHelper";
@@ -35,8 +35,9 @@ export default function Register({ handleLogin }) {
     validateInput(event);
   };
 
-  // server error handling
+  // server response handling
   const [hasServerError, setHasServerError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // submit button handling
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
@@ -53,6 +54,8 @@ export default function Register({ handleLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+    
     auth
       .signUp(values)
       .then(() => {
@@ -78,7 +81,8 @@ export default function Register({ handleLogin }) {
         console.error(`Ошибка: ${errorCode}`);
 
         setHasServerError(true);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -167,14 +171,14 @@ export default function Register({ handleLogin }) {
           <button
             className="form__save-button form__save-button_type_register"
             type="submit"
-            disabled={isSubmitButtonDisabled}
+            disabled={isSubmitButtonDisabled || isLoading}
           >
             Зарегистрироваться
           </button>
         </form>
         <div className="form__container">
           <p className="form__text">Уже зарегистрированы?</p>
-          <Link to={signInPathname} className="form__link">
+          <Link to={SIGNIN_PATHNAME} className="form__link">
             Войти
           </Link>
         </div>

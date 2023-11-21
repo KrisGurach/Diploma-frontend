@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { savedMoviesPathname } from "../../utils/constants";
+import { SAVED_MOVIES_PATHNAME } from "../../utils/constants";
 
 export default function MoviesCardList({
   movies,
@@ -11,7 +11,7 @@ export default function MoviesCardList({
   isLoading
 }) {
   const { pathname } = useLocation();
-  const isSavedMoviesPage = pathname === savedMoviesPathname;
+  const isSavedMoviesPage = pathname === SAVED_MOVIES_PATHNAME;
 
   const handleMoreFilmsClick = () => {
     addMoreFilms();
@@ -21,7 +21,7 @@ export default function MoviesCardList({
     <section className="movies-list">
       <div
         className={`movies-list__container ${
-          pathname === savedMoviesPathname
+          pathname === SAVED_MOVIES_PATHNAME
             ? "movies-list__container_type_saved-movies"
             : ""
         }`}

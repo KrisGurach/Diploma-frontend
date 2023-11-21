@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import { signUpPathname } from "../../utils/constants";
+import { SIGNUP_PATHNAME } from "../../utils/constants";
 import { useEffect, useState } from "react";
 import { useInputParameters } from "../../hooks/useInputParameters";
 import auth from "../../utils/Api/AuthApi";
@@ -28,8 +28,9 @@ export default function Login({ handleLogin, handleUpdateUser }) {
     password: "",
   });
 
-  // server error handling
+  // server response handling
   const [hasServerError, setHasServerError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // submit button handling
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
@@ -48,6 +49,7 @@ export default function Login({ handleLogin, handleUpdateUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     auth
       .signIn(values.email, values.password)
@@ -61,7 +63,8 @@ export default function Login({ handleLogin, handleUpdateUser }) {
       .catch((error) => {
         console.error(error);
         setHasServerError(true);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -129,14 +132,14 @@ export default function Login({ handleLogin, handleUpdateUser }) {
           <button
             className="form__save-button form__save-button_type_login"
             type="submit"
-            disabled={isSubmitButtonDisabled}
+            disabled={isSubmitButtonDisabled || isLoading}
           >
             Войти
           </button>
         </form>
         <div className="form__container">
           <p className="form__text">Ещё не зарегистрированы?</p>
-          <Link to={signUpPathname} className="form__link">
+          <Link to={SIGNUP_PATHNAME} className="form__link">
             Регистрация
           </Link>
         </div>

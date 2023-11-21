@@ -5,12 +5,12 @@ import purpleAccount from "../../images/logo-account.svg";
 import whiteAccount from "../../images/logo-account-white.svg";
 import Navigation from "../Navigation/Navigation";
 import {
-  mainPathname,
-  moviesPathname,
-  profilePathname,
-  savedMoviesPathname,
-  signInPathname,
-  signUpPathname,
+  MAIN_PATHNAME,
+  MOVIES_PATHNAME,
+  PROFILE_PATHNAME,
+  SAVED_MOVIES_PATHNAME,
+  SIGNIN_PATHNAME,
+  SIGNUP_PATHNAME,
 } from "../../utils/constants";
 
 export default function Header({ isLoggedIn }) {
@@ -24,10 +24,10 @@ export default function Header({ isLoggedIn }) {
   let isHidden = true;
 
   switch (pathname) {
-    case mainPathname:
-    case moviesPathname:
-    case savedMoviesPathname:
-    case profilePathname:
+    case MAIN_PATHNAME:
+    case MOVIES_PATHNAME:
+    case SAVED_MOVIES_PATHNAME:
+    case PROFILE_PATHNAME:
       isHidden = false;
       break;
 
@@ -39,18 +39,18 @@ export default function Header({ isLoggedIn }) {
     return (
       <header
         className={`header ${isHidden ? "header_display_none" : ""} ${
-          pathname === mainPathname ? "header_theme_purple" : ""
+          pathname === MAIN_PATHNAME ? "header_theme_purple" : ""
         }`}
       >
-        <Link to={mainPathname} className="logo">
+        <Link to={MAIN_PATHNAME} className="logo">
           <img src={logo} alt="логотип" />
         </Link>
 
         <nav className="header__navigation-noauth">
-          <Link to={signUpPathname} className="header__signup">
+          <Link to={SIGNUP_PATHNAME} className="header__signup">
             Регистрация
           </Link>
-          <Link to={signInPathname} className="header__signin">
+          <Link to={SIGNIN_PATHNAME} className="header__signin">
             Войти
           </Link>
         </nav>
@@ -62,10 +62,10 @@ export default function Header({ isLoggedIn }) {
     return (
       <header
         className={`header ${isHidden ? "header_display_none" : ""} ${
-          pathname === mainPathname ? "header_theme_purple" : ""
+          pathname === MAIN_PATHNAME ? "header_theme_purple" : ""
         }`}
       >
-        <Link to={mainPathname}>
+        <Link to={MAIN_PATHNAME}>
           <img src={logo} className="logo" alt="логотип" />
         </Link>
         <button
@@ -82,17 +82,17 @@ export default function Header({ isLoggedIn }) {
         <nav className="header__navigation">
           <div className="header__container-films">
             <Link
-              to={moviesPathname}
+              to={MOVIES_PATHNAME}
               className={`header__link ${
-                pathname === moviesPathname ? "header__link_active" : ""
+                pathname === MOVIES_PATHNAME ? "header__link_active" : ""
               }`}
             >
               Фильмы
             </Link>
             <Link
-              to={savedMoviesPathname}
+              to={SAVED_MOVIES_PATHNAME}
               className={`header__link ${
-                pathname === savedMoviesPathname ? " header__link_active" : ""
+                pathname === SAVED_MOVIES_PATHNAME ? " header__link_active" : ""
               }`}
             >
               Сохранённые фильмы
@@ -100,9 +100,9 @@ export default function Header({ isLoggedIn }) {
           </div>
           <div className="header__container-account">
             <Link
-              to={profilePathname}
+              to={PROFILE_PATHNAME}
               className={`header__account ${
-                pathname === mainPathname ? "" : "header__account_white"
+                pathname === MAIN_PATHNAME ? "" : "header__account_white"
               }`}
             >
               Аккаунт

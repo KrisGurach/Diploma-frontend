@@ -11,12 +11,12 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import { useEffect, useState } from "react";
 import {
-  mainPathname,
-  moviesPathname,
-  profilePathname,
-  savedMoviesPathname,
-  signInPathname,
-  signUpPathname,
+  MAIN_PATHNAME,
+  MOVIES_PATHNAME,
+  PROFILE_PATHNAME,
+  SAVED_MOVIES_PATHNAME,
+  SIGNIN_PATHNAME,
+  SIGNUP_PATHNAME,
 } from "../../utils/constants";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import auth from "../../utils/Api/AuthApi";
@@ -62,13 +62,13 @@ function App() {
             setIsLoggedIn(true);
 
             const protectedRoutes = [
-              moviesPathname,
-              savedMoviesPathname,
-              profilePathname,
+              MOVIES_PATHNAME,
+              SAVED_MOVIES_PATHNAME,
+              PROFILE_PATHNAME,
             ];
             const path = protectedRoutes.includes(pathname)
               ? pathname
-              : mainPathname;
+              : MAIN_PATHNAME;
             navigate(path, { replace: true });
           }
         })
@@ -86,11 +86,11 @@ function App() {
         <Header isLoggedIn={isLoggedIn} />
         <Routes>
           {/* Лэндинг главный */}
-          <Route path={mainPathname} element={<Main />} />
+          <Route path={MAIN_PATHNAME} element={<Main />} />
 
           {/* Страница "Все фильмы" */}
           <Route
-            path={moviesPathname}
+            path={MOVIES_PATHNAME}
             element={
               <ProtectedRouteElement
                 element={Movies}
@@ -103,7 +103,7 @@ function App() {
 
           {/* Страница "Сохраненные фильмы" */}
           <Route
-            path={savedMoviesPathname}
+            path={SAVED_MOVIES_PATHNAME}
             element={
               <ProtectedRouteElement
                 element={SavedMovies}
@@ -116,7 +116,7 @@ function App() {
 
           {/* Вход */}
           <Route
-            path={signInPathname}
+            path={SIGNIN_PATHNAME}
             element={
               <Login
                 handleLogin={handleLogin}
@@ -127,7 +127,7 @@ function App() {
 
           {/* Регистрация */}
           <Route
-            path={signUpPathname}
+            path={SIGNUP_PATHNAME}
             element={
               <Register
                 handleLogin={handleLogin}
@@ -138,7 +138,7 @@ function App() {
 
           {/* Профиль */}
           <Route
-            path={profilePathname}
+            path={PROFILE_PATHNAME}
             element={
               <ProtectedRouteElement
                 element={Profile}

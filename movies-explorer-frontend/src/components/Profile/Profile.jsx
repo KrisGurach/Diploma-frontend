@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInPathname } from "../../utils/constants";
+import { MAIN_PATHNAME } from "../../utils/constants";
 import { useForm } from "../../hooks/useForm";
 import { useInputParameters } from "../../hooks/useInputParameters";
 import checkUserDataInputs from "../../utils/userDataHelper";
@@ -15,6 +15,7 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
   const { values, handleChange } = useForm(currentUser);
   const [inputDisabled, setInputDisabled] = useState(true);
   const [hasServerError, setHasServerError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const enableInput = (e) => {
@@ -26,12 +27,13 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
     localStorage.removeItem("token");
     localStorage.removeItem("lastSearch");
     handleSignOut();
-    navigate(signInPathname, { replace: true });
+    navigate(MAIN_PATHNAME, { replace: true });
   };
 
   const handleSaveClick = (e) => {
     e.preventDefault();
     setHasServerError(false);
+    setIsSuccess(false);
     setIsLoading(true);
 
     mainApi
@@ -39,6 +41,7 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
       .then(() => {
         setInputDisabled(true);
         onUpdateUser(values);
+        setIsSuccess(true);
       })
       .catch((error) => {
         console.error(error);
@@ -73,6 +76,7 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
 
   const handleInputChange = (event) => {
     setHasServerError(false);
+    setIsSuccess(false);
 
     handleChange(event);
     validateInput(event);
@@ -120,6 +124,11 @@ export default function Profile({ onUpdateUser, handleSignOut }) {
               onChange={handleInputChange}
             />
           </div>
+          {isSuccess && (
+            <span className="profile__success-message">
+              Данные успешно обновлены.
+            </span>
+          )}
           {inputDisabled && (
             <button className="profile__change-button" onClick={enableInput}>
               Редактировать

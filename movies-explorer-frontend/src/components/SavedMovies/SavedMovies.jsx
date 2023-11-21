@@ -6,42 +6,50 @@ import SearchForm from "../SearchForm/SearchForm";
 export default function SavedMovies({ savedMovies, handleSavedMovies }) {
   const [moviesToDisplay, setMoviesToDisplay] = useState(savedMovies);
   const [isShortOnly, setIsShortOnly] = useState(false);
+  const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setMoviesToDisplay(savedMovies);
-  }, [savedMovies]);
+  const filterMovies = (query, isShortOnly) => {
+    let newMovies = savedMovies;
 
-  useEffect(() => {
-    mainApi
-      .getSavedMovies()
-      .then((movies) => handleSavedMovies(movies))
-      .catch(console.error);
-  }, []);
-
-  const handleSearchClick = (query) => {
-    let newMovies = savedMovies.filter(
-      (movie) =>
-        movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
-        movie.nameEN.toLowerCase().includes(query.toLowerCase())
-    );
+    if (query !== "") {
+      newMovies = newMovies.filter(
+        (movie) =>
+          movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(query.toLowerCase())
+      );
+    }
 
     if (isShortOnly) {
       newMovies = newMovies.filter((movie) => movie.duration <= 40);
     }
 
     setMoviesToDisplay(newMovies);
+  }
+
+  useEffect(() => {
+    if (savedMovies.length) {
+      return;
+    }
+
+    mainApi
+      .getSavedMovies()
+      .then((movies) => handleSavedMovies(movies))
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    filterMovies(query, isShortOnly);
+  }, [savedMovies]);
+
+  const handleSearchClick = (query) => {
+    setQuery(query);
+    filterMovies(query, isShortOnly);
   };
 
   const isShortOnlyChange = (isChecked) => {
     setIsShortOnly(isChecked);
-
-    if (isChecked) {
-      const newMovies = savedMovies.filter((movie) => movie.duration <= 40);
-      setMoviesToDisplay(newMovies);
-      return;
-    }
-    setMoviesToDisplay(savedMovies);
+    filterMovies(query, isChecked);
   };
 
   const deleteMovie = (id, _) => {

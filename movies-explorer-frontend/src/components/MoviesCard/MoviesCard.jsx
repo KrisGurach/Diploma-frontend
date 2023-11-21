@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { savedMoviesPathname } from "../../utils/constants";
+import { SAVED_MOVIES_PATHNAME } from "../../utils/constants";
 import { useState } from "react";
 
 export default function MoviesCard({
@@ -18,7 +18,7 @@ export default function MoviesCard({
 
   const saveButtonClass = `movie-card__save-button 
   ${
-    pathname === savedMoviesPathname
+    pathname === SAVED_MOVIES_PATHNAME
       ? "movie-card__remove-button"
       : isSaved
       ? "movie-card__save-button_active"
@@ -42,7 +42,7 @@ export default function MoviesCard({
         onClick={handleCardClick}
       />
       <button className={saveButtonClass} onClick={handleClick} disabled={isLoading}> 
-        {isSaved || pathname === savedMoviesPathname ? "" : "Сохранить"}
+        {isSaved || pathname === SAVED_MOVIES_PATHNAME ? "" : "Сохранить"}
       </button>
       <div className="movie-card__description">
         <h2 className="movie-card__name">{nameRU}</h2>

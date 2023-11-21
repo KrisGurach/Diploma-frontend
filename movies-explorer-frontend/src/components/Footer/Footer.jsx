@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import {
-  mainPathname,
-  moviesPathname,
-  savedMoviesPathname,
+  MAIN_PATHNAME,
+  MOVIES_PATHNAME,
+  SAVED_MOVIES_PATHNAME,
 } from "../../utils/constants";
 
 export default function Footer({}) {
@@ -11,9 +11,9 @@ export default function Footer({}) {
   let isHidden = true;
 
   switch (pathname) {
-    case mainPathname:
-    case moviesPathname:
-    case savedMoviesPathname:
+    case MAIN_PATHNAME:
+    case MOVIES_PATHNAME:
+    case SAVED_MOVIES_PATHNAME:
       isHidden = false;
       break;
 
