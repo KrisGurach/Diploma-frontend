@@ -35,7 +35,7 @@ function App() {
   // useEffects
   useEffect(() => {
     handleTokenCheck();
-  }, [isLoggedIn]);
+  }, []);
 
   // handlers for update and login user
   const handleUpdateUser = (userData) => {
@@ -43,6 +43,12 @@ function App() {
   };
 
   const handleLogin = () => {
+    // setIsLoggedIn(!isLoggedIn);
+    if (!isLoggedIn) {
+      handleTokenCheck();
+      return;
+    }
+
     setIsLoggedIn(!isLoggedIn);
   };
 
@@ -57,14 +63,13 @@ function App() {
             setCurrentUser({ email, name, _id });
             setIsLoggedIn(true);
 
-            const protectedRoutes = [
-              MOVIES_PATHNAME,
-              SAVED_MOVIES_PATHNAME,
-              PROFILE_PATHNAME,
+            const loginRoutes = [
+              SIGNIN_PATHNAME,
+              SIGNUP_PATHNAME
             ];
-            const path = protectedRoutes.includes(pathname)
-              ? pathname
-              : MAIN_PATHNAME;
+            const path = loginRoutes.includes(pathname)
+              ? MOVIES_PATHNAME
+              : pathname;
             navigate(path, { replace: true });
           }
         })
