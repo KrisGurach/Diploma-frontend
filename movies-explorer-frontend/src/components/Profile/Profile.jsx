@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInPathname } from "../../utils/constants";
+import { MAIN_PATHNAME } from "../../utils/constants";
 import { useForm } from "../../hooks/useForm";
+import { useInputParameters } from "../../hooks/useInputParameters";
+import checkUserDataInputs from "../../utils/userDataHelper";
+import mainApi from "../../utils/Api/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
+export default function Profile({ onUpdateUser, handleSignOut }) {
   const navigate = useNavigate();
 
-  const { values, handleChange, setValues } = useForm(currentUser);
-  const [inputDisabled, setInputDisabled] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const currentUser = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    setValues(currentUser);
-  }, [currentUser]);
+  const { values, handleChange } = useForm(currentUser);
+  const [inputDisabled, setInputDisabled] = useState(true);
+  const [hasServerError, setHasServerError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const enableInput = (e) => {
     e.preventDefault();
@@ -20,48 +24,88 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
   };
 
   const handleSignOutClick = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("lastSearch");
     handleSignOut();
-    navigate(signInPathname, { replace: true });
+    navigate(MAIN_PATHNAME, { replace: true });
   };
 
   const handleSaveClick = (e) => {
     e.preventDefault();
+    setHasServerError(false);
+    setIsSuccess(false);
+    setIsLoading(true);
 
-    if (values.name === "" || values.email === "") {
-      setHasError(true);
-      return;
-    }
-
-    setInputDisabled(true);
-    onUpdateUser(values);
+    mainApi
+      .updateUser(values)
+      .then(() => {
+        setInputDisabled(true);
+        onUpdateUser(values);
+        setIsSuccess(true);
+      })
+      .catch((error) => {
+        console.error(error);
+        setHasServerError(true);
+      })
+      .finally(() => setIsLoading(false));
   };
 
-  const onInputChange = (e) => {
-    if (hasError) {
-      setHasError(false);
-    }
+  // input validation handling
+  const inputClassNames = {
+    baseInputName: "profile__input",
+    inputTypeName: "profile__input_type_",
+    invalidInputName: "profile__input_invalid",
+  };
 
-    handleChange(e);
-  }
+  const { inputParameters, validateInput } = useInputParameters(
+    ["email", "name"],
+    inputClassNames
+  );
+
+  // submit button handling
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const hasInvalidInput = checkUserDataInputs(inputParameters, values);
+
+    const hasSameValues =
+      values.name === currentUser.name && values.email === currentUser.email;
+
+    setIsSubmitButtonDisabled(hasInvalidInput || hasSameValues);
+  }, [inputParameters, values]);
+
+  const handleInputChange = (event) => {
+    setHasServerError(false);
+    setIsSuccess(false);
+
+    handleChange(event);
+    validateInput(event);
+  };
 
   return (
     <main>
       <section className="profile">
-        <h1 className="profile__title">Привет, username!</h1>
-        <form className="profile__form" name="form-of-profile" onSubmit={handleSaveClick} noValidate>
+        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
+        <form
+          className="profile__form"
+          name="form-of-profile"
+          onSubmit={handleSaveClick}
+          noValidate
+        >
           <div className="profile__container">
             <p className="profile__input-text">Имя</p>
             <input
               type="text"
               name="name"
               placeholder="Имя"
-              className="profile__input profile__input_type_email"
-              minLength={2}
-              maxLength={40}
+              className={
+                inputParameters.find((input) => input.inputName === "name")
+                  .className
+              }
               required
               disabled={inputDisabled}
               value={values.name || ""}
-              onChange={onInputChange}
+              onChange={handleInputChange}
             />
           </div>
           <div className="profile__container">
@@ -70,30 +114,40 @@ export default function Profile({ handleSignOut, currentUser, onUpdateUser }) {
               type="email"
               name="email"
               placeholder="E-mail"
-              className="profile__input profile__input_type_email"
-              minLength={2}
-              maxLength={40}
+              className={
+                inputParameters.find((input) => input.inputName === "email")
+                  .className
+              }
               required
               disabled={inputDisabled}
               value={values.email || ""}
-              onChange={onInputChange}
+              onChange={handleInputChange}
             />
           </div>
+          {isSuccess && (
+            <span className="profile__success-message">
+              Данные успешно обновлены.
+            </span>
+          )}
           {inputDisabled && (
             <button className="profile__change-button" onClick={enableInput}>
               Редактировать
             </button>
           )}
-        {hasError && <span className="profile__error-message">При обновлении профиля произошла ошибка.</span>}
-        {!inputDisabled && (
-          <button
-            className="profile__save-button"
-            type="submit"
-            disabled={hasError}
-          >
-            Сохранить
-          </button>
-        )}
+          {hasServerError && (
+            <span className="profile__error-message">
+              При обновлении профиля произошла ошибка.
+            </span>
+          )}
+          {!inputDisabled && (
+            <button
+              className="profile__save-button"
+              type="submit"
+              disabled={isSubmitButtonDisabled || isLoading}
+            >
+              Сохранить
+            </button>
+          )}
         </form>
         {inputDisabled && (
           <button

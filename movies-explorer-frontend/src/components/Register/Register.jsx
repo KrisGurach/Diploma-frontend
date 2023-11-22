@@ -1,27 +1,88 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import { signInPathname } from "../../utils/constants";
-import { useState } from "react";
+import { SIGNIN_PATHNAME } from "../../utils/constants";
+import { useEffect, useState } from "react";
 import { useInputParameters } from "../../hooks/useInputParameters";
+import checkUserDataInputs from "../../utils/userDataHelper";
+import { useForm } from "../../hooks/useForm";
+import auth from "../../utils/Api/AuthApi";
 
-export default function Register({}) {
+export default function Register({ handleLogin }) {
+  const navigate = useNavigate();
+
   const inputClassNames = {
     baseInputName: "register__input",
     inputTypeName: "register__input_type_",
     invalidInputName: "register__input_invalid",
   };
 
-  const { inputParameters, handleInputChange } = useInputParameters(
+  const { inputParameters, validateInput } = useInputParameters(
     ["name", "email", "password"],
     inputClassNames
   );
 
-  // error handling
-  const [hasError, setHasError] = useState(false);
+  // input values handling
+  const { values, handleChange, setValues } = useForm({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (event) => {
+    setHasServerError(false);
+
+    handleChange(event);
+    validateInput(event);
+  };
+
+  // server response handling
+  const [hasServerError, setHasServerError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // submit button handling
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const hasInvalidInput = checkUserDataInputs(inputParameters, values);
+    setIsSubmitButtonDisabled(hasInvalidInput);
+  }, [inputParameters, values]);
+
+  const [errorMessage, setErrorMessage] = useState(
+    "При регистрации пользователя произошла ошибка."
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setHasError(inputParameters.some((input) => input.isInvalid));
+
+    setIsLoading(true);
+    
+    auth
+      .signUp(values)
+      .then(() => {
+        auth
+          .signIn(values.email, values.password)
+          .then((data) => {
+            if (data.token) {
+              setValues({ name: "", email: "", password: "" });
+              handleLogin();
+              navigate("/movies", { replace: true });
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            setHasServerError(true);
+          });
+      })
+      .catch((errorCode) => {
+        if (errorCode === 409) {
+          setErrorMessage("Пользователь с таким email уже существует.");
+        }
+
+        console.error(`Ошибка: ${errorCode}`);
+
+        setHasServerError(true);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -51,8 +112,15 @@ export default function Register({}) {
                 .className
             }
             required=""
+            value={values.name || ""}
             onChange={handleInputChange}
           />
+          <div className="form__error-container">
+            {inputParameters.find((input) => input.inputName === "name")
+              .isInvalid && (
+              <span className="form__error">Что-то пошло не так...</span>
+            )}
+          </div>
           <p className="form__input-text">E-mail</p>
           <input
             type="text"
@@ -65,8 +133,15 @@ export default function Register({}) {
             minLength={2}
             maxLength={40}
             required=""
+            value={values.email || ""}
             onChange={handleInputChange}
           />
+          <div className="form__error-container">
+            {inputParameters.find((input) => input.inputName === "email")
+              .isInvalid && (
+              <span className="form__error">Что-то пошло не так...</span>
+            )}
+          </div>
           <p className="form__input-text">Пароль</p>
           <input
             type="password"
@@ -79,20 +154,31 @@ export default function Register({}) {
             minLength={2}
             maxLength={40}
             required=""
+            value={values.password || ""}
             onChange={handleInputChange}
           />
           <div className="form__error-container">
-          {hasError && (
-            <span className="form__error">Что-то пошло не так...</span>
-          )}
+            {inputParameters.find((input) => input.inputName === "password")
+              .isInvalid && (
+              <span className="form__error">Что-то пошло не так...</span>
+            )}
           </div>
-          <button className="form__save-button form__save-button_type_register" type="submit">
+          <div className="form__server-error-container form__server-error-container_type_register">
+            {hasServerError && (
+              <span className="form__server-error">{errorMessage}</span>
+            )}
+          </div>
+          <button
+            className="form__save-button form__save-button_type_register"
+            type="submit"
+            disabled={isSubmitButtonDisabled || isLoading}
+          >
             Зарегистрироваться
           </button>
         </form>
         <div className="form__container">
           <p className="form__text">Уже зарегистрированы?</p>
-          <Link to={signInPathname} className="form__link">
+          <Link to={SIGNIN_PATHNAME} className="form__link">
             Войти
           </Link>
         </div>

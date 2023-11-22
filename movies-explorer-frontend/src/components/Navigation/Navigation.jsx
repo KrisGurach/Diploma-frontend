@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import whiteAccount from "../../images/logo-account-white.svg";
 import {
-  mainPathname,
-  moviesPathname,
-  profilePathname,
-  savedMoviesPathname,
+  MAIN_PATHNAME,
+  MOVIES_PATHNAME,
+  PROFILE_PATHNAME,
+  SAVED_MOVIES_PATHNAME,
 } from "../../utils/constants";
 
 export default function Navigation({ isOpened, handleMenuOpened }) {
@@ -16,27 +16,29 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
         <div className="navigation__menu-container">
           <div className="navigation__container">
             <Link
-              to={mainPathname}
+              to={MAIN_PATHNAME}
               className={`navigation__link ${
-                pathname === mainPathname ? "navigation__link_active" : ""
+                pathname === MAIN_PATHNAME ? "navigation__link_active" : ""
               }`}
               onClick={handleMenuOpened}
             >
               Главная
             </Link>
             <Link
-              to={moviesPathname}
+              to={MOVIES_PATHNAME}
               className={`navigation__link ${
-                pathname === moviesPathname ? "navigation__link_active" : ""
+                pathname === MOVIES_PATHNAME ? "navigation__link_active" : ""
               }`}
               onClick={handleMenuOpened}
             >
               Фильмы
             </Link>
             <Link
-              to={savedMoviesPathname}
+              to={SAVED_MOVIES_PATHNAME}
               className={`navigation__link ${
-                pathname === savedMoviesPathname ? "navigation__link_active" : "  "
+                pathname === SAVED_MOVIES_PATHNAME
+                  ? "navigation__link_active"
+                  : "  "
               }`}
               onClick={handleMenuOpened}
             >
@@ -45,7 +47,7 @@ export default function Navigation({ isOpened, handleMenuOpened }) {
           </div>
           <div className="header__container-account">
             <Link
-              to={profilePathname}
+              to={PROFILE_PATHNAME}
               className="header__account header__account_white"
               onClick={handleMenuOpened}
             >

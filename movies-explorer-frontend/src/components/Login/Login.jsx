@@ -1,27 +1,70 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import { signUpPathname } from "../../utils/constants";
-import { useState } from "react";
+import { SIGNUP_PATHNAME } from "../../utils/constants";
+import { useEffect, useState } from "react";
 import { useInputParameters } from "../../hooks/useInputParameters";
+import auth from "../../utils/Api/AuthApi";
+import { useForm } from "../../hooks/useForm";
+import checkUserDataInputs from "../../utils/userDataHelper";
 
-export default function Login({}) {
+export default function Login({ handleLogin, handleUpdateUser }) {
+  const navigate = useNavigate();
+
+  // input validation handling
   const inputClassNames = {
     baseInputName: "login__input",
     inputTypeName: "login__input_type_",
     invalidInputName: "login__input_invalid",
   };
 
-  const { inputParameters, handleInputChange } = useInputParameters(
+  const { inputParameters, validateInput } = useInputParameters(
     ["email", "password"],
     inputClassNames
   );
 
-  // error handling
-  const [hasError, setHasError] = useState(false);
+  // input values handling
+  const { values, handleChange, setValues } = useForm({
+    email: "",
+    password: "",
+  });
+
+  // server response handling
+  const [hasServerError, setHasServerError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // submit button handling
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const hasInvalidInput = checkUserDataInputs(inputParameters, values);
+    setIsSubmitButtonDisabled(hasInvalidInput);
+  }, [inputParameters, values]);
+
+  const handleInputChange = (event) => {
+    setHasServerError(false);
+
+    handleChange(event);
+    validateInput(event);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setHasError(inputParameters.some((input) => input.isInvalid));
+    setIsLoading(true);
+
+    auth
+      .signIn(values.email, values.password)
+      .then((data) => {
+        if (data.token) {
+          setValues({ email: "", password: "" });
+          handleLogin();
+          navigate("/movies", { replace: true });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setHasServerError(true);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -50,11 +93,16 @@ export default function Login({}) {
               inputParameters.find((input) => input.inputName === "email")
                 .className
             }
-            minLength={2}
-            maxLength={40}
             required=""
+            value={values.email || ""}
             onChange={handleInputChange}
           />
+          <div className="form__error-container">
+            {inputParameters.find((input) => input.inputName === "email")
+              .isInvalid && (
+              <span className="form__error ">Что-то пошло не так...</span>
+            )}
+          </div>
           <p className="form__input-text">Пароль</p>
           <input
             type="password"
@@ -64,23 +112,34 @@ export default function Login({}) {
               inputParameters.find((input) => input.inputName === "password")
                 .className
             }
-            minLength={2}
-            maxLength={40}
             required=""
+            value={values.password || ""}
             onChange={handleInputChange}
           />
           <div className="form__error-container">
-            {hasError && (
+            {inputParameters.find((input) => input.inputName === "password")
+              .isInvalid && (
               <span className="form__error">Что-то пошло не так...</span>
             )}
           </div>
-          <button className="form__save-button form__save-button_type_login" type="submit">
+          <div className="form__server-error-container">
+            {hasServerError && (
+              <span className="form__server-error">
+                Вы ввели неправильный логин или пароль.
+              </span>
+            )}
+          </div>
+          <button
+            className="form__save-button form__save-button_type_login"
+            type="submit"
+            disabled={isSubmitButtonDisabled || isLoading}
+          >
             Войти
           </button>
         </form>
         <div className="form__container">
           <p className="form__text">Ещё не зарегистрированы?</p>
-          <Link to={signUpPathname} className="form__link">
+          <Link to={SIGNUP_PATHNAME} className="form__link">
             Регистрация
           </Link>
         </div>
